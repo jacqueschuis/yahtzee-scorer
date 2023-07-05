@@ -2,8 +2,7 @@ import { useState } from 'react'
 
 import './App.css'
 
-import { createBrowserRouter, RouterProvider, useLocation } from 'react-router-dom';
-import { useTransition, a } from '@react-spring/web';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import StartForm from './components/StartForm'
 import Game from './components/Game'
