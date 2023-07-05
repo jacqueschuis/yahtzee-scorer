@@ -13,23 +13,28 @@ import Home from './components/Home';
 function App() {
   const [isGameOver, setGameOver] = useState(false);
   const [winner, setWinner] = useState(null);
-  const [playerNumber, setPlayerNumber] = useState(null);
-  const [players, setPlayers] = useState([]);
+  const [playerNumber, setPlayerNumber] = useState(0);
+  const [playerList, setPlayerList] = useState([]);
+  const [activePlayerIndex, setActivePlayerIndex] = useState()
 
   const [isPlay, setIsPlay] = useState(false);
 
   const router = createBrowserRouter([
     {
-      path: '/',
-      element: <Home />
-    },
-    {
       path: '/new',
-      element: <StartForm />,
+      element: <StartForm playerNumber={playerNumber} setPlayerNumber={setPlayerNumber} playerList={playerList} setPlayerList={setPlayerList} setIsPlay={setIsPlay} />,
     },
     {
       path: '/play',
-      element: <Game />
+      element: <Game playerList={playerList} isGameOver={isGameOver} setGameOver={setGameOver} setWinner={setWinner} />
+    },
+    {
+      path: '/win',
+      element: <Win />
+    },
+    {
+      path: '*',
+      element: <Home />
     }
   ]);
 
