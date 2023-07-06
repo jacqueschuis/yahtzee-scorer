@@ -22,12 +22,17 @@ const Game = ({playerList, isGameOver, setGameOver, setWinner}) => {
                             const [onesVal, setOnesVal] = useState(player.upperSection.ones)
                             return (
                                 <td className="border" key={player.name + "Ones"}>
-                                    <input type="number"
+                                    <input
+                                        type="number"
                                         max={6}
                                         min={0}
                                         className="text-center w-full h-full p-2"
                                         value={onesVal}
-                                        onBlur={(e) => e.target.setAttribute("disabled", "")}
+                                        onBlur={(e) => {
+                                            if (Number(e.target.value) > 0) {
+                                                e.target.setAttribute("disabled", "")
+                                            }
+                                        }}
                                         onChange={(e) => {
                                             player.upperSection.ones = Number(e.target.value);
                                             player.getUpperScore();
@@ -42,60 +47,140 @@ const Game = ({playerList, isGameOver, setGameOver, setWinner}) => {
                         <td className="p-2 border">twos</td>
                         {playerList.map((player, index) => {
                             const [twosVal, setTwosVal] = useState(player.upperSection.twos)
-                            return <td className="border" key={player.name + "Twos"}><input type="number" max={12} min={0} step={2} className="text-center w-full h-full p-2" value={twosVal} onChange={(e) => {
-                                player.upperSection.twos = Number(e.target.value);
-                                player.getUpperScore();
-                                player.checkForBonus();
-                                setTwosVal(player.upperSection.twos);
-                            }} /></td>
+                            return (
+                                <td className="border" key={player.name + "Twos"}>
+                                    <input 
+                                        type="number" 
+                                        max={12} 
+                                        min={0} 
+                                        step={2} 
+                                        className="text-center w-full h-full p-2" 
+                                        value={twosVal} 
+                                        onBlur={(e) => {
+                                            if (Number(e.target.value) > 0) {
+                                                e.target.setAttribute("disabled", "")
+                                            }
+                                        }}
+                                        onChange={(e) => {
+                                            player.upperSection.twos = Number(e.target.value);
+                                            player.getUpperScore();
+                                            player.checkForBonus();
+                                            setTwosVal(player.upperSection.twos);
+                                        }} />
+                               </td>
+                            )
                         })}
                     </tr>
                     <tr>
                         <td className="p-2 border">threes</td>
                         {playerList.map((player, index) => {
                             const [threesVal, setThreesVal] = useState(player.upperSection.threes)
-                            return <td className="border" key={player.name + "Threes"}><input type="number" max={18} min={0} step={3} className="text-center w-full h-full p-2" value={threesVal} onChange={(e) => {
-                                player.upperSection.threes = Number(e.target.value);
-                                player.getUpperScore();
-                                player.checkForBonus();
-                                setThreesVal(player.upperSection.threes);
-                            }} /></td>
+                            return (
+                                <td className="border" key={player.name + "Threes"}>
+                                    <input 
+                                        type="number" 
+                                        max={18} 
+                                        min={0} 
+                                        step={3} 
+                                        className="text-center w-full h-full p-2" 
+                                        value={threesVal} 
+                                        onBlur={(e) => {
+                                            if (Number(e.target.value) > 0) {
+                                                e.target.setAttribute("disabled", "")
+                                            }
+                                        }}
+                                        onChange={(e) => {
+                                            player.upperSection.threes = Number(e.target.value);
+                                            player.getUpperScore();
+                                            player.checkForBonus();
+                                            setThreesVal(player.upperSection.threes);
+                                        }} />
+                                </td>
+                            )
                         })}
                     </tr>
                     <tr>
                         <td className="p-2 border">fours</td>
                         {playerList.map((player, index) => {
                             const [foursVal, setFoursVal] = useState(player.upperSection.fours)
-                            return <td className="border" key={player.name + "Fours"}><input type="number" max={24} min={0} step={4} className="text-center w-full h-full p-2" value={foursVal} onChange={(e) => {
-                                player.upperSection.fours = Number(e.target.value);
-                                player.getUpperScore();
-                                player.checkForBonus();
-                                setFoursVal(player.upperSection.fours);
-                            }} /></td>
+                            return (
+                                <td className="border" key={player.name + "Fours"}>
+                                    <input 
+                                        type="number" 
+                                        max={24} 
+                                        min={0} 
+                                        step={4} 
+                                        className="text-center w-full h-full p-2" 
+                                        value={foursVal} 
+                                        onBlur={(e) => {
+                                            if (Number(e.target.value) > 0) {
+                                                e.target.setAttribute("disabled", "")
+                                            }
+                                        }}
+                                        onChange={(e) => {
+                                            player.upperSection.fours = Number(e.target.value);
+                                            player.getUpperScore();
+                                            player.checkForBonus();
+                                            setFoursVal(player.upperSection.fours);
+                                        }} />
+                                </td>
+                            )
                         })}
                     </tr>
                     <tr>
                         <td className="p-2 border">fives</td>
                         {playerList.map((player, index) => {
                             const [fivesVal, setFivesVal] = useState(player.upperSection.fives)
-                            return <td className="border" key={player.name + "Fives"}><input type="number" max={30} min={0} step={5} className="text-center w-full h-full p-2" value={fivesVal} onChange={(e) => {
-                                player.upperSection.fives = Number(e.target.value);
-                                player.getUpperScore();
-                                player.checkForBonus();
-                                setFivesVal(player.upperSection.fives);
-                            }} /></td>
+                            return (
+                                <td className="border" key={player.name + "Fives"}>
+                                    <input 
+                                        type="number" 
+                                        max={30} 
+                                        min={0} 
+                                        step={5} 
+                                        className="text-center w-full h-full p-2" 
+                                        value={fivesVal} 
+                                        onBlur={(e) => {
+                                            if (Number(e.target.value) > 0) {
+                                                e.target.setAttribute("disabled", "")
+                                            }
+                                        }}
+                                        onChange={(e) => {
+                                            player.upperSection.fives = Number(e.target.value);
+                                            player.getUpperScore();
+                                            player.checkForBonus();
+                                            setFivesVal(player.upperSection.fives);
+                                        }} />
+                                </td>
+                            )
                         })}
                     </tr>
                     <tr>
                         <td className="p-2 border">sixes</td>
                         {playerList.map((player, index) => {
                             const [sixesVal, setSixesVal] = useState(player.upperSection.sixes)
-                            return <td className="border" key={player.name + "Sixes"}><input type="number" max={36} min={0} step={6} className="text-center w-full h-full p-2" value={sixesVal} onChange={(e) => {
-                                player.upperSection.sixes = Number(e.target.value);
-                                player.getUpperScore();
-                                player.checkForBonus();
-                                setSixesVal(player.upperSection.sixes);
-                            }} /></td>
+                            return (
+                                <td className="border" key={player.name + "Sixes"}>
+                                    <input 
+                                        type="number" 
+                                        max={36} 
+                                        min={0} 
+                                        step={6} 
+                                        className="text-center w-full h-full p-2" 
+                                        value={sixesVal} 
+                                        onBlur={(e) => {
+                                            if (Number(e.target.value) > 0) {
+                                                e.target.setAttribute("disabled", "")
+                                            }
+                                        }}
+                                        onChange={(e) => {
+                                            player.upperSection.sixes = Number(e.target.value);
+                                            player.getUpperScore();
+                                            player.checkForBonus();
+                                            setSixesVal(player.upperSection.sixes);
+                                        }} />
+                                </td>
+                            )
                         })}
                     </tr>
                     <tr>
