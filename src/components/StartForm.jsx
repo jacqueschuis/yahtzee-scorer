@@ -31,8 +31,33 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
                         playerInputs.map((el, index) => {
                             return(
                                 <input key={el} type="text" placeholder={`${el}`} className="p-3" onKeyUp={(e) => {
-                                    playerNames[index] = e.target.value
+                                    function Player(name) {
+                                        this.name = name;
+                                        this.upperSection = {
+                                            ones: 0,
+                                            twos: 0,
+                                            threes: 0,
+                                            fours: 0,
+                                            fives: 0,
+                                            sixes: 0,
+                                        };
+                                        this.getUpperScore = () => {
+                                            return (
+                                                this.upperSection.ones + 
+                                                this.upperSection.twos +
+                                                this.upperSection.threes +
+                                                this.upperSection.fours +
+                                                this.upperSection.fives +
+                                                this.upperSection.sixes
+                                                )
+                                        };
+                                        this.bonus = false;
+                                        this.countedBonus = false;
+                                        this.upperScore = 0
+                                    }
+                                    playerNames[index] = new Player(e.target.value)
                                     setPlayerList(playerNames);
+                                    console.log(playerList)
                                 }}/>
                             )
                         })
