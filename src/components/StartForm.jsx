@@ -27,6 +27,20 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
             fives: 0,
             sixes: 0,
         };
+        this.countedBonus = false;
+        this.upperScore = 0;
+        this.lowerSection = {
+            threeOfAKind: 0,
+            fourOfAKind: 0,
+            fullHouse: 0,
+            smStraight: 0,
+            lgStraight: 0,
+            yahtzee: 0,
+            chance: 0,
+            yahtzeeBonus: 0,
+        }
+        this.lowerScore = 0;
+        this.grandTotal = 0;
         this.getUpperScore = () => {
             if (this.countedBonus) {
                 return this.upperScore = (
@@ -48,7 +62,11 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
                 this.upperSection.sixes
                 )
         };
-        this.countedBonus = false;
+        this.getGrandTotal = () => {
+            return this.grandTotal = (
+                this.upperScore + this.lowerScore
+            )
+        };
         this.addBonus = () => {
             this.upperScore += 35
         };
@@ -62,8 +80,7 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
             return
             }
             return
-        };
-        this.upperScore = 0
+        }
     }
     
 

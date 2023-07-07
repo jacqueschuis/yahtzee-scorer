@@ -7,11 +7,11 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner}) =
     return (
         <section id="game" className="flex flex-col items-center max-h-screen">
             <h1 className="font-bold text-5xl mb-5">Yahtzee!</h1>
-            <Link to="../new"><button onClick={() => setPlayerList([])}>back</button></Link>
+            <h2 className="font-bold text-3xl mb-5">Upper Section</h2>
             <table className="table-fixed text-center self-start w-full overflow-scroll border border-collapse">
                 <thead className="border">
                     <tr className="border">
-                        <th className="p-2 border">Upper Section</th>
+                        <th className="p-2 border"></th>
                         {playerList.map((player, index) => {
                             return <th className="p-2 border" key={player.name}>{player.name}</th>
                         })}
@@ -205,6 +205,21 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner}) =
                     </tr>
                 </tbody>
             </table>
+            <h2 className="font-bold text-3xl my-5">Upper Section</h2>
+            <table className="table-fixed text-center self-start w-full overflow-scroll border border-collapse">
+                <thead className="border">
+                    <tr className="border">
+                        <th className="p-2 border"></th>
+                        {playerList.map((player, index) => {
+                            return <th className="p-2 border" key={player.name}>{player.name}</th>
+                        })}
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+            <Link to="../new"><button className="p-3 rounded-md bg-gray-300 my-5" onClick={() => setPlayerList([])}>back</button></Link>
         </section>
      );
 }
