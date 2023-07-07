@@ -95,9 +95,11 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
                     {
                         playerInputs.map((el, index) => {
                             return(
-                                <input key={el} type="text" placeholder={`${el}`} className="p-3" onKeyUp={(e) => {
-                                    playerNames[index] = new Player(e.target.value)
-                                    setPlayerList(playerNames);
+                                <input required key={el} type="text" placeholder={`${el}`} className="p-3" onChange={(e) => {
+                                    if (e.target.value) {
+                                        playerNames[index] = new Player(e.target.value)
+                                        setPlayerList(playerNames);
+                                    }
                                 }}/>
                             )
                         })
