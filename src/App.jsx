@@ -25,7 +25,7 @@ function App() {
     },
     {
       path: '/play',
-      element: <Game playerList={playerList} isGameOver={isGameOver} setGameOver={setGameOver} setWinner={setWinner} />
+      element: <Game playerList={playerList} setPlayerList={setPlayerList} isGameOver={isGameOver} setGameOver={setGameOver} setWinner={setWinner} />
     },
     {
       path: '/win',

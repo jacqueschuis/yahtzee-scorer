@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 
 const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, setIsPlay}) => {
     const navigate = useNavigate();
-
     let playerInputs = [];
     let playerNames = [...playerList];
 
@@ -29,6 +28,17 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
             sixes: 0,
         };
         this.getUpperScore = () => {
+            if (this.countedBonus) {
+                return this.upperScore = (
+                    this.upperSection.ones + 
+                    this.upperSection.twos +
+                    this.upperSection.threes +
+                    this.upperSection.fours +
+                    this.upperSection.fives +
+                    this.upperSection.sixes +
+                    35
+                    )
+            }
             return this.upperScore = (
                 this.upperSection.ones + 
                 this.upperSection.twos +
@@ -51,7 +61,7 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
                 }
             return
             }
-            return this.upperScore += 35
+            return
         };
         this.upperScore = 0
     }
@@ -71,7 +81,6 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
                                 <input key={el} type="text" placeholder={`${el}`} className="p-3" onKeyUp={(e) => {
                                     playerNames[index] = new Player(e.target.value)
                                     setPlayerList(playerNames);
-                                    console.log(playerList)
                                 }}/>
                             )
                         })
