@@ -102,9 +102,9 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
                             )
                         })
                     }
-                        <button className="p-3 rounded-md bg-gray-300 my-5">
-                            Start Game
-                        </button>
+                    <button disabled={(playerList.length !== playerNumber) || playerList.length === 0} className="p-3 rounded-md bg-gray-300 my-5">
+                        {playerList.length === 0 || playerList.length !== playerNumber ? "Add Players to Begin" : "Start Game"}
+                    </button>
                 </form>
             </div>
         </section>
