@@ -205,7 +205,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner}) =
                     </tr>
                 </tbody>
             </table>
-            <h2 className="font-bold text-3xl my-5">Upper Section</h2>
+            <h2 className="font-bold text-3xl my-5">Lower Section</h2>
             <table className="table-fixed text-center self-start w-full overflow-scroll border border-collapse">
                 <thead className="border">
                     <tr className="border">
