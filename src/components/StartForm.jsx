@@ -41,6 +41,18 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
         }
         this.lowerScore = 0;
         this.grandTotal = 0;
+        this.getLowerScore = () => {
+            return this.lowerScore = (
+                this.lowerSection.threeOfAKind +
+                this.lowerSection.fourOfAKind +
+                this.lowerSection.fullHouse +
+                this.lowerSection.smStraight +
+                this.lowerSection.lgStraight +
+                this.lowerSection.yahtzee +
+                this.lowerSection.chance +
+                (this.lowerSection.yahtzeeBonus * 100)
+            )
+        };
         this.getUpperScore = () => {
             if (this.countedBonus) {
                 return this.upperScore = (
@@ -68,7 +80,8 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
             )
         };
         this.addBonus = () => {
-            this.upperScore += 35
+            this.upperScore += 35;
+            this.getGrandTotal();
         };
         this.checkForBonus = () => {
             if (!(this.countedBonus)){
@@ -104,7 +117,7 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
                             )
                         })
                     }
-                    <button disabled={(playerList.length !== playerNumber) || playerList.length === 0} className="p-3 rounded-md bg-gray-300 my-5">
+                    <button disabled={(playerList.length !== playerNumber) || playerList.length === 0} className="p-3 rounded-md dark:text-black bg-gray-300 my-5">
                         {playerList.length === 0 || playerList.length !== playerNumber ? "Add Players to Begin" : "Start Game"}
                     </button>
                 </form>

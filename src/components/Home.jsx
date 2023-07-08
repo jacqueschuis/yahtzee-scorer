@@ -6,7 +6,7 @@ const Home = () => {
         <section id="home" className="w-full h-full">
             <h1 className="font-bold text-5xl">Yahtzee Scorer</h1>
             <Link to="../new">
-                <button className="p-3 rounded-md bg-gray-300 my-5">
+                <button className="p-3 rounded-md bg-gray-300 my-5 dark:text-black">
                     New Game
                 </button>
             </Link>
