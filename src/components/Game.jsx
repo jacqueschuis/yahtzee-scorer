@@ -407,8 +407,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner}) =
                                 <td className="border" key={player.name + "Chance"}>
                                     <input 
                                         type="number" 
-                                        max={50}
-                                        step={50} 
+                                        max={36}
                                         min={0} 
                                         className="text-center w-full h-full p-2" 
                                         value={player.lowerSection.chance} 
