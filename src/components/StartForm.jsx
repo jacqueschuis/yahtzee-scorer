@@ -103,7 +103,7 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
                 <h1 className="font-bold text-5xl mb-5">New Game</h1>
                 <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
                     <label htmlFor="player-number" className="text-xl">Number of Players</label>
-                    <input id="player-number" type="number" placeholder="Number of Players" className="p-3" value={playerNumber} onChange={(e) => setPlayerNumber(Number(e.target.value))} />
+                    <input id="player-number" type="number" placeholder="Number of Players" className="p-3" min={0} value={playerNumber} onChange={(e) => setPlayerNumber(Number(e.target.value))} />
                     <label className="text-xl">Player Names</label>
                     {
                         playerInputs.map((el, index) => {

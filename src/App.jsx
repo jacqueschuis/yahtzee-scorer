@@ -15,6 +15,7 @@ function App() {
   const [playerNumber, setPlayerNumber] = useState(0);
   const [playerList, setPlayerList] = useState([]);
   const [activePlayerIndex, setActivePlayerIndex] = useState()
+  const [turnCount, setTurnCount] = useState(1);
 
   const [isPlay, setIsPlay] = useState(false);
 
@@ -25,7 +26,7 @@ function App() {
     },
     {
       path: '/play',
-      element: <Game playerList={playerList} setPlayerList={setPlayerList} isGameOver={isGameOver} setGameOver={setGameOver} setWinner={setWinner} />
+      element: <Game playerList={playerList} setPlayerList={setPlayerList} isGameOver={isGameOver} setGameOver={setGameOver} setWinner={setWinner} turnCount={turnCount} setTurnCount={setTurnCount} />
     },
     {
       path: '/win',
