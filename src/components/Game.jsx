@@ -1,19 +1,31 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner}) => {
+const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, turnCount, setTurnCount, playerNumber}) => {
     let playerNames = [...playerList];
+
+    let currentWinner
+
+    // let currentWinner = playerList.reduce(function(player, nextPlayer) {
+    //                             return player.grandTotal > nextPlayer.grandTotal ? player : nextPlayer
+    //                     })
+    //                     console.log(`winner: ${currentWinner.name}`)
+
+    const nextTurn = () => {
+        setTurnCount(turnCount += 1)
+    }
 
     return (
         <section id="game" className="flex flex-col items-center max-h-screen">
             <h1 className="font-bold text-5xl mb-5">Yahtzee!</h1>
             <h2 className="font-bold text-3xl mb-5">Upper Section</h2>
+            <h2 className="font-bold text3xl mb-5">turn: {turnCount + 1}</h2>
             <table className="table-fixed text-center self-start w-full overflow-scroll border border-collapse">
                 <thead className="border">
                     <tr className="border">
                         <th className="p-2 border"></th>
                         {playerList.map((player, index) => {
-                            return <th className="p-2 border" key={player.name}>{player.name}</th>
+                            return <th className={`p-2 border ${turnCount % playerNumber === index ? "bg-green-500" : ""}`} key={player.name}>{player.name}</th>
                         })}
                     </tr>
                 </thead>
@@ -35,6 +47,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner}) =
                                                 player.checkForBonus();
                                                 playerNames[index] = player;
                                                 setPlayerList(playerNames);
+                                                nextTurn();
                                             }
                                         }}
                                         onChange={(e) => {
@@ -61,11 +74,12 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner}) =
                                         className="text-center w-full h-full p-2" 
                                         value={player.upperSection.twos} 
                                         onBlur={(e) => {
-                                            if (Number(e.target.value) > 0) {
+                                            if (Number(e.target.value) > 0 || Number(e.target.value) === (2 || 4 || 6 )) {
                                                 e.target.setAttribute("disabled", "");
                                                 player.checkForBonus();
                                                 playerNames[index] = player;
                                                 setPlayerList(playerNames);
+                                                nextTurn();
                                             }
                                         }}
                                         onChange={(e) => {
@@ -97,6 +111,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner}) =
                                                 player.checkForBonus();
                                                 playerNames[index] = player;
                                                 setPlayerList(playerNames);
+                                                nextTurn();
                                             }
                                         }}
                                         onChange={(e) => {
@@ -128,6 +143,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner}) =
                                                 player.checkForBonus();
                                                 playerNames[index] = player;
                                                 setPlayerList(playerNames);
+                                                nextTurn();
                                             }
                                         }}
                                         onChange={(e) => {
@@ -159,6 +175,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner}) =
                                                 player.checkForBonus();
                                                 playerNames[index] = player;
                                                 setPlayerList(playerNames);
+                                                nextTurn();
                                             }
                                         }}
                                         onChange={(e) => {
@@ -190,6 +207,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner}) =
                                                 player.checkForBonus();
                                                 playerNames[index] = player;
                                                 setPlayerList(playerNames);
+                                                nextTurn();
                                             }
                                         }}
                                         onChange={(e) => {
@@ -238,6 +256,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner}) =
                                                 e.target.setAttribute("disabled", "");
                                                 playerNames[index] = player;
                                                 setPlayerList(playerNames);
+                                                nextTurn();
                                             }
                                         }}
                                         onChange={(e) => {
@@ -267,6 +286,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner}) =
                                                 e.target.setAttribute("disabled", "");
                                                 playerNames[index] = player;
                                                 setPlayerList(playerNames);
+                                                nextTurn();
                                             }
                                         }}
                                         onChange={(e) => {
@@ -297,6 +317,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner}) =
                                                 e.target.setAttribute("disabled", "");
                                                 playerNames[index] = player;
                                                 setPlayerList(playerNames);
+                                                nextTurn();
                                             }
                                         }}
                                         onChange={(e) => {
@@ -327,6 +348,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner}) =
                                                 e.target.setAttribute("disabled", "");
                                                 playerNames[index] = player;
                                                 setPlayerList(playerNames);
+                                                nextTurn();
                                             }
                                         }}
                                         onChange={(e) => {
@@ -357,6 +379,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner}) =
                                                 e.target.setAttribute("disabled", "");
                                                 playerNames[index] = player;
                                                 setPlayerList(playerNames);
+                                                nextTurn();
                                             }
                                         }}
                                         onChange={(e) => {
@@ -387,6 +410,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner}) =
                                                 e.target.setAttribute("disabled", "");
                                                 playerNames[index] = player;
                                                 setPlayerList(playerNames);
+                                                nextTurn();
                                             }
                                         }}
                                         onChange={(e) => {
@@ -416,6 +440,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner}) =
                                                 e.target.setAttribute("disabled", "");
                                                 playerNames[index] = player;
                                                 setPlayerList(playerNames);
+                                                nextTurn();
                                             }
                                         }}
                                         onChange={(e) => {
@@ -445,6 +470,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner}) =
                                                 e.target.setAttribute("disabled", "");
                                                 playerNames[index] = player;
                                                 setPlayerList(playerNames);
+                                                nextTurn();
                                             }
                                         }}
                                         onChange={(e) => {
@@ -473,7 +499,12 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner}) =
                 </tbody>
             </table>
 
-            <Link to="../new"><button className="p-3 rounded-md dark:text-black  bg-gray-300 my-5" onClick={() => setPlayerList([])}>back</button></Link>
+            <Link to="../new">
+                <button
+                    className="p-3 rounded-md dark:text-black  bg-gray-300 my-5" onClick={() => {
+                    setPlayerList([]);
+                    setTurnCount(0);
+            } }>back</button></Link>
         </section>
      );
 }
