@@ -96,7 +96,6 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
         }
     }
 
-    let playerNumberError = false;
     
 
     return ( 
@@ -108,13 +107,12 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
                     <input 
                         id="player-number" 
                         placeholder="Number of Players" 
-                        className={`p-3 ${playerNumberError ? "border-red-500 border-2 text-red-600" : ""}`} 
+                        className="p-3"
+                        value={playerNumber} 
                         onChange={(e) => {
                             if (e.target.value.match(/^[0-9]*$/)) {
-                                playerNumberError = false;
                                 return setPlayerNumber(Number(e.target.value))
                             }
-                            playerNumberError = true 
                         }} />
                     <label className="text-xl">Player Names</label>
                     {
@@ -129,7 +127,7 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
                             )
                         })
                     }
-                    <button disabled={(playerList.length !== playerNumber) || playerList.length === 0} className="p-3 rounded-md dark:text-black bg-gray-300 my-5">
+                    <button disabled={(playerList.length !== playerNumber) || playerList.length === 0 || !Number(playerNumber)} className="p-3 rounded-md dark:text-black bg-gray-300 my-5">
                         {playerList.length === 0 || playerList.length !== playerNumber ? "Add Players to Begin" : "Start Game"}
                     </button>
                 </form>
