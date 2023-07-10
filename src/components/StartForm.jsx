@@ -95,6 +95,8 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
             return
         }
     }
+
+    let playerNumberError = false;
     
 
     return ( 
@@ -103,7 +105,17 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
                 <h1 className="font-bold text-5xl mb-5">New Game</h1>
                 <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
                     <label htmlFor="player-number" className="text-xl">Number of Players</label>
-                    <input id="player-number" type="number" placeholder="Number of Players" className="p-3" value={playerNumber} onChange={(e) => setPlayerNumber(Number(e.target.value))} />
+                    <input 
+                        id="player-number" 
+                        placeholder="Number of Players" 
+                        className={`p-3 ${playerNumberError ? "border-red-500 border-2 text-red-600" : ""}`} 
+                        onChange={(e) => {
+                            if (e.target.value.match(/^[0-9]*$/)) {
+                                playerNumberError = false;
+                                return setPlayerNumber(Number(e.target.value))
+                            }
+                            playerNumberError = true 
+                        }} />
                     <label className="text-xl">Player Names</label>
                     {
                         playerInputs.map((el, index) => {
