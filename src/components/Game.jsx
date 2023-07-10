@@ -21,7 +21,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
             <h2 className="font-bold text-3xl mb-5">Upper Section</h2>
             <h2 className="font-bold text3xl mb-5">turn: {turnCount + 1}</h2>
             <div className="overflow-auto h-fit w-full">
-                <table className="table-auto text-center self-start border border-collapse">
+                <table className="table-auto text-center self-start min-w-full border border-collapse">
                     <thead className="border">
                         <tr className="border">
                             <th className="p-2 border"></th>
@@ -233,7 +233,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
             </div>
             <h2 className="font-bold text-3xl my-5">Lower Section</h2>
             <div className="overflow-auto h-fit w-full">
-                <table className="table-auto text-center self-start border border-collapse">
+                <table className="table-auto text-center self-start min-w-full border border-collapse">
                     <thead className="border">
                         <tr className="border">
                             <th className="p-2 border"></th>
