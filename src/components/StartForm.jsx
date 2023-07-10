@@ -95,6 +95,7 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
             return
         }
     }
+
     
 
     return ( 
@@ -103,7 +104,16 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
                 <h1 className="font-bold text-5xl mb-5">New Game</h1>
                 <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
                     <label htmlFor="player-number" className="text-xl">Number of Players</label>
-                    <input id="player-number" type="number" placeholder="Number of Players" className="p-3" min={0} value={playerNumber} onChange={(e) => setPlayerNumber(Number(e.target.value))} />
+                    <input 
+                        id="player-number" 
+                        placeholder="Number of Players" 
+                        className="p-3"
+                        value={playerNumber} 
+                        onChange={(e) => {
+                            if (e.target.value.match(/^[0-9]*$/)) {
+                                return setPlayerNumber(Number(e.target.value))
+                            }
+                        }} />
                     <label className="text-xl">Player Names</label>
                     {
                         playerInputs.map((el, index) => {
@@ -117,7 +127,7 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
                             )
                         })
                     }
-                    <button disabled={(playerList.length !== playerNumber) || playerList.length === 0} className="p-3 rounded-md dark:text-black bg-gray-300 my-5">
+                    <button disabled={(playerList.length !== playerNumber) || playerList.length === 0 || !Number(playerNumber)} className="p-3 rounded-md dark:text-black bg-gray-300 my-5">
                         {playerList.length === 0 || playerList.length !== playerNumber ? "Add Players to Begin" : "Start Game"}
                     </button>
                 </form>
