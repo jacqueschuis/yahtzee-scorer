@@ -30,7 +30,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
             {isGameOver && 
             <div>
                 <h2 className="font-bold text-5xl mb-5">{winner.name} is the winner!</h2>
-                <Link href="../new">
+                <Link to="../new">
                     <button className="p-3 rounded-md dark:text-black  bg-gray-300 my-5" onClick={() => {
                     setGameOver(false);
                     setPlayerList([]);
