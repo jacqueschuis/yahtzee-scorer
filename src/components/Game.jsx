@@ -52,8 +52,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td className="p-2 border">ones</td>
+                        <tr className="relative">
+                            <td className="p-2 border sticky left-0 bg-white dark:bg-black">ones</td>
                             {playerList.map((player, index) => {
                                 return (
                                     <td className="border" key={player.name + "Ones"}>
@@ -83,8 +83,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 )
                             })}
                         </tr>
-                        <tr>
-                            <td className="p-2 border">twos</td>
+                        <tr className="relative">
+                            <td className="p-2 border sticky left-0 bg-white dark:bg-black">twos</td>
                             {playerList.map((player, index) => {
                                 return (
                                     <td className="border" key={player.name + "Twos"}>
@@ -114,8 +114,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 )
                             })}
                         </tr>
-                        <tr>
-                            <td className="p-2 border">threes</td>
+                        <tr className="relative">
+                            <td className="p-2 border sticky left-0 bg-white dark:bg-black">threes</td>
                             {playerList.map((player, index) => {
                                 return (
                                     <td className="border" key={player.name + "Threes"}>
@@ -145,8 +145,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 )
                             })}
                         </tr>
-                        <tr>
-                            <td className="p-2 border">fours</td>
+                        <tr className="relative">
+                            <td className="p-2 border sticky left-0 bg-white dark:bg-black">fours</td>
                             {playerList.map((player, index) => {
                                 return (
                                     <td className="border" key={player.name + "Fours"}>
@@ -176,8 +176,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 )
                             })}
                         </tr>
-                        <tr>
-                            <td className="p-2 border">fives</td>
+                        <tr className="relative">
+                            <td className="p-2 border sticky left-0 bg-white dark:bg-black">fives</td>
                             {playerList.map((player, index) => {
                                 return (
                                     <td className="border" key={player.name + "Fives"}>
@@ -207,8 +207,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 )
                             })}
                         </tr>
-                        <tr>
-                            <td className="p-2 border">sixes</td>
+                        <tr className="relative">
+                            <td className="p-2 border sticky left-0 bg-white dark:bg-black">sixes</td>
                             {playerList.map((player, index) => {
                                 return (
                                     <td className="border" key={player.name + "Sixes"}>
@@ -238,8 +238,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 )
                             })}
                         </tr>
-                        <tr>
-                            <td className="p-2 border">upper</td>
+                        <tr className="relative">
+                            <td className="p-2 border sticky left-0 bg-white dark:bg-black">upper</td>
                             {playerList.map((player, index) => {
                                 return <td className="border" key={player.name + "UpperScore"}><input disabled className="text-center w-full h-full p-2" value={player.upperScore} /></td>
                             })}
@@ -259,8 +259,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td className="p-2 border">3/kind</td>
+                        <tr className="relative">
+                            <td className="p-2 border sticky left-0 bg-white dark:bg-black">3/kind</td>
                             {playerList.map((player, index) => {
                                 return (
                                     <td className="border" key={player.name + "ThreeOfAKind"}>
@@ -290,8 +290,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 )
                             })}
                         </tr>
-                        <tr>
-                            <td className="p-2 border">4/kind</td>
+                        <tr className="relative">
+                            <td className="p-2 border sticky left-0 bg-white dark:bg-black">4/kind</td>
                             {playerList.map((player, index) => {
                                 return (
                                     <td className="border" key={player.name + "FourOfAKind"}>
@@ -321,8 +321,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 )
                             })}
                         </tr>
-                        <tr>
-                            <td className="p-2 border" onClick={() => setFullHouseClick(!fullHouseClick)}>{fullHouseClick ? "25" : "full house"}</td>
+                        <tr className="relative">
+                            <td className="p-2 border sticky left-0 bg-white dark:bg-black" onClick={() => setFullHouseClick(!fullHouseClick)}>{fullHouseClick ? "25" : "full house"}</td>
                             {playerList.map((player, index) => {
                                 return (
                                     <td className="border" key={player.name + "FullHouse"}>
@@ -352,8 +352,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 )
                             })}
                         </tr>
-                        <tr>
-                            <td className="p-2 border" onClick={() => setSmStraightClick(!smStraightClick)}>{smStraightClick ? "30" : "sm straight"}</td>
+                        <tr className="relative">
+                            <td className="p-2 border sticky left-0 bg-white dark:bg-black" onClick={() => setSmStraightClick(!smStraightClick)}>{smStraightClick ? "30" : "sm straight"}</td>
                             {playerList.map((player, index) => {
                                 return (
                                     <td className="border" key={player.name + "SmStraight"}>
@@ -383,8 +383,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 )
                             })}
                         </tr>
-                        <tr>
-                            <td className="p-2 border" onClick={() => setLgStraightClick(!lgStraightClick)}>{lgStraightClick ? "40" : "lg straight"}</td>
+                        <tr className="relative">
+                            <td className="p-2 border sticky left-0 bg-white dark:bg-black" onClick={() => setLgStraightClick(!lgStraightClick)}>{lgStraightClick ? "40" : "lg straight"}</td>
                             {playerList.map((player, index) => {
                                 return (
                                     <td className="border" key={player.name + "LgStraight"}>
@@ -414,8 +414,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 )
                             })}
                         </tr>
-                        <tr>
-                            <td className="p-2 border">yahtzee</td>
+                        <tr className="relative">
+                            <td className="p-2 border sticky left-0 bg-white dark:bg-black">yahtzee</td>
                             {playerList.map((player, index) => {
                                 return (
                                     <td className="border" key={player.name + "Yahtzee"}>
@@ -445,8 +445,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 )
                             })}
                         </tr>
-                        <tr>
-                            <td className="p-2 border">chance</td>
+                        <tr className="relative">
+                            <td className="p-2 border sticky left-0 bg-white dark:bg-black">chance</td>
                             {playerList.map((player, index) => {
                                 return (
                                     <td className="border" key={player.name + "Chance"}>
@@ -476,8 +476,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 )
                             })}
                         </tr>
-                        <tr>
-                            <td className="p-2 border">yahtzee bonus</td>
+                        <tr className="relative">
+                            <td className="p-2 border sticky left-0 bg-white dark:bg-black">yahtzee bonus</td>
                             {playerList.map((player, index) => {
                                 return (
                                     <td className="border" key={player.name + "YahtzeeBonus"}>
@@ -507,14 +507,14 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 )
                             })}
                         </tr>
-                        <tr>
-                            <td className="p-2 border">lower</td>
+                        <tr className="relative">
+                            <td className="p-2 border sticky left-0 bg-white dark:bg-black">lower</td>
                             {playerList.map((player, index) => {
                                 return <td className="border" key={player.name + "LowerScore"}><input disabled className="text-center w-full h-full p-2" value={player.lowerScore} /></td>
                             })}
                         </tr>
-                        <tr>
-                            <td className="p-2 border font-bold">total</td>
+                        <tr className="relative">
+                            <td className="p-2 border font-bold sticky left-0 bg-white dark:bg-black">total</td>
                             {playerList.map((player, index) => {
                                 return <td className="border" key={player.name + "Total"}><input disabled  className="text-center w-full h-full p-2" value={player.grandTotal} /></td>
                             })}
