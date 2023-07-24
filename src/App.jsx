@@ -107,10 +107,6 @@ function App() {
       element: <Game playerList={playerList} setPlayerList={setPlayerList} isGameOver={isGameOver} setGameOver={setGameOver} winner={winner} setWinner={setWinner} turnCount={turnCount} setTurnCount={setTurnCount} playerNumber={playerNumber} setPlayerNumber={setPlayerNumber} turnsLeft={turnsLeft} setTurnsLeft={setTurnsLeft} />
     },
     {
-      path: '/win',
-      element: <Win winner={winner} playerList={playerList} setPlayerList={setPlayerList} setGameOver={setGameOver} setWinner={setWinner} setTurnCount={setTurnCount} playerNumber={playerNumber} setPlayerNumber={setPlayerNumber} setTurnsLeft={setTurnsLeft} />
-    },
-    {
       path: '*',
       element: <Home />
     }
