@@ -322,10 +322,10 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 }  
                                             }}
                                             onChange={(e) => {
-                                               if (Number(e.target.value) !== 25 || Number(e.target.value) !== 0) {
-                                                return e.target.classList.add("text-red-500");
+                                               if (Number(e.target.value) === 25 || Number(e.target.value) === 0) {
+                                                    return e.target.classList.remove('text-red-500');
                                                 }
-                                                e.target.classList.remove('text-red-500');
+                                                return e.target.classList.add("text-red-500");
                                             }}
                                             disabled={turnCount % playerNumber !== index || isGameOver} />
                                     </td>
@@ -340,7 +340,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                         <input 
                                             className="text-center w-full h-full p-2" 
                                             onBlur={(e) => {
-                                                if (Number(e.target.value) === 30 || Number(e.target.value) === 0) {
+                                                if (e.target.value && Number(e.target.value) === 30 || Number(e.target.value) === 0) {
                                                     player.lowerSection.smStraight = Number(e.target.value);
                                                     player.getLowerScore();
                                                     player.getGrandTotal();
@@ -352,10 +352,10 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 } 
                                             }}
                                             onChange={(e) => {
-                                                if (Number(e.target.value) !== 30 || Number(e.target.value) !== 0) {
-                                                return e.target.classList.add("text-red-500");
+                                                if (Number(e.target.value) === 30 || Number(e.target.value) === 0) {
+                                                    return e.target.classList.remove('text-red-500');
                                                 }
-                                                e.target.classList.remove('text-red-500');
+                                                return e.target.classList.add("text-red-500");
                                             }}
                                             disabled={turnCount % playerNumber !== index || isGameOver} />
                                     </td>
@@ -370,7 +370,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                         <input 
                                             className="text-center w-full h-full p-2" 
                                             onBlur={(e) => {
-                                                if (Number(e.target.value) === 40 || Number(e.target.value) === 0) {
+                                                if (e.target.value && Number(e.target.value) === 40 || Number(e.target.value) === 0) {
                                                     player.lowerSection.lgStraight = Number(e.target.value);
                                                     player.getLowerScore();
                                                     player.getGrandTotal();
@@ -382,10 +382,10 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 } 
                                             }}
                                             onChange={(e) => {
-                                                if (Number(e.target.value) !== 40 || Number(e.target.value) !== 0) {
-                                                return e.target.classList.add("text-red-500");
+                                                if (Number(e.target.value) === 40 || Number(e.target.value) === 0) {
+                                                    return e.target.classList.remove('text-red-500');
                                                 }
-                                                e.target.classList.remove('text-red-500');
+                                                return e.target.classList.add("text-red-500");
                                             }}
                                             disabled={turnCount % playerNumber !== index || isGameOver} />
                                     </td>
@@ -400,7 +400,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                         <input 
                                             className="text-center w-full h-full p-2" 
                                             onBlur={(e) => {
-                                                if (Number(e.target.value) === 50 || Number(e.target.value) === 0) {
+                                                if (e.target.value && Number(e.target.value) === 50 || Number(e.target.value) === 0) {
                                                     player.lowerSection.yahtzee = Number(e.target.value);
                                                     player.getLowerScore();
                                                     player.getGrandTotal();
@@ -412,10 +412,10 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 } 
                                             }}
                                             onChange={(e) => {
-                                                if (Number(e.target.value) !== 50 || Number(e.target.value) !== 0) {
-                                                return e.target.classList.add("text-red-500");
+                                                if (Number(e.target.value) === 50 || Number(e.target.value) === 0) {
+                                                    return e.target.classList.remove('text-red-500');
                                                 }
-                                                e.target.classList.remove('text-red-500');
+                                                return e.target.classList.add("text-red-500");
                                             }}
                                             disabled={turnCount % playerNumber !== index || isGameOver} />
                                     </td>
