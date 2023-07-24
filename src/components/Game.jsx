@@ -37,9 +37,6 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                                 return (
                                     <td className="border" key={player.name + "Ones"}>
                                         <input
-                                            type="number"
-                                            max={6}
-                                            min={0}
                                             className="text-center w-full h-full p-2"
                                             value={player.upperSection.ones}
                                             onBlur={(e) => {
@@ -52,12 +49,15 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                                                 }
                                             }}
                                             onChange={(e) => {
-                                                player.upperSection.ones = Number(e.target.value);
-                                                player.getUpperScore();
-                                                player.getGrandTotal();
-                                                playerNames[index] = player;
-                                                setPlayerList(playerNames)
-                                            }} />
+                                                if (e.target.value.match(/^[0-9]*$/) && Number(e.target.value) > 0 && Number(e.target.value) <6 ) {
+                                                    player.upperSection.ones = Number(e.target.value);
+                                                    player.getUpperScore();
+                                                    player.getGrandTotal();
+                                                    playerNames[index] = player;
+                                                    setPlayerList(playerNames)
+                                                 }
+                                            }} 
+                                            disabled={turnCount % playerNumber !== index}/>
                                     </td>
                                 )
                             })}
@@ -68,10 +68,6 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                                 return (
                                     <td className="border" key={player.name + "Twos"}>
                                         <input 
-                                            type="number" 
-                                            max={12} 
-                                            min={0} 
-                                            step={2} 
                                             className="text-center w-full h-full p-2" 
                                             value={player.upperSection.twos} 
                                             onBlur={(e) => {
@@ -84,12 +80,15 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                                                 }
                                             }}
                                             onChange={(e) => {
-                                                player.upperSection.twos = Number(e.target.value);
-                                                player.getUpperScore();
-                                                player.getGrandTotal();
-                                                playerNames[index] = player;
-                                                setPlayerList(playerNames);
-                                            }} />
+                                                if (e.target.value.match(/^[0-9]*$/) && Number(e.target.value) > 0 && Number(e.target.value) < 12) {
+                                                    player.upperSection.twos = Number(e.target.value);
+                                                    player.getUpperScore();
+                                                    player.getGrandTotal();
+                                                    playerNames[index] = player;
+                                                    setPlayerList(playerNames)
+                                                 }
+                                            }}
+                                            disabled={turnCount % playerNumber !== index} />
                                 </td>
                                 )
                             })}
@@ -121,7 +120,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                                                 player.getGrandTotal();
                                                 playerNames[index] = player;
                                                 setPlayerList(playerNames);
-                                            }} />
+                                            }}
+                                            disabled={turnCount % playerNumber !== index} />
                                     </td>
                                 )
                             })}
@@ -153,7 +153,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                                                 player.getGrandTotal();
                                                 playerNames[index] = player;
                                                 setPlayerList(playerNames);
-                                            }} />
+                                            }}
+                                            disabled={turnCount % playerNumber !== index} />
                                     </td>
                                 )
                             })}
@@ -185,7 +186,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                                                 player.getGrandTotal();
                                                 playerNames[index] = player;
                                                 setPlayerList(playerNames);
-                                            }} />
+                                            }}
+                                            disabled={turnCount % playerNumber !== index} />
                                     </td>
                                 )
                             })}
@@ -217,7 +219,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                                                 player.getGrandTotal();
                                                 playerNames[index] = player;
                                                 setPlayerList(playerNames);
-                                            }} />
+                                            }}
+                                            disabled={turnCount % playerNumber !== index} />
                                     </td>
                                 )
                             })}
@@ -225,7 +228,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                         <tr>
                             <td className="p-2 border">upper</td>
                             {playerList.map((player, index) => {
-                                return <td className="border" key={player.name + "UpperScore"}><input disabled type="number" max={6} className="text-center w-full h-full p-2" value={player.upperScore} /></td>
+                                return <td className="border" key={player.name + "UpperScore"}><input disabled className="text-center w-full h-full p-2" value={player.upperScore} /></td>
                             })}
                         </tr>
                     </tbody>
@@ -238,7 +241,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                         <tr className="border">
                             <th className="p-2 border"></th>
                             {playerList.map((player, index) => {
-                                return <th className="p-2 border" key={player.name}>{player.name}</th>
+                                return <th className={`p-2 border ${turnCount % playerNumber === index ? "bg-green-500" : ""}`} key={player.name}>{player.name}</th>
                             })}
                         </tr>
                     </thead>
@@ -268,7 +271,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                                                 player.getGrandTotal();
                                                 playerNames[index] = player;
                                                 setPlayerList(playerNames);
-                                            }} />
+                                            }}
+                                            disabled={turnCount % playerNumber !== index} />
                                     </td>
                                 )
                             })}
@@ -298,7 +302,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                                                 player.getGrandTotal();
                                                 playerNames[index] = player;
                                                 setPlayerList(playerNames);
-                                            }} />
+                                            }}
+                                            disabled={turnCount % playerNumber !== index} />
                                     </td>
                                 )
                             })}
@@ -329,7 +334,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                                                 player.getGrandTotal();
                                                 playerNames[index] = player;
                                                 setPlayerList(playerNames);
-                                            }} />
+                                            }}
+                                            disabled={turnCount % playerNumber !== index} />
                                     </td>
                                 )
                             })}
@@ -360,7 +366,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                                                 player.getGrandTotal();
                                                 playerNames[index] = player;
                                                 setPlayerList(playerNames);
-                                            }} />
+                                            }}
+                                            disabled={turnCount % playerNumber !== index} />
                                     </td>
                                 )
                             })}
@@ -391,7 +398,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                                                 player.getGrandTotal();
                                                 playerNames[index] = player;
                                                 setPlayerList(playerNames);
-                                            }} />
+                                            }}
+                                            disabled={turnCount % playerNumber !== index} />
                                     </td>
                                 )
                             })}
@@ -422,7 +430,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                                                 player.getGrandTotal();
                                                 playerNames[index] = player;
                                                 setPlayerList(playerNames);
-                                            }} />
+                                            }}
+                                            disabled={turnCount % playerNumber !== index} />
                                     </td>
                                 )
                             })}
@@ -452,7 +461,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                                                 player.getGrandTotal();
                                                 playerNames[index] = player;
                                                 setPlayerList(playerNames);
-                                            }} />
+                                            }}
+                                            disabled={turnCount % playerNumber !== index} />
                                     </td>
                                 )
                             })}
@@ -482,7 +492,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                                                 player.getGrandTotal();
                                                 playerNames[index] = player;
                                                 setPlayerList(playerNames);
-                                            }} />
+                                            }}
+                                            disabled={turnCount % playerNumber !== index} />
                                     </td>
                                 )
                             })}
@@ -490,13 +501,13 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                         <tr>
                             <td className="p-2 border">lower</td>
                             {playerList.map((player, index) => {
-                                return <td className="border" key={player.name + "LowerScore"}><input disabled type="number" className="text-center w-full h-full p-2" value={player.lowerScore} /></td>
+                                return <td className="border" key={player.name + "LowerScore"}><input disabled className="text-center w-full h-full p-2" value={player.lowerScore} /></td>
                             })}
                         </tr>
                         <tr>
                             <td className="p-2 border font-bold">total</td>
                             {playerList.map((player, index) => {
-                                return <td className="border" key={player.name + "Total"}><input disabled type="number" className="text-center w-full h-full p-2" value={player.grandTotal} /></td>
+                                return <td className="border" key={player.name + "Total"}><input disabled  className="text-center w-full h-full p-2" value={player.grandTotal} /></td>
                             })}
                         </tr>
                     </tbody>
