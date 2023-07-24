@@ -6,7 +6,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import StartForm from './components/StartForm'
 import Game from './components/Game'
-import Win from './components/Win'
 import Home from './components/Home';
 
 function App() {
