@@ -1,25 +1,35 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, turnCount, setTurnCount, playerNumber}) => {
+const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWinner, turnCount, setTurnCount, playerNumber, setPlayerNumber, turnsLeft, setTurnsLeft}) => {
+    const navigate = useNavigate();
     let playerNames = [...playerList];
 
-    let currentWinner
-
-    // let currentWinner = playerList.reduce(function(player, nextPlayer) {
-    //                             return player.grandTotal > nextPlayer.grandTotal ? player : nextPlayer
-    //                     })
-    //                     console.log(`winner: ${currentWinner.name}`)
+  
+    const updateWinner = () => {
+        const newWinner = playerList.reduce(function(player, nextPlayer) {
+                                return player.grandTotal > nextPlayer.grandTotal ? player : nextPlayer
+                        })
+        setWinner(newWinner);
+    }
 
     const nextTurn = () => {
+        if (turnsLeft === 1) {
+            return setGameOver(true);
+        }
         setTurnCount(turnCount += 1)
+        setTurnsLeft(turnsLeft -= 1)
     }
 
     return (
-        <section id="game" className="flex flex-col items-center">
+        <section id="game" className="flex flex-col items-center md:pt-16 pt-5">
             <h1 className="font-bold text-5xl mb-5">Yahtzee!</h1>
             <h2 className="font-bold text-3xl mb-5">Upper Section</h2>
-            <h2 className="font-bold text3xl mb-5">turn: {turnCount + 1}</h2>
+            {isGameOver && 
+            <Link href="../win">
+                <button className="p-3 rounded-md dark:text-black  bg-gray-300 my-5">Reveal Winner</button>
+            </Link>
+            }
             <div className="overflow-auto h-fit w-full">
                 <table className="table-auto text-center self-start min-w-full border border-collapse">
                     <thead className="border">
@@ -38,26 +48,25 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                                     <td className="border" key={player.name + "Ones"}>
                                         <input
                                             className="text-center w-full h-full p-2"
-                                            value={player.upperSection.ones}
                                             onBlur={(e) => {
-                                                if (Number(e.target.value) > 0) {
-                                                    e.target.setAttribute("disabled", "");
-                                                    player.checkForBonus();
-                                                    playerNames[index] = player;
-                                                    setPlayerList(playerNames);
-                                                    nextTurn();
-                                                }
-                                            }}
-                                            onChange={(e) => {
-                                                if (e.target.value.match(/^[0-9]*$/) && Number(e.target.value) > 0 && Number(e.target.value) <6 ) {
+                                                if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 6) {
                                                     player.upperSection.ones = Number(e.target.value);
                                                     player.getUpperScore();
                                                     player.getGrandTotal();
+                                                    player.checkForBonus();
                                                     playerNames[index] = player;
                                                     setPlayerList(playerNames)
+                                                    nextTurn();
+                                                    updateWinner();
                                                  }
-                                            }} 
-                                            disabled={turnCount % playerNumber !== index}/>
+                                            }}
+                                            onChange={(e) => {
+                                                if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 6) {
+                                                return e.target.classList.add("text-red-500");
+                                                }
+                                                e.target.classList.remove('text-red-500');
+                                            }}
+                                            disabled={turnCount % playerNumber !== index || isGameOver}/>
                                     </td>
                                 )
                             })}
@@ -69,26 +78,25 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                                     <td className="border" key={player.name + "Twos"}>
                                         <input 
                                             className="text-center w-full h-full p-2" 
-                                            value={player.upperSection.twos} 
                                             onBlur={(e) => {
-                                                if (Number(e.target.value) > 0 || Number(e.target.value) === (2 || 4 || 6 )) {
-                                                    e.target.setAttribute("disabled", "");
-                                                    player.checkForBonus();
-                                                    playerNames[index] = player;
-                                                    setPlayerList(playerNames);
-                                                    nextTurn();
-                                                }
-                                            }}
-                                            onChange={(e) => {
-                                                if (e.target.value.match(/^[0-9]*$/) && Number(e.target.value) > 0 && Number(e.target.value) < 12) {
+                                                if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 12 && Number(e.target.value) % 2 === 0) {
                                                     player.upperSection.twos = Number(e.target.value);
                                                     player.getUpperScore();
                                                     player.getGrandTotal();
+                                                    player.checkForBonus();
                                                     playerNames[index] = player;
                                                     setPlayerList(playerNames)
-                                                 }
+                                                    nextTurn();
+                                                    updateWinner();
+                                                }
                                             }}
-                                            disabled={turnCount % playerNumber !== index} />
+                                            onChange={(e) => {
+                                                if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 12 || Number(e.target.value) % 2 !== 0) {
+                                                return e.target.classList.add("text-red-500");
+                                                }
+                                                e.target.classList.remove('text-red-500');
+                                            }}
+                                            disabled={turnCount % playerNumber !== index || isGameOver} />
                                 </td>
                                 )
                             })}
@@ -99,29 +107,26 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                                 return (
                                     <td className="border" key={player.name + "Threes"}>
                                         <input 
-                                            type="number" 
-                                            max={18} 
-                                            min={0} 
-                                            step={3} 
                                             className="text-center w-full h-full p-2" 
-                                            value={player.upperSection.threes} 
                                             onBlur={(e) => {
-                                                if (Number(e.target.value) > 0) {
-                                                    e.target.setAttribute("disabled", "");
+                                                if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 18 && Number(e.target.value) % 3 === 0) {
+                                                    player.upperSection.threes = Number(e.target.value);
+                                                    player.getUpperScore();
+                                                    player.getGrandTotal();
                                                     player.checkForBonus();
                                                     playerNames[index] = player;
-                                                    setPlayerList(playerNames);
+                                                    setPlayerList(playerNames)
                                                     nextTurn();
-                                                }
+                                                    updateWinner();
+                                                }                                            
                                             }}
                                             onChange={(e) => {
-                                                player.upperSection.threes = Number(e.target.value);
-                                                player.getUpperScore();
-                                                player.getGrandTotal();
-                                                playerNames[index] = player;
-                                                setPlayerList(playerNames);
+                                                if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 18 || Number(e.target.value) % 3 !== 0) {
+                                                return e.target.classList.add("text-red-500");
+                                                }
+                                                e.target.classList.remove('text-red-500');
                                             }}
-                                            disabled={turnCount % playerNumber !== index} />
+                                            disabled={turnCount % playerNumber !== index || isGameOver} />
                                     </td>
                                 )
                             })}
@@ -132,29 +137,26 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                                 return (
                                     <td className="border" key={player.name + "Fours"}>
                                         <input 
-                                            type="number" 
-                                            max={24} 
-                                            min={0} 
-                                            step={4} 
                                             className="text-center w-full h-full p-2" 
-                                            value={player.upperSection.fours} 
                                             onBlur={(e) => {
-                                                if (Number(e.target.value) > 0) {
-                                                    e.target.setAttribute("disabled", "");
+                                                if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 24 && Number(e.target.value) % 4 === 0) {
+                                                    player.upperSection.fours = Number(e.target.value);
+                                                    player.getUpperScore();
+                                                    player.getGrandTotal();
                                                     player.checkForBonus();
                                                     playerNames[index] = player;
-                                                    setPlayerList(playerNames);
+                                                    setPlayerList(playerNames)
                                                     nextTurn();
-                                                }
+                                                    updateWinner();
+                                                }   
                                             }}
                                             onChange={(e) => {
-                                                player.upperSection.fours = Number(e.target.value);
-                                                player.getUpperScore();
-                                                player.getGrandTotal();
-                                                playerNames[index] = player;
-                                                setPlayerList(playerNames);
+                                                if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 24 || Number(e.target.value) % 4 !== 0) {
+                                                return e.target.classList.add("text-red-500");
+                                                }
+                                                e.target.classList.remove('text-red-500');
                                             }}
-                                            disabled={turnCount % playerNumber !== index} />
+                                            disabled={turnCount % playerNumber !== index || isGameOver} />
                                     </td>
                                 )
                             })}
@@ -165,29 +167,26 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                                 return (
                                     <td className="border" key={player.name + "Fives"}>
                                         <input 
-                                            type="number" 
-                                            max={30} 
-                                            min={0} 
-                                            step={5} 
                                             className="text-center w-full h-full p-2" 
-                                            value={player.upperSection.fives} 
                                             onBlur={(e) => {
-                                                if (Number(e.target.value) > 0) {
-                                                    e.target.setAttribute("disabled", "");
+                                                if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 30 && Number(e.target.value) % 5 === 0) {
+                                                    player.upperSection.fives = Number(e.target.value);
+                                                    player.getUpperScore();
+                                                    player.getGrandTotal();
                                                     player.checkForBonus();
                                                     playerNames[index] = player;
-                                                    setPlayerList(playerNames);
+                                                    setPlayerList(playerNames)
                                                     nextTurn();
-                                                }
+                                                    updateWinner();
+                                                }  
                                             }}
                                             onChange={(e) => {
-                                                player.upperSection.fives = Number(e.target.value);
-                                                player.getUpperScore();
-                                                player.getGrandTotal();
-                                                playerNames[index] = player;
-                                                setPlayerList(playerNames);
+                                                if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 30 || Number(e.target.value) % 5 !== 0) {
+                                                return e.target.classList.add("text-red-500");
+                                                }
+                                                e.target.classList.remove('text-red-500');
                                             }}
-                                            disabled={turnCount % playerNumber !== index} />
+                                            disabled={turnCount % playerNumber !== index || isGameOver} />
                                     </td>
                                 )
                             })}
@@ -198,29 +197,26 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                                 return (
                                     <td className="border" key={player.name + "Sixes"}>
                                         <input 
-                                            type="number" 
-                                            max={36} 
-                                            min={0} 
-                                            step={6} 
                                             className="text-center w-full h-full p-2" 
-                                            value={player.upperSection.sixes} 
                                             onBlur={(e) => {
-                                                if (Number(e.target.value) > 0) {
-                                                    e.target.setAttribute("disabled", "");
+                                                if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 36 && Number(e.target.value) % 6 === 0) {
+                                                    player.upperSection.sixes = Number(e.target.value);
+                                                    player.getUpperScore();
+                                                    player.getGrandTotal();
                                                     player.checkForBonus();
                                                     playerNames[index] = player;
-                                                    setPlayerList(playerNames);
+                                                    setPlayerList(playerNames)
                                                     nextTurn();
-                                                }
+                                                    updateWinner();
+                                                }  
                                             }}
                                             onChange={(e) => {
-                                                player.upperSection.sixes = Number(e.target.value);
-                                                player.getUpperScore();
-                                                player.getGrandTotal();
-                                                playerNames[index] = player;
-                                                setPlayerList(playerNames);
+                                                if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 36 || Number(e.target.value) % 6 !== 0) {
+                                                return e.target.classList.add("text-red-500");
+                                                }
+                                                e.target.classList.remove('text-red-500');
                                             }}
-                                            disabled={turnCount % playerNumber !== index} />
+                                            disabled={turnCount % playerNumber !== index || isGameOver} />
                                     </td>
                                 )
                             })}
@@ -252,27 +248,26 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                                 return (
                                     <td className="border" key={player.name + "ThreeOfAKind"}>
                                         <input 
-                                            type="number" 
-                                            max={36} 
-                                            min={0} 
                                             className="text-center w-full h-full p-2" 
-                                            value={player.lowerSection.threeOfAKind} 
                                             onBlur={(e) => {
-                                                if (Number(e.target.value) > 0) {
-                                                    e.target.setAttribute("disabled", "");
+                                                if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 36) {
+                                                    player.lowerSection.threeOfAKind = Number(e.target.value);
+                                                    player.getLowerScore();
+                                                    player.getGrandTotal();
+                                                    player.checkForBonus();
                                                     playerNames[index] = player;
-                                                    setPlayerList(playerNames);
+                                                    setPlayerList(playerNames)
                                                     nextTurn();
-                                                }
+                                                    updateWinner();
+                                                }  
                                             }}
                                             onChange={(e) => {
-                                                player.lowerSection.threeOfAKind = Number(e.target.value);
-                                                player.getLowerScore();
-                                                player.getGrandTotal();
-                                                playerNames[index] = player;
-                                                setPlayerList(playerNames);
+                                                if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 36) {
+                                                return e.target.classList.add("text-red-500");
+                                                }
+                                                e.target.classList.remove('text-red-500');
                                             }}
-                                            disabled={turnCount % playerNumber !== index} />
+                                            disabled={turnCount % playerNumber !== index || isGameOver} />
                                     </td>
                                 )
                             })}
@@ -283,27 +278,26 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                                 return (
                                     <td className="border" key={player.name + "FourOfAKind"}>
                                         <input 
-                                            type="number" 
-                                            max={36} 
-                                            min={0} 
                                             className="text-center w-full h-full p-2" 
-                                            value={player.lowerSection.fourOfAKind} 
                                             onBlur={(e) => {
-                                                if (Number(e.target.value) > 0) {
-                                                    e.target.setAttribute("disabled", "");
+                                                if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 36) {
+                                                    player.lowerSection.fourOfAKind = Number(e.target.value);
+                                                    player.getLowerScore();
+                                                    player.getGrandTotal();
+                                                    player.checkForBonus();
                                                     playerNames[index] = player;
-                                                    setPlayerList(playerNames);
+                                                    setPlayerList(playerNames)
                                                     nextTurn();
-                                                }
+                                                    updateWinner();
+                                                }  
                                             }}
                                             onChange={(e) => {
-                                                player.lowerSection.fourOfAKind = Number(e.target.value);
-                                                player.getLowerScore();
-                                                player.getGrandTotal();
-                                                playerNames[index] = player;
-                                                setPlayerList(playerNames);
+                                                if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 36) {
+                                                return e.target.classList.add("text-red-500");
+                                                }
+                                                e.target.classList.remove('text-red-500');
                                             }}
-                                            disabled={turnCount % playerNumber !== index} />
+                                            disabled={turnCount % playerNumber !== index || isGameOver} />
                                     </td>
                                 )
                             })}
@@ -314,28 +308,26 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                                 return (
                                     <td className="border" key={player.name + "FullHouse"}>
                                         <input 
-                                            type="number" 
-                                            max={25}
-                                            step={25} 
-                                            min={0} 
                                             className="text-center w-full h-full p-2" 
-                                            value={player.lowerSection.fullHouse} 
                                             onBlur={(e) => {
-                                                if (Number(e.target.value) > 0) {
-                                                    e.target.setAttribute("disabled", "");
+                                                if (Number(e.target.value) === 25) {
+                                                    player.lowerSection.fullHouse = Number(e.target.value);
+                                                    player.getLowerScore();
+                                                    player.getGrandTotal();
+                                                    player.checkForBonus();
                                                     playerNames[index] = player;
-                                                    setPlayerList(playerNames);
+                                                    setPlayerList(playerNames)
                                                     nextTurn();
-                                                }
+                                                    updateWinner();
+                                                }  
                                             }}
                                             onChange={(e) => {
-                                                player.lowerSection.fullHouse = Number(e.target.value);
-                                                player.getLowerScore();
-                                                player.getGrandTotal();
-                                                playerNames[index] = player;
-                                                setPlayerList(playerNames);
+                                               if (Number(e.target.value) !== 25) {
+                                                return e.target.classList.add("text-red-500");
+                                                }
+                                                e.target.classList.remove('text-red-500');
                                             }}
-                                            disabled={turnCount % playerNumber !== index} />
+                                            disabled={turnCount % playerNumber !== index || isGameOver} />
                                     </td>
                                 )
                             })}
@@ -346,28 +338,26 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                                 return (
                                     <td className="border" key={player.name + "SmStraight"}>
                                         <input 
-                                            type="number" 
-                                            max={30}
-                                            step={30} 
-                                            min={0} 
                                             className="text-center w-full h-full p-2" 
-                                            value={player.lowerSection.smStraight} 
                                             onBlur={(e) => {
-                                                if (Number(e.target.value) > 0) {
-                                                    e.target.setAttribute("disabled", "");
+                                                if (Number(e.target.value) === 30) {
+                                                    player.lowerSection.smStraight = Number(e.target.value);
+                                                    player.getLowerScore();
+                                                    player.getGrandTotal();
+                                                    player.checkForBonus();
                                                     playerNames[index] = player;
-                                                    setPlayerList(playerNames);
+                                                    setPlayerList(playerNames)
                                                     nextTurn();
-                                                }
+                                                    updateWinner();
+                                                } 
                                             }}
                                             onChange={(e) => {
-                                                player.lowerSection.smStraight = Number(e.target.value);
-                                                player.getLowerScore();
-                                                player.getGrandTotal();
-                                                playerNames[index] = player;
-                                                setPlayerList(playerNames);
+                                                if (Number(e.target.value) !== 30) {
+                                                return e.target.classList.add("text-red-500");
+                                                }
+                                                e.target.classList.remove('text-red-500');
                                             }}
-                                            disabled={turnCount % playerNumber !== index} />
+                                            disabled={turnCount % playerNumber !== index || isGameOver} />
                                     </td>
                                 )
                             })}
@@ -378,28 +368,26 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                                 return (
                                     <td className="border" key={player.name + "LgStraight"}>
                                         <input 
-                                            type="number" 
-                                            max={40}
-                                            step={40} 
-                                            min={0} 
                                             className="text-center w-full h-full p-2" 
-                                            value={player.lowerSection.lgStraight} 
                                             onBlur={(e) => {
-                                                if (Number(e.target.value) > 0) {
-                                                    e.target.setAttribute("disabled", "");
+                                                if (Number(e.target.value) === 40) {
+                                                    player.lowerSection.lgStraight = Number(e.target.value);
+                                                    player.getLowerScore();
+                                                    player.getGrandTotal();
+                                                    player.checkForBonus();
                                                     playerNames[index] = player;
-                                                    setPlayerList(playerNames);
+                                                    setPlayerList(playerNames)
                                                     nextTurn();
-                                                }
+                                                    updateWinner();
+                                                } 
                                             }}
                                             onChange={(e) => {
-                                                player.lowerSection.lgStraight = Number(e.target.value);
-                                                player.getLowerScore();
-                                                player.getGrandTotal();
-                                                playerNames[index] = player;
-                                                setPlayerList(playerNames);
+                                                if (Number(e.target.value) !== 40) {
+                                                return e.target.classList.add("text-red-500");
+                                                }
+                                                e.target.classList.remove('text-red-500');
                                             }}
-                                            disabled={turnCount % playerNumber !== index} />
+                                            disabled={turnCount % playerNumber !== index || isGameOver} />
                                     </td>
                                 )
                             })}
@@ -410,28 +398,26 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                                 return (
                                     <td className="border" key={player.name + "Yahtzee"}>
                                         <input 
-                                            type="number" 
-                                            max={50}
-                                            step={50} 
-                                            min={0} 
                                             className="text-center w-full h-full p-2" 
-                                            value={player.lowerSection.yahtzee} 
                                             onBlur={(e) => {
-                                                if (Number(e.target.value) > 0) {
-                                                    e.target.setAttribute("disabled", "");
+                                                if (Number(e.target.value) === 50) {
+                                                    player.lowerSection.yahtzee = Number(e.target.value);
+                                                    player.getLowerScore();
+                                                    player.getGrandTotal();
+                                                    player.checkForBonus();
                                                     playerNames[index] = player;
-                                                    setPlayerList(playerNames);
+                                                    setPlayerList(playerNames)
                                                     nextTurn();
-                                                }
+                                                    updateWinner();
+                                                } 
                                             }}
                                             onChange={(e) => {
-                                                player.lowerSection.yahtzee = Number(e.target.value);
-                                                player.getLowerScore();
-                                                player.getGrandTotal();
-                                                playerNames[index] = player;
-                                                setPlayerList(playerNames);
+                                                if (Number(e.target.value) !== 50) {
+                                                return e.target.classList.add("text-red-500");
+                                                }
+                                                e.target.classList.remove('text-red-500');
                                             }}
-                                            disabled={turnCount % playerNumber !== index} />
+                                            disabled={turnCount % playerNumber !== index || isGameOver} />
                                     </td>
                                 )
                             })}
@@ -442,27 +428,26 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                                 return (
                                     <td className="border" key={player.name + "Chance"}>
                                         <input 
-                                            type="number" 
-                                            max={36}
-                                            min={0} 
                                             className="text-center w-full h-full p-2" 
-                                            value={player.lowerSection.chance} 
                                             onBlur={(e) => {
-                                                if (Number(e.target.value) > 0) {
-                                                    e.target.setAttribute("disabled", "");
+                                                if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 36) {
+                                                    player.lowerSection.chance = Number(e.target.value);
+                                                    player.getLowerScore();
+                                                    player.getGrandTotal();
+                                                    player.checkForBonus();
                                                     playerNames[index] = player;
-                                                    setPlayerList(playerNames);
+                                                    setPlayerList(playerNames)
                                                     nextTurn();
-                                                }
+                                                    updateWinner();
+                                                }  
                                             }}
                                             onChange={(e) => {
-                                                player.lowerSection.chance = Number(e.target.value);
-                                                player.getLowerScore();
-                                                player.getGrandTotal();
-                                                playerNames[index] = player;
-                                                setPlayerList(playerNames);
+                                                if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 36) {
+                                                return e.target.classList.add("text-red-500");
+                                                }
+                                                e.target.classList.remove('text-red-500');
                                             }}
-                                            disabled={turnCount % playerNumber !== index} />
+                                            disabled={turnCount % playerNumber !== index || isGameOver} />
                                     </td>
                                 )
                             })}
@@ -473,27 +458,26 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                                 return (
                                     <td className="border" key={player.name + "YahtzeeBonus"}>
                                         <input 
-                                            type="number" 
-                                            max={5}
-                                            min={0} 
                                             className="text-center w-full h-full p-2" 
-                                            value={player.lowerSection.yahtzeeBonus} 
                                             onBlur={(e) => {
-                                                if (Number(e.target.value) > 0) {
-                                                    e.target.setAttribute("disabled", "");
+                                                if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 5) {
+                                                    player.lowerSection.yahtzeeBonus = Number(e.target.value);
+                                                    player.getLowerScore();
+                                                    player.getGrandTotal();
+                                                    player.checkForBonus();
                                                     playerNames[index] = player;
-                                                    setPlayerList(playerNames);
+                                                    setPlayerList(playerNames)
                                                     nextTurn();
-                                                }
+                                                    updateWinner();
+                                                }  
                                             }}
                                             onChange={(e) => {
-                                                player.lowerSection.yahtzeeBonus = Number(e.target.value);
-                                                player.getLowerScore();
-                                                player.getGrandTotal();
-                                                playerNames[index] = player;
-                                                setPlayerList(playerNames);
+                                                if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 5) {
+                                                return e.target.classList.add("text-red-500");
+                                                }
+                                                e.target.classList.remove('text-red-500');
                                             }}
-                                            disabled={turnCount % playerNumber !== index} />
+                                            disabled={turnCount % playerNumber !== index || isGameOver} />
                                     </td>
                                 )
                             })}
@@ -518,8 +502,9 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, setWinner, tu
                 <button
                     className="p-3 rounded-md dark:text-black  bg-gray-300 my-5" onClick={() => {
                     setPlayerList([]);
+                    setPlayerNumber(0);
                     setTurnCount(0);
-            } }>back</button></Link>
+            } }>start over</button></Link>
         </section>
      );
 }

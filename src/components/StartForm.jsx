@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, setIsPlay}) => {
+const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, setTurnsLeft}) => {
     const navigate = useNavigate();
     let playerInputs = [];
     let playerNames = [...playerList];
@@ -14,6 +14,7 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
         let adjustedPlayers = [...playerList];
         adjustedPlayers.splice(playerNumber, (playerList.length - playerNumber));
         setPlayerList(adjustedPlayers);
+        setTurnsLeft(playerNumber * 13)
         return navigate('../play');
     }
 
@@ -96,10 +97,8 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
         }
     }
 
-    
-
     return ( 
-        <section className="w-full h-full flex justify-center items-center">
+        <section className="w-full h-full flex justify-center items-center md:pt-16">
             <div className="w-full md:w-3/4">
                 <h1 className="font-bold text-5xl mb-5">New Game</h1>
                 <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
@@ -108,13 +107,14 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
                         id="player-number" 
                         placeholder="Number of Players" 
                         className="p-3"
-                        value={playerNumber} 
                         onChange={(e) => {
                             if (e.target.value.match(/^[0-9]*$/)) {
+                                e.target.classList.remove('text-red-500')
                                 return setPlayerNumber(Number(e.target.value))
                             }
+                            e.target.classList.add('text-red-500')
                         }} />
-                    <label className="text-xl">Player Names</label>
+                    <label className="text-xl">{playerNumber.length && 'Player Names'}</label>
                     {
                         playerInputs.map((el, index) => {
                             return(
