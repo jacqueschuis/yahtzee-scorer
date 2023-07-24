@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWinner, turnCount, setTurnCount, playerNumber, setPlayerNumber, turnsLeft, setTurnsLeft}) => {
@@ -19,9 +20,13 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
         setTurnsLeft(turnsLeft -= 1)
     }
 
+    const [fullHouseClick, setFullHouseClick] = useState(false)
+    const [smStraightClick, setSmStraightClick] = useState(false)
+    const [lgStraightClick, setLgStraightClick] = useState(false)
+
     return (
         <section id="game" className="flex flex-col items-center md:pt-16 pt-5">
-            <h1 className="font-bold text-5xl mb-5">Yahtzee!</h1>
+            <h1 className="font-bold text-xl">Yahtzee!</h1>
             {isGameOver && 
             <div>
                 <h2 className="font-bold text-5xl mb-5">{winner.name} is the winner!</h2>
@@ -35,8 +40,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                 </Link>
             </div>
             }
-            <h2 className="font-bold text-3xl mb-5">Upper Section</h2>
-            <div className="overflow-auto h-fit w-full">
+            <h2 className="text-xl mb-1">Upper Section</h2>
+            <div className="overflow-auto h-fit w-full mb-5">
                 <table className="table-auto text-center self-start min-w-full border border-collapse">
                     <thead className="border">
                         <tr className="border">
@@ -242,7 +247,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                     </tbody>
                 </table>
             </div>
-            <h2 className="font-bold text-3xl my-5">Lower Section</h2>
+            <h2 className="text-xl my-1">Lower Section</h2>
             <div className="overflow-auto h-fit w-full">
                 <table className="table-auto text-center self-start min-w-full border border-collapse">
                     <thead className="border">
@@ -317,7 +322,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                             })}
                         </tr>
                         <tr>
-                            <td className="p-2 border">full house</td>
+                            <td className="p-2 border" onClick={() => setFullHouseClick(!fullHouseClick)}>{fullHouseClick ? "25" : "full house"}</td>
                             {playerList.map((player, index) => {
                                 return (
                                     <td className="border" key={player.name + "FullHouse"}>
@@ -348,7 +353,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                             })}
                         </tr>
                         <tr>
-                            <td className="p-2 border">sm straight</td>
+                            <td className="p-2 border" onClick={() => setSmStraightClick(!smStraightClick)}>{smStraightClick ? "30" : "sm straight"}</td>
                             {playerList.map((player, index) => {
                                 return (
                                     <td className="border" key={player.name + "SmStraight"}>
@@ -379,7 +384,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                             })}
                         </tr>
                         <tr>
-                            <td className="p-2 border">lg straight</td>
+                            <td className="p-2 border" onClick={() => setLgStraightClick(!lgStraightClick)}>{lgStraightClick ? "40" : "lg straight"}</td>
                             {playerList.map((player, index) => {
                                 return (
                                     <td className="border" key={player.name + "LgStraight"}>

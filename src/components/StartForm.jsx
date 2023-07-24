@@ -99,7 +99,7 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
     }
 
     return ( 
-        <section className="w-full h-full flex justify-center items-center md:pt-16">
+        <section className=" w-full h-full flex justify-center items-center md:pt-16">
             <div className="w-full md:w-3/4">
                 <h1 className="font-bold text-5xl mb-5">New Game</h1>
                 <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
