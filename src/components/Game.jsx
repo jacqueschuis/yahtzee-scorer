@@ -53,6 +53,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 return (
                                     <td className="border" key={player.name + "Ones"}>
                                         <input
+                                            type="tel"
                                             className="text-center w-full h-full p-2"
                                             onBlur={(e) => {
                                                 if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 6) {
@@ -82,7 +83,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                             {playerList.map((player, index) => {
                                 return (
                                     <td className="border" key={player.name + "Twos"}>
-                                        <input 
+                                        <input
+                                            type="tel" 
                                             className="text-center w-full h-full p-2" 
                                             onBlur={(e) => {
                                                 if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 12 && Number(e.target.value) % 2 === 0) {
@@ -112,7 +114,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                             {playerList.map((player, index) => {
                                 return (
                                     <td className="border" key={player.name + "Threes"}>
-                                        <input 
+                                        <input
+                                            type="tel" 
                                             className="text-center w-full h-full p-2" 
                                             onBlur={(e) => {
                                                 if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 18 && Number(e.target.value) % 3 === 0) {
@@ -142,7 +145,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                             {playerList.map((player, index) => {
                                 return (
                                     <td className="border" key={player.name + "Fours"}>
-                                        <input 
+                                        <input
+                                            type="tel" 
                                             className="text-center w-full h-full p-2" 
                                             onBlur={(e) => {
                                                 if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 24 && Number(e.target.value) % 4 === 0) {
@@ -172,7 +176,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                             {playerList.map((player, index) => {
                                 return (
                                     <td className="border" key={player.name + "Fives"}>
-                                        <input 
+                                        <input
+                                            type="tel" 
                                             className="text-center w-full h-full p-2" 
                                             onBlur={(e) => {
                                                 if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 30 && Number(e.target.value) % 5 === 0) {
@@ -202,7 +207,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                             {playerList.map((player, index) => {
                                 return (
                                     <td className="border" key={player.name + "Sixes"}>
-                                        <input 
+                                        <input
+                                            type="tel" 
                                             className="text-center w-full h-full p-2" 
                                             onBlur={(e) => {
                                                 if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 36 && Number(e.target.value) % 6 === 0) {
@@ -253,7 +259,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                             {playerList.map((player, index) => {
                                 return (
                                     <td className="border" key={player.name + "ThreeOfAKind"}>
-                                        <input 
+                                        <input
+                                            type="tel" 
                                             className="text-center w-full h-full p-2" 
                                             onBlur={(e) => {
                                                 if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 36) {
@@ -283,7 +290,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                             {playerList.map((player, index) => {
                                 return (
                                     <td className="border" key={player.name + "FourOfAKind"}>
-                                        <input 
+                                        <input
+                                            type="tel" 
                                             className="text-center w-full h-full p-2" 
                                             onBlur={(e) => {
                                                 if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 36) {
@@ -313,7 +321,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                             {playerList.map((player, index) => {
                                 return (
                                     <td className="border" key={player.name + "FullHouse"}>
-                                        <input 
+                                        <input
+                                            type="tel" 
                                             className="text-center w-full h-full p-2" 
                                             onBlur={(e) => {
                                                 if (Number(e.target.value) === 25 || Number(e.target.value) === 0) {
@@ -343,7 +352,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                             {playerList.map((player, index) => {
                                 return (
                                     <td className="border" key={player.name + "SmStraight"}>
-                                        <input 
+                                        <input
+                                            type="tel" 
                                             className="text-center w-full h-full p-2" 
                                             onBlur={(e) => {
                                                 if (e.target.value && Number(e.target.value) === 30 || Number(e.target.value) === 0) {
@@ -373,7 +383,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                             {playerList.map((player, index) => {
                                 return (
                                     <td className="border" key={player.name + "LgStraight"}>
-                                        <input 
+                                        <input
+                                            type="tel" 
                                             className="text-center w-full h-full p-2" 
                                             onBlur={(e) => {
                                                 if (e.target.value && Number(e.target.value) === 40 || Number(e.target.value) === 0) {
@@ -403,7 +414,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                             {playerList.map((player, index) => {
                                 return (
                                     <td className="border" key={player.name + "Yahtzee"}>
-                                        <input 
+                                        <input
+                                            type="tel" 
                                             className="text-center w-full h-full p-2" 
                                             onBlur={(e) => {
                                                 if (e.target.value && Number(e.target.value) === 50 || Number(e.target.value) === 0) {
@@ -433,7 +445,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                             {playerList.map((player, index) => {
                                 return (
                                     <td className="border" key={player.name + "Chance"}>
-                                        <input 
+                                        <input
+                                            type="tel" 
                                             className="text-center w-full h-full p-2" 
                                             onBlur={(e) => {
                                                 if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 36) {
@@ -463,7 +476,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                             {playerList.map((player, index) => {
                                 return (
                                     <td className="border" key={player.name + "YahtzeeBonus"}>
-                                        <input 
+                                        <input
+                                            type="tel" 
                                             className="text-center w-full h-full p-2" 
                                             onBlur={(e) => {
                                                 if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 5) {
