@@ -325,7 +325,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                             type="tel" 
                                             className="text-center w-full h-full p-2" 
                                             onBlur={(e) => {
-                                                if (Number(e.target.value) === 25 || Number(e.target.value) === 0) {
+                                                if (e.target.value && (Number(e.target.value) === 25 || Number(e.target.value) === 0)) {
                                                     player.lowerSection.fullHouse = Number(e.target.value);
                                                     player.getLowerScore();
                                                     player.getGrandTotal();
@@ -356,7 +356,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                             type="tel" 
                                             className="text-center w-full h-full p-2" 
                                             onBlur={(e) => {
-                                                if (e.target.value && Number(e.target.value) === 30 || Number(e.target.value) === 0) {
+                                                if (e.target.value && (Number(e.target.value) === 30 || Number(e.target.value) === 0)) {
                                                     player.lowerSection.smStraight = Number(e.target.value);
                                                     player.getLowerScore();
                                                     player.getGrandTotal();
@@ -387,7 +387,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                             type="tel" 
                                             className="text-center w-full h-full p-2" 
                                             onBlur={(e) => {
-                                                if (e.target.value && Number(e.target.value) === 40 || Number(e.target.value) === 0) {
+                                                if (e.target.value && (Number(e.target.value) === 40 || Number(e.target.value) === 0)) {
                                                     player.lowerSection.lgStraight = Number(e.target.value);
                                                     player.getLowerScore();
                                                     player.getGrandTotal();
@@ -418,7 +418,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                             type="tel" 
                                             className="text-center w-full h-full p-2" 
                                             onBlur={(e) => {
-                                                if (e.target.value && Number(e.target.value) === 50 || Number(e.target.value) === 0) {
+                                                if (e.target.value && (Number(e.target.value) === 50 || Number(e.target.value) === 0)) {
                                                     player.lowerSection.yahtzee = Number(e.target.value);
                                                     player.getLowerScore();
                                                     player.getGrandTotal();
