@@ -24,12 +24,20 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
     return (
         <section id="game" className="flex flex-col items-center md:pt-16 pt-5">
             <h1 className="font-bold text-5xl mb-5">Yahtzee!</h1>
-            <h2 className="font-bold text-3xl mb-5">Upper Section</h2>
             {isGameOver && 
-            <Link href="../win">
-                <button className="p-3 rounded-md dark:text-black  bg-gray-300 my-5">Reveal Winner</button>
-            </Link>
+            <div>
+                <h2 className="font-bold text-5xl mb-5">{winner.name} is the winner!</h2>
+                <Link href="../new">
+                    <button className="p-3 rounded-md dark:text-black  bg-gray-300 my-5" onClick={() => {
+                    setGameOver(false);
+                    setPlayerList([]);
+                    setPlayerNumber(0);
+                    setTurnCount(0);
+                    }}>new game</button>
+                </Link>
+            </div>
             }
+            <h2 className="font-bold text-3xl mb-5">Upper Section</h2>
             <div className="overflow-auto h-fit w-full">
                 <table className="table-auto text-center self-start min-w-full border border-collapse">
                     <thead className="border">
@@ -501,6 +509,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
             <Link to="../new">
                 <button
                     className="p-3 rounded-md dark:text-black  bg-gray-300 my-5" onClick={() => {
+                    setGameOver(false);
                     setPlayerList([]);
                     setPlayerNumber(0);
                     setTurnCount(0);

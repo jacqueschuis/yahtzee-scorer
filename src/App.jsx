@@ -100,7 +100,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: '/new',
-      element: <StartForm player={Player} playerNumber={playerNumber} setPlayerNumber={setPlayerNumber} playerList={playerList} setPlayerList={setPlayerList} setTurnsLeft={setTurnsLeft} />,
+      element: <StartForm player={Player} playerNumber={playerNumber} setPlayerNumber={setPlayerNumber} playerList={playerList} setPlayerList={setPlayerList} setTurnsLeft={setTurnsLeft} setGameOver={setGameOver} />,
     },
     {
       path: '/play',

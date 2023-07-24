@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, setTurnsLeft}) => {
+const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, setTurnsLeft, setGameOver}) => {
     const navigate = useNavigate();
     let playerInputs = [];
     let playerNames = [...playerList];
@@ -15,6 +15,7 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
         adjustedPlayers.splice(playerNumber, (playerList.length - playerNumber));
         setPlayerList(adjustedPlayers);
         setTurnsLeft(playerNumber * 13)
+        setGameOver(false);
         return navigate('../play');
     }
 
