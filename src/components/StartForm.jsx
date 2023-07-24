@@ -105,6 +105,7 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
                 <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
                     <label htmlFor="player-number" className="text-xl">Number of Players</label>
                     <input 
+                        type="tel"
                         id="player-number" 
                         placeholder="Number of Players" 
                         className="p-3"
