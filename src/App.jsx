@@ -13,7 +13,6 @@ function App() {
   const [winner, setWinner] = useState(null);
   const [playerNumber, setPlayerNumber] = useState(0);
   const [playerList, setPlayerList] = useState([]);
-  const [activePlayerIndex, setActivePlayerIndex] = useState();
   const [turnCount, setTurnCount] = useState(0);
   const [turnsLeft, setTurnsLeft] = useState(13);
 
