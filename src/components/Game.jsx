@@ -1,8 +1,16 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Trail from "./Trail";
 
 const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWinner, turnCount, setTurnCount, playerNumber, setPlayerNumber, turnsLeft, setTurnsLeft}) => {
+    const navigate = useNavigate();
+    
+    useEffect(() => {
+        if (!playerList.length) {
+            return navigate("../")
+        }
+    }, []);
+    
     let playerNames = [...playerList];
 
   
