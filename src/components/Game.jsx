@@ -20,9 +20,13 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
         setTurnsLeft(turnsLeft -= 1)
     }
 
+    const [threeKindClick, setThreeKindClick] = useState(false);
+    const [fourKindClick, setFourKindClick] = useState(false);
     const [fullHouseClick, setFullHouseClick] = useState(false)
     const [smStraightClick, setSmStraightClick] = useState(false)
     const [lgStraightClick, setLgStraightClick] = useState(false)
+    const [yahtzeeClick, setYahtzeeClick] = useState(false);
+    const [chanceClick, setChanceClick] = useState(false);
 
     return (
         <section id="game" className="flex flex-col items-center md:pt-16 pt-5">
@@ -55,6 +59,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                         <tr className="relative">
                             <td className="p-2 border sticky left-0 bg-white dark:bg-black">ones</td>
                             {playerList.map((player, index) => {
+                                const [isDisabled, setIsDisabled] = useState(false);
+
                                 return (
                                     <td className="border" key={player.name + "Ones"}>
                                         <input
@@ -69,6 +75,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                     playerNames[index] = player;
                                                     setPlayerList(playerNames)
                                                     nextTurn();
+                                                    setIsDisabled(true);
                                                     updateWinner();
                                                  }
                                             }}
@@ -78,7 +85,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 }
                                                 e.target.classList.remove('text-red-500');
                                             }}
-                                            disabled={turnCount % playerNumber !== index || isGameOver}/>
+                                            disabled={turnCount % playerNumber !== index || isGameOver || isDisabled}/>
                                     </td>
                                 )
                             })}
@@ -86,6 +93,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                         <tr className="relative">
                             <td className="p-2 border sticky left-0 bg-white dark:bg-black">twos</td>
                             {playerList.map((player, index) => {
+                                const [isDisabled, setIsDisabled] = useState(false);
+
                                 return (
                                     <td className="border" key={player.name + "Twos"}>
                                         <input
@@ -100,6 +109,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                     playerNames[index] = player;
                                                     setPlayerList(playerNames)
                                                     nextTurn();
+                                                    setIsDisabled(true);
                                                     updateWinner();
                                                 }
                                             }}
@@ -109,7 +119,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 }
                                                 e.target.classList.remove('text-red-500');
                                             }}
-                                            disabled={turnCount % playerNumber !== index || isGameOver} />
+                                            disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
                                 </td>
                                 )
                             })}
@@ -117,6 +127,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                         <tr className="relative">
                             <td className="p-2 border sticky left-0 bg-white dark:bg-black">threes</td>
                             {playerList.map((player, index) => {
+                                const [isDisabled, setIsDisabled] = useState(false);
+
                                 return (
                                     <td className="border" key={player.name + "Threes"}>
                                         <input
@@ -131,6 +143,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                     playerNames[index] = player;
                                                     setPlayerList(playerNames)
                                                     nextTurn();
+                                                    setIsDisabled(true);
                                                     updateWinner();
                                                 }                                            
                                             }}
@@ -140,7 +153,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 }
                                                 e.target.classList.remove('text-red-500');
                                             }}
-                                            disabled={turnCount % playerNumber !== index || isGameOver} />
+                                            disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
                                     </td>
                                 )
                             })}
@@ -148,12 +161,15 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                         <tr className="relative">
                             <td className="p-2 border sticky left-0 bg-white dark:bg-black">fours</td>
                             {playerList.map((player, index) => {
+                                const [isDisabled, setIsDisabled] = useState(false);
+
                                 return (
                                     <td className="border" key={player.name + "Fours"}>
                                         <input
                                             type="tel" 
                                             className="text-center w-full h-full p-2" 
                                             onBlur={(e) => {
+
                                                 if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 24 && Number(e.target.value) % 4 === 0) {
                                                     player.upperSection.fours = Number(e.target.value);
                                                     player.getUpperScore();
@@ -162,6 +178,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                     playerNames[index] = player;
                                                     setPlayerList(playerNames)
                                                     nextTurn();
+                                                    setIsDisabled(true);
                                                     updateWinner();
                                                 }   
                                             }}
@@ -171,7 +188,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 }
                                                 e.target.classList.remove('text-red-500');
                                             }}
-                                            disabled={turnCount % playerNumber !== index || isGameOver} />
+                                            disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
                                     </td>
                                 )
                             })}
@@ -179,6 +196,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                         <tr className="relative">
                             <td className="p-2 border sticky left-0 bg-white dark:bg-black">fives</td>
                             {playerList.map((player, index) => {
+                                const [isDisabled, setIsDisabled] = useState(false);
+
                                 return (
                                     <td className="border" key={player.name + "Fives"}>
                                         <input
@@ -193,6 +212,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                     playerNames[index] = player;
                                                     setPlayerList(playerNames)
                                                     nextTurn();
+                                                    setIsDisabled(true);
                                                     updateWinner();
                                                 }  
                                             }}
@@ -202,7 +222,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 }
                                                 e.target.classList.remove('text-red-500');
                                             }}
-                                            disabled={turnCount % playerNumber !== index || isGameOver} />
+                                            disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
                                     </td>
                                 )
                             })}
@@ -210,6 +230,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                         <tr className="relative">
                             <td className="p-2 border sticky left-0 bg-white dark:bg-black">sixes</td>
                             {playerList.map((player, index) => {
+                                const [isDisabled, setIsDisabled] = useState(false);
+
                                 return (
                                     <td className="border" key={player.name + "Sixes"}>
                                         <input
@@ -224,6 +246,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                     playerNames[index] = player;
                                                     setPlayerList(playerNames)
                                                     nextTurn();
+                                                    setIsDisabled(true);
                                                     updateWinner();
                                                 }  
                                             }}
@@ -233,7 +256,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 }
                                                 e.target.classList.remove('text-red-500');
                                             }}
-                                            disabled={turnCount % playerNumber !== index || isGameOver} />
+                                            disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
                                     </td>
                                 )
                             })}
@@ -260,8 +283,10 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                     </thead>
                     <tbody>
                         <tr className="relative">
-                            <td className="p-2 border sticky left-0 bg-white dark:bg-black">3/kind</td>
+                            <td className="p-2 border sticky left-0 bg-white dark:bg-black" onClick={() => setThreeKindClick(!threeKindClick)}>{threeKindClick ? "total all" : "3/kind"}</td>
                             {playerList.map((player, index) => {
+                                const [isDisabled, setIsDisabled] = useState(false);
+
                                 return (
                                     <td className="border" key={player.name + "ThreeOfAKind"}>
                                         <input
@@ -276,6 +301,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                     playerNames[index] = player;
                                                     setPlayerList(playerNames)
                                                     nextTurn();
+                                                    setIsDisabled(true);
                                                     updateWinner();
                                                 }  
                                             }}
@@ -285,14 +311,16 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 }
                                                 e.target.classList.remove('text-red-500');
                                             }}
-                                            disabled={turnCount % playerNumber !== index || isGameOver} />
+                                            disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
                                     </td>
                                 )
                             })}
                         </tr>
                         <tr className="relative">
-                            <td className="p-2 border sticky left-0 bg-white dark:bg-black">4/kind</td>
+                            <td className="p-2 border sticky left-0 bg-white dark:bg-black" onClick={() => setFourKindClick(!fourKindClick)}>{fourKindClick ? "total all" : '4/kind'}</td>
                             {playerList.map((player, index) => {
+                                const [isDisabled, setIsDisabled] = useState(false);
+
                                 return (
                                     <td className="border" key={player.name + "FourOfAKind"}>
                                         <input
@@ -307,6 +335,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                     playerNames[index] = player;
                                                     setPlayerList(playerNames)
                                                     nextTurn();
+                                                    setIsDisabled(true);
                                                     updateWinner();
                                                 }  
                                             }}
@@ -316,7 +345,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 }
                                                 e.target.classList.remove('text-red-500');
                                             }}
-                                            disabled={turnCount % playerNumber !== index || isGameOver} />
+                                            disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
                                     </td>
                                 )
                             })}
@@ -324,6 +353,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                         <tr className="relative">
                             <td className="p-2 border sticky left-0 bg-white dark:bg-black" onClick={() => setFullHouseClick(!fullHouseClick)}>{fullHouseClick ? "25" : "full house"}</td>
                             {playerList.map((player, index) => {
+                                const [isDisabled, setIsDisabled] = useState(false);
+
                                 return (
                                     <td className="border" key={player.name + "FullHouse"}>
                                         <input
@@ -338,6 +369,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                     playerNames[index] = player;
                                                     setPlayerList(playerNames)
                                                     nextTurn();
+                                                    setIsDisabled(true);
                                                     updateWinner();
                                                 }  
                                             }}
@@ -347,7 +379,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 }
                                                 return e.target.classList.add("text-red-500");
                                             }}
-                                            disabled={turnCount % playerNumber !== index || isGameOver} />
+                                            disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
                                     </td>
                                 )
                             })}
@@ -355,6 +387,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                         <tr className="relative">
                             <td className="p-2 border sticky left-0 bg-white dark:bg-black" onClick={() => setSmStraightClick(!smStraightClick)}>{smStraightClick ? "30" : "sm straight"}</td>
                             {playerList.map((player, index) => {
+                                const [isDisabled, setIsDisabled] = useState(false);
+
                                 return (
                                     <td className="border" key={player.name + "SmStraight"}>
                                         <input
@@ -369,6 +403,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                     playerNames[index] = player;
                                                     setPlayerList(playerNames)
                                                     nextTurn();
+                                                    setIsDisabled(true);
                                                     updateWinner();
                                                 } 
                                             }}
@@ -378,7 +413,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 }
                                                 return e.target.classList.add("text-red-500");
                                             }}
-                                            disabled={turnCount % playerNumber !== index || isGameOver} />
+                                            disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
                                     </td>
                                 )
                             })}
@@ -386,6 +421,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                         <tr className="relative">
                             <td className="p-2 border sticky left-0 bg-white dark:bg-black" onClick={() => setLgStraightClick(!lgStraightClick)}>{lgStraightClick ? "40" : "lg straight"}</td>
                             {playerList.map((player, index) => {
+                                const [isDisabled, setIsDisabled] = useState(false);
+
                                 return (
                                     <td className="border" key={player.name + "LgStraight"}>
                                         <input
@@ -400,6 +437,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                     playerNames[index] = player;
                                                     setPlayerList(playerNames)
                                                     nextTurn();
+                                                    setIsDisabled(true);
                                                     updateWinner();
                                                 } 
                                             }}
@@ -409,14 +447,16 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 }
                                                 return e.target.classList.add("text-red-500");
                                             }}
-                                            disabled={turnCount % playerNumber !== index || isGameOver} />
+                                            disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
                                     </td>
                                 )
                             })}
                         </tr>
                         <tr className="relative">
-                            <td className="p-2 border sticky left-0 bg-white dark:bg-black">yahtzee</td>
+                            <td className="p-2 border sticky left-0 bg-white dark:bg-black" onClick={() => setYahtzeeClick(!yahtzeeClick)}>{yahtzeeClick ? "50" : "yahtzee"}</td>
                             {playerList.map((player, index) => {
+                                const [isDisabled, setIsDisabled] = useState(false);
+
                                 return (
                                     <td className="border" key={player.name + "Yahtzee"}>
                                         <input
@@ -431,6 +471,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                     playerNames[index] = player;
                                                     setPlayerList(playerNames)
                                                     nextTurn();
+                                                    setIsDisabled(true);
                                                     updateWinner();
                                                 } 
                                             }}
@@ -440,14 +481,16 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 }
                                                 return e.target.classList.add("text-red-500");
                                             }}
-                                            disabled={turnCount % playerNumber !== index || isGameOver} />
+                                            disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
                                     </td>
                                 )
                             })}
                         </tr>
                         <tr className="relative">
-                            <td className="p-2 border sticky left-0 bg-white dark:bg-black">chance</td>
+                            <td className="p-2 border sticky left-0 bg-white dark:bg-black" onClick={() => setChanceClick(!chanceClick)}>{chanceClick ? "total all" : "chance"}</td>
                             {playerList.map((player, index) => {
+                                const [isDisabled, setIsDisabled] = useState(false);
+
                                 return (
                                     <td className="border" key={player.name + "Chance"}>
                                         <input
@@ -462,6 +505,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                     playerNames[index] = player;
                                                     setPlayerList(playerNames)
                                                     nextTurn();
+                                                    setIsDisabled(true);
                                                     updateWinner();
                                                 }  
                                             }}
@@ -471,7 +515,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 }
                                                 e.target.classList.remove('text-red-500');
                                             }}
-                                            disabled={turnCount % playerNumber !== index || isGameOver} />
+                                            disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
                                     </td>
                                 )
                             })}
