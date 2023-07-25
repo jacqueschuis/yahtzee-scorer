@@ -118,7 +118,9 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
                                 if (e.target.value.match(/^[0-9]*$/)) {
                                     e.target.classList.remove('text-red-500')
                                     return setPlayerNumber(Number(e.target.value))
-                                }
+                                } 
+                                setPlayerNumber(0);
+                                setPlayerList([])
                                 e.target.classList.add('text-red-500')
                             }} />
                         <Trail>
@@ -133,16 +135,22 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
                                         <input required key={el} type="text" placeholder={`${el}`} className="p-3 rounded-md mb-3 dark:bg-teal-900 border-teal-500 border-2 outline-orange-300 placeholder:text-teal-300" onChange={(e) => {
                                             if (e.target.value) {
                                                 playerNames[index] = new Player(e.target.value)
-                                                setPlayerList(playerNames);
+                                                return setPlayerList(playerNames);
                                             }
+                                            playerNames[index] = undefined
+                                            setPlayerList(playerNames)
                                         }}/>
                                         )
                                     })
                                 }
                          </Trail>
-                        <button disabled={(playerList.length !== playerNumber) || playerList.length === 0 || !Number(playerNumber)} className="p-5 rounded-md w-full md:w-3/4 text-xl bg-teal-300 text-teal-900 font-bold my-5 dark:bg-teal-500 dark:text-teal-100">
-                            {playerList.length === 0 || playerList.length !== playerNumber ? "Add Players" : "Start Game"}
-                        </button>
+                         {(playerList.length === playerNumber) && playerList.length !== 0 && !isNaN(playerNumber) && !playerList.includes(undefined) &&
+                            <Trail>
+                                <button className="p-5 rounded-md w-full md:w-3/4 text-xl bg-teal-300 text-teal-900 font-bold my-5 dark:bg-teal-500 dark:text-teal-100">
+                                Start Game
+                                </button>
+                            </Trail>
+                         }
                     </form>
             </Trail>
                 </div>
