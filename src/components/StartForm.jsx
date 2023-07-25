@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import Trail from "./Trail";
 
 const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, setTurnsLeft, setGameOver}) => {
     const navigate = useNavigate();
@@ -100,40 +101,44 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
 
     return ( 
         <section className=" w-full h-full flex justify-center items-center md:pt-16">
-            <div className="w-full md:w-3/4">
-                <h1 className="font-bold text-5xl mb-5">New Game</h1>
-                <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
-                    <label htmlFor="player-number" className="text-xl">Number of Players</label>
-                    <input 
-                        type="tel"
-                        id="player-number" 
-                        placeholder="Number of Players" 
-                        className="p-3"
-                        onChange={(e) => {
-                            if (e.target.value.match(/^[0-9]*$/)) {
-                                e.target.classList.remove('text-red-500')
-                                return setPlayerNumber(Number(e.target.value))
-                            }
-                            e.target.classList.add('text-red-500')
-                        }} />
-                    <label className="text-xl">{playerNumber.length && 'Player Names'}</label>
-                    {
-                        playerInputs.map((el, index) => {
-                            return(
-                                <input required key={el} type="text" placeholder={`${el}`} className="p-3" onChange={(e) => {
-                                    if (e.target.value) {
-                                        playerNames[index] = new Player(e.target.value)
-                                        setPlayerList(playerNames);
-                                    }
-                                }}/>
-                            )
-                        })
-                    }
-                    <button disabled={(playerList.length !== playerNumber) || playerList.length === 0 || !Number(playerNumber)} className="p-3 rounded-md dark:text-black bg-gray-300 my-5">
-                        {playerList.length === 0 || playerList.length !== playerNumber ? "Add Players to Begin" : "Start Game"}
-                    </button>
-                </form>
-            </div>
+            <Trail>
+                <div className="w-full md:w-3/4">
+                    <h1 className="font-bold text-5xl mb-5">New Game</h1>
+                    <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
+                        <label htmlFor="player-number" className="text-xl">Number of Players</label>
+                        <input 
+                            type="tel"
+                            id="player-number" 
+                            placeholder="Number of Players" 
+                            className="p-3"
+                            onChange={(e) => {
+                                if (e.target.value.match(/^[0-9]*$/)) {
+                                    e.target.classList.remove('text-red-500')
+                                    return setPlayerNumber(Number(e.target.value))
+                                }
+                                e.target.classList.add('text-red-500')
+                            }} />
+                        <label className="text-xl">{playerNumber.length && 'Player Names'}</label>
+                        {
+                            playerInputs.map((el, index) => {
+                                return(
+                                    <Trail>
+                                        <input required key={el} type="text" placeholder={`${el}`} className="p-3" onChange={(e) => {
+                                            if (e.target.value) {
+                                                playerNames[index] = new Player(e.target.value)
+                                                setPlayerList(playerNames);
+                                            }
+                                        }}/>
+                                    </Trail>
+                                )
+                            })
+                        }
+                        <button disabled={(playerList.length !== playerNumber) || playerList.length === 0 || !Number(playerNumber)} className="p-3 w-full rounded-md dark:text-black bg-gray-300 my-5">
+                            {playerList.length === 0 || playerList.length !== playerNumber ? "Add Players to Begin" : "Start Game"}
+                        </button>
+                    </form>
+                </div>
+            </Trail>
         </section>
      );
 }

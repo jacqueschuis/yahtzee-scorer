@@ -1,9 +1,13 @@
+import React from "react";
 import { Link } from "react-router-dom";
+import Trail from "./Trail";
 
 const Home = () => {
+
     return ( 
 
         <section id="home" className="w-fit h-full pt-5 md:pt-16">
+            <Trail>
             <h1 className="font-bold text-5xl mb-10">Yahtzee Scorer</h1>
             <div className="flex max-w-xl flex-col gap-3 my-5 text-start text-lg px-2">
                 <p>Yahtzee Scorer is a dynamic Yahtzee score card.</p>
@@ -27,6 +31,7 @@ const Home = () => {
                     New Game
                 </button>
             </Link>
+            </Trail>
         </section>
      );
 }
