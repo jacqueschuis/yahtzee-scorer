@@ -104,11 +104,11 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
                 <div className="w-full">
             <Trail>
                     <h1 className="font-bold text-5xl mb-5 text-teal-500 dark:text-teal-300">New Game</h1>
-                    <form className="flex flex-col w-full items-center justify-center text-blue-900 text-lg" onSubmit={handleSubmit}>
+                    <form className="flex flex-col w-full items-center justify-center text-blue-900 dark:text-teal-300 text-lg" onSubmit={handleSubmit}>
                         <Trail>
 
                         </Trail>
-                        <label htmlFor="player-number" className="text-xl mb-2 text-blue-700 font-bold">Number of Players</label>
+                        <label htmlFor="player-number" className="text-xl mb-2 text-blue-700 dark:text-blue-300 font-bold">Number of Players</label>
                         <input 
                             type="tel"
                             id="player-number" 
@@ -123,7 +123,7 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
                             }} />
                         <Trail>
                         { playerNumber > 0  && 
-                            <p className="text-xl mb-2 text-blue-700 font-bold">
+                            <p className="text-xl mb-2 text-blue-700 dark:text-blue-300 font-bold">
                                 Player Names
                             </p>
                         }
