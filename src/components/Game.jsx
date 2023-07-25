@@ -53,7 +53,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                     <table className="table-auto text-center self-start min-w-full border-2 border-teal-500 border-collapse text-blue-900 dark:text-teal-300">
                         <thead className="border-teal-500 border-2">
                             <tr className="border-teal-500 border-2">
-                                <th className="p-2 border-teal-500 border-2"></th>
+                                <th className="p-2 border-teal-500 border-2 bg-teal-300 dark:bg-teal-500 dark:text-teal-100"></th>
                                 {playerList.map((player, index) => {
                                     return <th className={`p-2 border-teal-500 border-2 dark:text-teal-100 ${turnCount % playerNumber === index ? "bg-teal-300 dark:bg-teal-500" : ""}`} key={player.name}>{player.name}</th>
                                 })}
@@ -61,7 +61,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                         </thead>
                         <tbody>
                             <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold">ones</td>
+                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100">ones</td>
                                 {playerList.map((player, index) => {
                                     const [isDisabled, setIsDisabled] = useState(false);
 
@@ -95,7 +95,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 })}
                             </tr>
                             <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold">twos</td>
+                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100">twos</td>
                                 {playerList.map((player, index) => {
                                     const [isDisabled, setIsDisabled] = useState(false);
 
@@ -129,7 +129,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 })}
                             </tr>
                             <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold">threes</td>
+                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100">threes</td>
                                 {playerList.map((player, index) => {
                                     const [isDisabled, setIsDisabled] = useState(false);
 
@@ -163,7 +163,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 })}
                             </tr>
                             <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold">fours</td>
+                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100">fours</td>
                                 {playerList.map((player, index) => {
                                     const [isDisabled, setIsDisabled] = useState(false);
 
@@ -198,7 +198,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 })}
                             </tr>
                             <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold">fives</td>
+                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100">fives</td>
                                 {playerList.map((player, index) => {
                                     const [isDisabled, setIsDisabled] = useState(false);
 
@@ -232,7 +232,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 })}
                             </tr>
                             <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold">sixes</td>
+                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100">sixes</td>
                                 {playerList.map((player, index) => {
                                     const [isDisabled, setIsDisabled] = useState(false);
 
@@ -266,7 +266,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 })}
                             </tr>
                             <tr className="relative bg-teal-100  dark:bg-teal-700 dark:text-teal-100">
-                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold">upper</td>
+                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold bg-teal-100 dark:bg-teal-700">upper</td>
                                 {playerList.map((player, index) => {
                                     return <td className="border-teal-500 border-2" key={player.name + "UpperScore"}><input disabled className="text-center w-full h-full p-2 font-bold" value={player.upperScore} /></td>
                                 })}
@@ -279,7 +279,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                     <table className="table-auto text-center self-start min-w-full border-2 border-teal-500 border-collapse text-blue-900 dark:text-teal-300">
                         <thead className="border-teal-500 border-2">
                             <tr className="border-teal-500 border-2">
-                                <th className="p-2 border-teal-500 border-2"></th>
+                                <th className="p-2 border-teal-500 border-2 bg-teal-300 dark:bg-teal-500 dark:text-teal-100"></th>
                                 {playerList.map((player, index) => {
                                     return <th className={`p-2 border-teal-500 border-2 dark:text-teal-100 ${turnCount % playerNumber === index ? "bg-teal-300 dark:bg-teal-500" : ""}`} key={player.name}>{player.name}</th>
                                 })}
@@ -287,7 +287,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                         </thead>
                         <tbody>
                             <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold" onClick={() => setThreeKindClick(!threeKindClick)}>{threeKindClick ? "total all" : "3/kind"}</td>
+                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100 text-teal-900" onClick={() => setThreeKindClick(!threeKindClick)}>{threeKindClick ? "total all" : "3/kind"}</td>
                                 {playerList.map((player, index) => {
                                     const [isDisabled, setIsDisabled] = useState(false);
 
@@ -321,7 +321,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 })}
                             </tr>
                             <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold" onClick={() => setFourKindClick(!fourKindClick)}>{fourKindClick ? "total all" : '4/kind'}</td>
+                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100" onClick={() => setFourKindClick(!fourKindClick)}>{fourKindClick ? "total all" : '4/kind'}</td>
                                 {playerList.map((player, index) => {
                                     const [isDisabled, setIsDisabled] = useState(false);
 
@@ -355,7 +355,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 })}
                             </tr>
                             <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold" onClick={() => setFullHouseClick(!fullHouseClick)}>{fullHouseClick ? "25" : "full house"}</td>
+                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100" onClick={() => setFullHouseClick(!fullHouseClick)}>{fullHouseClick ? "25" : "full house"}</td>
                                 {playerList.map((player, index) => {
                                     const [isDisabled, setIsDisabled] = useState(false);
 
@@ -389,7 +389,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 })}
                             </tr>
                             <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold" onClick={() => setSmStraightClick(!smStraightClick)}>{smStraightClick ? "30" : "sm straight"}</td>
+                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100" onClick={() => setSmStraightClick(!smStraightClick)}>{smStraightClick ? "30" : "sm straight"}</td>
                                 {playerList.map((player, index) => {
                                     const [isDisabled, setIsDisabled] = useState(false);
 
@@ -423,7 +423,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 })}
                             </tr>
                             <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold" onClick={() => setLgStraightClick(!lgStraightClick)}>{lgStraightClick ? "40" : "lg straight"}</td>
+                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100" onClick={() => setLgStraightClick(!lgStraightClick)}>{lgStraightClick ? "40" : "lg straight"}</td>
                                 {playerList.map((player, index) => {
                                     const [isDisabled, setIsDisabled] = useState(false);
 
@@ -457,7 +457,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 })}
                             </tr>
                             <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold" onClick={() => setYahtzeeClick(!yahtzeeClick)}>{yahtzeeClick ? "50" : "yahtzee"}</td>
+                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100" onClick={() => setYahtzeeClick(!yahtzeeClick)}>{yahtzeeClick ? "50" : "yahtzee"}</td>
                                 {playerList.map((player, index) => {
                                     const [isDisabled, setIsDisabled] = useState(false);
 
@@ -491,7 +491,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 })}
                             </tr>
                             <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold" onClick={() => setChanceClick(!chanceClick)}>{chanceClick ? "total all" : "chance"}</td>
+                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100" onClick={() => setChanceClick(!chanceClick)}>{chanceClick ? "total all" : "chance"}</td>
                                 {playerList.map((player, index) => {
                                     const [isDisabled, setIsDisabled] = useState(false);
 
@@ -525,7 +525,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 })}
                             </tr>
                             <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold">yahtzee bonus</td>
+                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100">yahtzee bonus</td>
                                 {playerList.map((player, index) => {
                                     return (
                                         <td className="border-teal-500 border-2" key={player.name + "YahtzeeBonus"}>
@@ -556,13 +556,13 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 })}
                             </tr>
                             <tr className="relative bg-teal-100  dark:bg-teal-700 dark:text-teal-100">
-                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold">lower</td>
+                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold bg-teal-100 dark:bg-teal-700">lower</td>
                                 {playerList.map((player, index) => {
                                     return <td className="border-teal-500 border-2" key={player.name + "LowerScore"}><input disabled className="text-center w-full h-full p-2 font-bold" value={player.lowerScore} /></td>
                                 })}
                             </tr>
                             <tr className="relative border-orange-500 border-2 bg-orange-300 text-orange-900 dark:bg-orange-700 dark:text-orange-100">
-                                <td className="p-2 border-orange-500 border-2 sticky left-0 font-bold">total</td>
+                                <td className="p-2 border-orange-500 border-2 sticky left-0 font-bold bg-orange-300 dark:bg-orange-700">total</td>
                                 {playerList.map((player, index) => {
                                     return <td className="border-orange-500 border-2" key={player.name + "Total"}><input disabled  className="text-center w-full h-full p-2 font-bold" value={player.grandTotal} /></td>
                                 })}
