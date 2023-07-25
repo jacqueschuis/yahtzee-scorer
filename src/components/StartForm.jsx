@@ -108,12 +108,12 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
                         <Trail>
 
                         </Trail>
-                        <label htmlFor="player-number" className="text-xl mb-2 text-blue-700 dark:text-blue-300 font-bold">Number of Players</label>
+                        <label htmlFor="player-number" className="text-xl mb-2 text-blue-700 dark:text-blue-100 font-bold">Number of Players</label>
                         <input 
                             type="tel"
                             id="player-number" 
                             placeholder="Number of Players" 
-                            className="p-3 rounded-md mb-8 outline-teal-500"
+                            className="p-3 rounded-md mb-8 outline-teal-500 placeholder:text-teal-300"
                             onChange={(e) => {
                                 if (e.target.value.match(/^[0-9]*$/)) {
                                     e.target.classList.remove('text-red-500')
@@ -123,7 +123,7 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
                             }} />
                         <Trail>
                         { playerNumber > 0  && 
-                            <p className="text-xl mb-2 text-blue-700 dark:text-blue-300 font-bold">
+                            <p className="text-xl mb-2 text-blue-700 dark:text-blue-100 font-bold">
                                 Player Names
                             </p>
                         }
