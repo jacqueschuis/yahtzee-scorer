@@ -61,7 +61,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                         </thead>
                         <tbody>
                             <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100">ones</td>
+                                <td className="p-2 border-teal-500 border-2 sticky z-10 left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100">ones</td>
                                 {playerList.map((player, index) => {
                                     const [isDisabled, setIsDisabled] = useState(false);
 
@@ -85,9 +85,11 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 }}
                                                 onChange={(e) => {
                                                     if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 6) {
-                                                    return e.target.classList.add("text-red-500");
+                                                        e.target.classList.add("font-bold");
+                                                        return e.target.classList.add("text-orange-500");
                                                     }
-                                                    e.target.classList.remove('text-red-500');
+                                                    e.target.classList.remove('font-bold');
+                                                    e.target.classList.remove('text-orange-500');
                                                 }}
                                                 disabled={turnCount % playerNumber !== index || isGameOver || isDisabled}/>
                                         </td>
@@ -95,7 +97,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 })}
                             </tr>
                             <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100">twos</td>
+                                <td className="p-2 border-teal-500 border-2 sticky z-10 left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100">twos</td>
                                 {playerList.map((player, index) => {
                                     const [isDisabled, setIsDisabled] = useState(false);
 
@@ -119,9 +121,11 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 }}
                                                 onChange={(e) => {
                                                     if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 12 || Number(e.target.value) % 2 !== 0) {
-                                                    return e.target.classList.add("text-red-500");
+                                                        e.target.classList.add("font-bold");
+                                                        return e.target.classList.add("text-orange-500");
                                                     }
-                                                    e.target.classList.remove('text-red-500');
+                                                    e.target.classList.remove('font-bold');
+                                                    e.target.classList.remove('text-orange-500');
                                                 }}
                                                 disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
                                     </td>
@@ -129,7 +133,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 })}
                             </tr>
                             <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100">threes</td>
+                                <td className="p-2 border-teal-500 border-2 sticky z-10 left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100">threes</td>
                                 {playerList.map((player, index) => {
                                     const [isDisabled, setIsDisabled] = useState(false);
 
@@ -153,9 +157,11 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 }}
                                                 onChange={(e) => {
                                                     if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 18 || Number(e.target.value) % 3 !== 0) {
-                                                    return e.target.classList.add("text-red-500");
+                                                        e.target.classList.add("font-bold");
+                                                        return e.target.classList.add("text-orange-500");
                                                     }
-                                                    e.target.classList.remove('text-red-500');
+                                                    e.target.classList.remove('font-bold');
+                                                    e.target.classList.remove('text-orange-500');
                                                 }}
                                                 disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
                                         </td>
@@ -163,7 +169,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 })}
                             </tr>
                             <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100">fours</td>
+                                <td className="p-2 border-teal-500 border-2 sticky z-10 left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100">fours</td>
                                 {playerList.map((player, index) => {
                                     const [isDisabled, setIsDisabled] = useState(false);
 
@@ -188,9 +194,11 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 }}
                                                 onChange={(e) => {
                                                     if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 24 || Number(e.target.value) % 4 !== 0) {
-                                                    return e.target.classList.add("text-red-500");
+                                                        e.target.classList.add("font-bold");
+                                                        return e.target.classList.add("text-orange-500");
                                                     }
-                                                    e.target.classList.remove('text-red-500');
+                                                    e.target.classList.remove('font-bold');
+                                                    e.target.classList.remove('text-orange-500');
                                                 }}
                                                 disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
                                         </td>
@@ -198,7 +206,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 })}
                             </tr>
                             <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100">fives</td>
+                                <td className="p-2 border-teal-500 border-2 sticky z-10 left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100">fives</td>
                                 {playerList.map((player, index) => {
                                     const [isDisabled, setIsDisabled] = useState(false);
 
@@ -222,9 +230,11 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 }}
                                                 onChange={(e) => {
                                                     if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 30 || Number(e.target.value) % 5 !== 0) {
-                                                    return e.target.classList.add("text-red-500");
+                                                        e.target.classList.add("font-bold");
+                                                        return e.target.classList.add("text-orange-500");
                                                     }
-                                                    e.target.classList.remove('text-red-500');
+                                                    e.target.classList.remove('font-bold');
+                                                    e.target.classList.remove('text-orange-500');
                                                 }}
                                                 disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
                                         </td>
@@ -232,7 +242,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 })}
                             </tr>
                             <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100">sixes</td>
+                                <td className="p-2 border-teal-500 border-2 sticky z-10 left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100">sixes</td>
                                 {playerList.map((player, index) => {
                                     const [isDisabled, setIsDisabled] = useState(false);
 
@@ -256,9 +266,11 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 }}
                                                 onChange={(e) => {
                                                     if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 36 || Number(e.target.value) % 6 !== 0) {
-                                                    return e.target.classList.add("text-red-500");
+                                                        e.target.classList.add("font-bold");
+                                                        return e.target.classList.add("text-orange-500");
                                                     }
-                                                    e.target.classList.remove('text-red-500');
+                                                    e.target.classList.remove('font-bold');
+                                                    e.target.classList.remove('text-orange-500');
                                                 }}
                                                 disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
                                         </td>
@@ -266,7 +278,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 })}
                             </tr>
                             <tr className="relative bg-teal-100  dark:bg-teal-700 dark:text-teal-100">
-                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold bg-teal-100 dark:bg-teal-700">upper</td>
+                                <td className="p-2 border-teal-500 border-2 sticky z-10 left-0 font-bold bg-teal-100 dark:bg-teal-700">upper</td>
                                 {playerList.map((player, index) => {
                                     return <td className="border-teal-500 border-2" key={player.name + "UpperScore"}><input disabled className="text-center w-full h-full p-2 font-bold" value={player.upperScore} /></td>
                                 })}
@@ -287,7 +299,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                         </thead>
                         <tbody>
                             <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100 text-teal-900" onClick={() => setThreeKindClick(!threeKindClick)}>{threeKindClick ? "total all" : "3/kind"}</td>
+                                <td className="p-2 border-teal-500 border-2 sticky z-10 left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100 text-teal-900" onClick={() => setThreeKindClick(!threeKindClick)}>{threeKindClick ? "total all" : "3/kind"}</td>
                                 {playerList.map((player, index) => {
                                     const [isDisabled, setIsDisabled] = useState(false);
 
@@ -311,9 +323,11 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 }}
                                                 onChange={(e) => {
                                                     if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 36) {
-                                                    return e.target.classList.add("text-red-500");
+                                                        e.target.classList.add("font-bold");
+                                                        return e.target.classList.add("text-orange-500");
                                                     }
-                                                    e.target.classList.remove('text-red-500');
+                                                    e.target.classList.remove('font-bold');
+                                                    e.target.classList.remove('text-orange-500');
                                                 }}
                                                 disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
                                         </td>
@@ -321,7 +335,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 })}
                             </tr>
                             <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100" onClick={() => setFourKindClick(!fourKindClick)}>{fourKindClick ? "total all" : '4/kind'}</td>
+                                <td className="p-2 border-teal-500 border-2 sticky z-10 left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100" onClick={() => setFourKindClick(!fourKindClick)}>{fourKindClick ? "total all" : '4/kind'}</td>
                                 {playerList.map((player, index) => {
                                     const [isDisabled, setIsDisabled] = useState(false);
 
@@ -345,9 +359,11 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 }}
                                                 onChange={(e) => {
                                                     if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 36) {
-                                                    return e.target.classList.add("text-red-500");
+                                                        e.target.classList.add("font-bold");
+                                                        return e.target.classList.add("text-orange-500");
                                                     }
-                                                    e.target.classList.remove('text-red-500');
+                                                    e.target.classList.remove('font-bold');
+                                                    e.target.classList.remove('text-orange-500');
                                                 }}
                                                 disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
                                         </td>
@@ -355,7 +371,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 })}
                             </tr>
                             <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100" onClick={() => setFullHouseClick(!fullHouseClick)}>{fullHouseClick ? "25" : "full house"}</td>
+                                <td className="p-2 border-teal-500 border-2 sticky z-10 left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100" onClick={() => setFullHouseClick(!fullHouseClick)}>{fullHouseClick ? "25" : "full house"}</td>
                                 {playerList.map((player, index) => {
                                     const [isDisabled, setIsDisabled] = useState(false);
 
@@ -379,9 +395,11 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 }}
                                                 onChange={(e) => {
                                                 if (Number(e.target.value) === 25 || Number(e.target.value) === 0) {
-                                                        return e.target.classList.remove('text-red-500');
+                                                    e.target.classList.remove('font-bold');    
+                                                    return e.target.classList.remove('text-orange-500');
                                                     }
-                                                    return e.target.classList.add("text-red-500");
+                                                        e.target.classList.add("font-bold");
+                                                    return e.target.classList.add("text-orange-500");
                                                 }}
                                                 disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
                                         </td>
@@ -389,7 +407,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 })}
                             </tr>
                             <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100" onClick={() => setSmStraightClick(!smStraightClick)}>{smStraightClick ? "30" : "sm straight"}</td>
+                                <td className="p-2 border-teal-500 border-2 sticky z-10 left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100" onClick={() => setSmStraightClick(!smStraightClick)}>{smStraightClick ? "30" : "sm straight"}</td>
                                 {playerList.map((player, index) => {
                                     const [isDisabled, setIsDisabled] = useState(false);
 
@@ -413,9 +431,11 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 }}
                                                 onChange={(e) => {
                                                     if (Number(e.target.value) === 30 || Number(e.target.value) === 0) {
-                                                        return e.target.classList.remove('text-red-500');
+                                                        e.target.classList.remove('font-bold');
+                                                        return e.target.classList.remove('text-orange-500');
                                                     }
-                                                    return e.target.classList.add("text-red-500");
+                                                        e.target.classList.add("font-bold");
+                                                    return e.target.classList.add("text-orange-500");
                                                 }}
                                                 disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
                                         </td>
@@ -423,7 +443,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 })}
                             </tr>
                             <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100" onClick={() => setLgStraightClick(!lgStraightClick)}>{lgStraightClick ? "40" : "lg straight"}</td>
+                                <td className="p-2 border-teal-500 border-2 sticky z-10 left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100" onClick={() => setLgStraightClick(!lgStraightClick)}>{lgStraightClick ? "40" : "lg straight"}</td>
                                 {playerList.map((player, index) => {
                                     const [isDisabled, setIsDisabled] = useState(false);
 
@@ -447,9 +467,11 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 }}
                                                 onChange={(e) => {
                                                     if (Number(e.target.value) === 40 || Number(e.target.value) === 0) {
-                                                        return e.target.classList.remove('text-red-500');
+                                                        e.target.classList.remove('font-bold');
+                                                        return e.target.classList.remove('text-orange-500');
                                                     }
-                                                    return e.target.classList.add("text-red-500");
+                                                        e.target.classList.add("font-bold");
+                                                    return e.target.classList.add("text-orange-500");
                                                 }}
                                                 disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
                                         </td>
@@ -457,7 +479,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 })}
                             </tr>
                             <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100" onClick={() => setYahtzeeClick(!yahtzeeClick)}>{yahtzeeClick ? "50" : "yahtzee"}</td>
+                                <td className="p-2 border-teal-500 border-2 sticky z-10 left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100" onClick={() => setYahtzeeClick(!yahtzeeClick)}>{yahtzeeClick ? "50" : "yahtzee"}</td>
                                 {playerList.map((player, index) => {
                                     const [isDisabled, setIsDisabled] = useState(false);
 
@@ -481,9 +503,11 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 }}
                                                 onChange={(e) => {
                                                     if (Number(e.target.value) === 50 || Number(e.target.value) === 0) {
-                                                        return e.target.classList.remove('text-red-500');
+                                                        e.target.classList.remove('font-bold');
+                                                        return e.target.classList.remove('text-orange-500');
                                                     }
-                                                    return e.target.classList.add("text-red-500");
+                                                        e.target.classList.add("font-bold");
+                                                    return e.target.classList.add("text-orange-500");
                                                 }}
                                                 disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
                                         </td>
@@ -491,7 +515,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 })}
                             </tr>
                             <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100" onClick={() => setChanceClick(!chanceClick)}>{chanceClick ? "total all" : "chance"}</td>
+                                <td className="p-2 border-teal-500 border-2 sticky z-10 left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100" onClick={() => setChanceClick(!chanceClick)}>{chanceClick ? "total all" : "chance"}</td>
                                 {playerList.map((player, index) => {
                                     const [isDisabled, setIsDisabled] = useState(false);
 
@@ -515,9 +539,11 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 }}
                                                 onChange={(e) => {
                                                     if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 36) {
-                                                    return e.target.classList.add("text-red-500");
+                                                        e.target.classList.add("font-bold");
+                                                        return e.target.classList.add("text-orange-500");
                                                     }
-                                                    e.target.classList.remove('text-red-500');
+                                                    e.target.classList.remove('font-bold');
+                                                    e.target.classList.remove('text-orange-500');
                                                 }}
                                                 disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
                                         </td>
@@ -525,7 +551,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 })}
                             </tr>
                             <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100">yahtzee bonus</td>
+                                <td className="p-2 border-teal-500 border-2 sticky z-10 left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100">yahtzee bonus</td>
                                 {playerList.map((player, index) => {
                                     return (
                                         <td className="border-teal-500 border-2" key={player.name + "YahtzeeBonus"}>
@@ -546,9 +572,11 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 }}
                                                 onChange={(e) => {
                                                     if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 5) {
-                                                    return e.target.classList.add("text-red-500");
+                                                        e.target.classList.add("font-bold");
+                                                        return e.target.classList.add("text-orange-500");
                                                     }
-                                                    e.target.classList.remove('text-red-500');
+                                                    e.target.classList.remove('font-bold')
+                                                    e.target.classList.remove('text-orange-500');
                                                 }}
                                                 disabled={turnCount % playerNumber !== index || isGameOver} />
                                         </td>
@@ -556,13 +584,13 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                 })}
                             </tr>
                             <tr className="relative bg-teal-100  dark:bg-teal-700 dark:text-teal-100">
-                                <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold bg-teal-100 dark:bg-teal-700">lower</td>
+                                <td className="p-2 border-teal-500 border-2 sticky z-10 left-0 font-bold bg-teal-100 dark:bg-teal-700">lower</td>
                                 {playerList.map((player, index) => {
                                     return <td className="border-teal-500 border-2" key={player.name + "LowerScore"}><input disabled className="text-center w-full h-full p-2 font-bold" value={player.lowerScore} /></td>
                                 })}
                             </tr>
                             <tr className="relative border-orange-500 border-2 bg-orange-300 text-orange-900 dark:bg-orange-700 dark:text-orange-100">
-                                <td className="p-2 border-orange-500 border-2 sticky left-0 font-bold bg-orange-300 dark:bg-orange-700">total</td>
+                                <td className="p-2 border-orange-500 border-2 sticky z-10 left-0 font-bold bg-orange-300 dark:bg-orange-700">total</td>
                                 {playerList.map((player, index) => {
                                     return <td className="border-orange-500 border-2" key={player.name + "Total"}><input disabled  className="text-center w-full h-full p-2 font-bold" value={player.grandTotal} /></td>
                                 })}
