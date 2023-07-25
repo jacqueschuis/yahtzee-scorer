@@ -9,7 +9,7 @@ const Home = () => {
         <section id="home" className="w-fit h-full pt-5 md:pt-16">
             <Trail>
             <h1 className="font-bold text-5xl mb-10 text-teal-500 dark:text-teal-300">Yahtzee Scorer</h1>
-            <div className="flex max-w-xl flex-col gap-3 my-5 text-start text-blue-900 text-lg px-2">
+            <div className="flex max-w-xl flex-col gap-3 my-5 text-start text-blue-900 dark:text-blue-300 text-lg px-2">
                 <p>Yahtzee Scorer is a dynamic Yahtzee score card.</p>
                 <p>Yahtzee Scorer is designed for any occasion in which you have the players and the dice, but no score card.</p>
                 <p className="mt-5">Yahtzee Scorer:</p>
@@ -27,7 +27,7 @@ const Home = () => {
                 </ul>
             </div>
             <Link to="../new">
-                <button className="p-5 rounded-md w-3/4 text-xl bg-teal-300 text-teal-900 font-bold my-5 dark:bg-teal-700 dark:text-teal-300">
+                <button className="p-5 rounded-md w-3/4 text-xl bg-teal-300 text-teal-900 font-bold my-5 dark:bg-teal-700 dark:text-teal-100">
                     New Game
                 </button>
             </Link>

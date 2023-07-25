@@ -140,7 +140,7 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
                                     })
                                 }
                          </Trail>
-                        <button disabled={(playerList.length !== playerNumber) || playerList.length === 0 || !Number(playerNumber)} className="p-5 rounded-md text-xl bg-teal-300 text-teal-900 font-bold my-5 w-full dark:bg-teal-700 dark:text-teal-300">
+                        <button disabled={(playerList.length !== playerNumber) || playerList.length === 0 || !Number(playerNumber)} className="p-5 rounded-md text-xl bg-teal-300 text-teal-900 font-bold my-5 w-full dark:bg-teal-500 dark:text-teal-100">
                             {playerList.length === 0 || playerList.length !== playerNumber ? "Add Players" : "Start Game"}
                         </button>
                     </form>
