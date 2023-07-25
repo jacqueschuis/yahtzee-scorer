@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import StartForm from './components/StartForm'
 import Game from './components/Game'
 import Home from './components/Home';
+import UI from './components/UI';
 
 function App() {
   const [isGameOver, setGameOver] = useState(false);
@@ -103,6 +104,10 @@ function App() {
     {
       path: '/play',
       element: <Game playerList={playerList} setPlayerList={setPlayerList} isGameOver={isGameOver} setGameOver={setGameOver} winner={winner} setWinner={setWinner} turnCount={turnCount} setTurnCount={setTurnCount} playerNumber={playerNumber} setPlayerNumber={setPlayerNumber} turnsLeft={turnsLeft} setTurnsLeft={setTurnsLeft} />
+    },
+    {
+      path: '/ui',
+      element: <UI />
     },
     {
       path: '*',

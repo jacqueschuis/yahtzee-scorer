@@ -101,16 +101,19 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
 
     return ( 
         <section className=" w-full h-full flex justify-center items-center md:pt-16">
+                <div className="w-full">
             <Trail>
-                <div className="w-full md:w-3/4">
-                    <h1 className="font-bold text-5xl mb-5">New Game</h1>
-                    <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
-                        <label htmlFor="player-number" className="text-xl">Number of Players</label>
+                    <h1 className="font-bold text-5xl mb-5 text-teal-500 dark:text-teal-300">New Game</h1>
+                    <form className="flex flex-col w-full items-center justify-center text-blue-900 text-lg" onSubmit={handleSubmit}>
+                        <Trail>
+
+                        </Trail>
+                        <label htmlFor="player-number" className="text-xl mb-2 text-blue-700 font-bold">Number of Players</label>
                         <input 
                             type="tel"
                             id="player-number" 
                             placeholder="Number of Players" 
-                            className="p-3"
+                            className="p-3 rounded-md mb-8 outline-teal-500"
                             onChange={(e) => {
                                 if (e.target.value.match(/^[0-9]*$/)) {
                                     e.target.classList.remove('text-red-500')
@@ -118,27 +121,31 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
                                 }
                                 e.target.classList.add('text-red-500')
                             }} />
-                        <label className="text-xl">{playerNumber.length && 'Player Names'}</label>
+                        <Trail>
+                        { playerNumber > 0  && 
+                            <p className="text-xl mb-2 text-blue-700 font-bold">
+                                Player Names
+                            </p>
+                        }
                         {
                             playerInputs.map((el, index) => {
                                 return(
-                                    <Trail>
-                                        <input required key={el} type="text" placeholder={`${el}`} className="p-3" onChange={(e) => {
+                                        <input required key={el} type="text" placeholder={`${el}`} className="p-3 rounded-md mb-3 outline-teal-500 placeholder:text-teal-300" onChange={(e) => {
                                             if (e.target.value) {
                                                 playerNames[index] = new Player(e.target.value)
                                                 setPlayerList(playerNames);
                                             }
                                         }}/>
-                                    </Trail>
-                                )
-                            })
-                        }
-                        <button disabled={(playerList.length !== playerNumber) || playerList.length === 0 || !Number(playerNumber)} className="p-3 w-full rounded-md dark:text-black bg-gray-300 my-5">
-                            {playerList.length === 0 || playerList.length !== playerNumber ? "Add Players to Begin" : "Start Game"}
+                                        )
+                                    })
+                                }
+                         </Trail>
+                        <button disabled={(playerList.length !== playerNumber) || playerList.length === 0 || !Number(playerNumber)} className="p-5 rounded-md text-xl bg-teal-300 text-teal-900 font-bold my-5 w-full dark:bg-teal-700 dark:text-teal-300">
+                            {playerList.length === 0 || playerList.length !== playerNumber ? "Add Players" : "Start Game"}
                         </button>
                     </form>
-                </div>
             </Trail>
+                </div>
         </section>
      );
 }
