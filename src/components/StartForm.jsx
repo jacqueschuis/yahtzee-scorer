@@ -113,7 +113,7 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
                             type="tel"
                             id="player-number" 
                             placeholder="Number of Players" 
-                            className="p-3 rounded-md mb-8 outline-teal-500 placeholder:text-teal-300"
+                            className="p-3 rounded-md mb-8 dark:bg-teal-900 border-teal-500 border-2  outline-orange-300 placeholder:text-teal-300"
                             onChange={(e) => {
                                 if (e.target.value.match(/^[0-9]*$/)) {
                                     e.target.classList.remove('text-red-500')
@@ -130,7 +130,7 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
                         {
                             playerInputs.map((el, index) => {
                                 return(
-                                        <input required key={el} type="text" placeholder={`${el}`} className="p-3 rounded-md mb-3 outline-teal-500 placeholder:text-teal-300" onChange={(e) => {
+                                        <input required key={el} type="text" placeholder={`${el}`} className="p-3 rounded-md mb-3 dark:bg-teal-900 border-teal-500 border-2 outline-orange-300 placeholder:text-teal-300" onChange={(e) => {
                                             if (e.target.value) {
                                                 playerNames[index] = new Player(e.target.value)
                                                 setPlayerList(playerNames);
