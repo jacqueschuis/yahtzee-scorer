@@ -53,7 +53,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                     <table className="table-auto text-center self-start min-w-full border-2 border-teal-500 border-collapse text-blue-900 dark:text-teal-300">
                         <thead className="border-teal-500 border-2">
                             <tr className="border-teal-500 border-2">
-                                <th className="p-2 border-teal-500 border-2 bg-teal-300 dark:bg-teal-500 dark:text-teal-100"></th>
+                                <th className="p-2 border-teal-500 border-2 bg-teal-100 dark:bg-teal-700 dark:text-teal-100"></th>
                                 {playerList.map((player, index) => {
                                     return <th className={`p-2 border-teal-500 border-2 dark:text-teal-100 ${turnCount % playerNumber === index ? "bg-teal-300 dark:bg-teal-500" : ""}`} key={player.name}>{player.name}</th>
                                 })}
@@ -291,7 +291,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                     <table className="table-auto text-center self-start min-w-full border-2 border-teal-500 border-collapse text-blue-900 dark:text-teal-300">
                         <thead className="border-teal-500 border-2">
                             <tr className="border-teal-500 border-2">
-                                <th className="p-2 border-teal-500 border-2 bg-teal-300 dark:bg-teal-500 dark:text-teal-100"></th>
+                                <th className="p-2 border-teal-500 border-2 bg-teal-100 dark:bg-teal-700 dark:text-teal-100"></th>
                                 {playerList.map((player, index) => {
                                     return <th className={`p-2 border-teal-500 border-2 dark:text-teal-100 ${turnCount % playerNumber === index ? "bg-teal-300 dark:bg-teal-500" : ""}`} key={player.name}>{player.name}</th>
                                 })}
