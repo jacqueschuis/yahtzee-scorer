@@ -27,7 +27,7 @@ const Home = () => {
                 </ul>
             </div>
             <Link to="../new">
-                <button className="p-5 rounded-md w-3/4 text-xl bg-teal-300 text-teal-900 font-bold my-5 dark:bg-teal-700 dark:text-teal-100">
+                <button className="p-5 rounded-md w-full md:w-3/4 text-xl bg-teal-300 text-teal-900 font-bold my-5 dark:bg-teal-700 dark:text-teal-100">
                     New Game
                 </button>
             </Link>
