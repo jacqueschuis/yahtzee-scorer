@@ -265,7 +265,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                     )
                                 })}
                             </tr>
-                            <tr className="relative bg-teal-100">
+                            <tr className="relative bg-teal-100  dark:bg-teal-700 dark:text-teal-100">
                                 <td className="p-2 border-teal-500 border-2 sticky left-0 font-bold">upper</td>
                                 {playerList.map((player, index) => {
                                     return <td className="border-teal-500 border-2" key={player.name + "UpperScore"}><input disabled className="text-center w-full h-full p-2 font-bold" value={player.upperScore} /></td>
@@ -561,7 +561,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                     return <td className="border-teal-500 border-2" key={player.name + "LowerScore"}><input disabled className="text-center w-full h-full p-2 font-bold" value={player.lowerScore} /></td>
                                 })}
                             </tr>
-                            <tr className="relative border-orange-500 border-2 bg-orange-300 text-orange-900 dark:bg-orange-700 dark:text-orange-300">
+                            <tr className="relative border-orange-500 border-2 bg-orange-300 text-orange-900 dark:bg-orange-700 dark:text-orange-100">
                                 <td className="p-2 border-orange-500 border-2 sticky left-0 font-bold">total</td>
                                 {playerList.map((player, index) => {
                                     return <td className="border-orange-500 border-2" key={player.name + "Total"}><input disabled  className="text-center w-full h-full p-2 font-bold" value={player.grandTotal} /></td>
