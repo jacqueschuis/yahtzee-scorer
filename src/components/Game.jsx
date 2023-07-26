@@ -37,6 +37,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
     const [yahtzeeClick, setYahtzeeClick] = useState(false);
     const [chanceClick, setChanceClick] = useState(false);
 
+
     return (
         <section id="game" className="flex flex-col items-center md:pt-16 pt-5 ">
             <Trail>
@@ -45,13 +46,16 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                 <div>
                     <h2 className="font-bold text-5xl mt-5 mb-2 text-teal-500 dark:text-teal-300">{winner.name} is the winner!</h2>
                     <Link to="../new">
-                        <button className="p-5 rounded-md w-full md:w-3/4 text-xl bg-teal-300 text-teal-900 font-bold mb-5 dark:bg-teal-700 dark:text-teal-100" onClick={() => {
+                    <button
+                        className="p-5 mb-16 rounded-md w-full md:w-3/4 text-xl bg-teal-300 text-teal-900 font-bold my-5 dark:bg-teal-700 dark:text-teal-100" onClick={() => {
                         setGameOver(false);
                         setPlayerList([]);
                         setPlayerNumber(0);
                         setTurnCount(0);
-                        }}>New Game</button>
-                    </Link>
+                        }}>
+                        Start Over
+                    </button>
+                </Link>
                 </div>
                 }
 
@@ -79,7 +83,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 type="tel"
                                                 className="text-center w-full h-full p-2"
                                                 onBlur={(e) => {
-                                                    if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 6) {
+                                                    if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 5) {
                                                         player.upperSection.ones = Number(e.target.value);
                                                         player.getUpperScore();
                                                         player.getGrandTotal();
@@ -92,7 +96,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                     }
                                                 }}
                                                 onChange={(e) => {
-                                                    if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 6) {
+                                                    if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 5) {
                                                         e.target.classList.add("font-bold");
                                                         return e.target.classList.add("text-orange-500");
                                                     }
@@ -115,7 +119,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 type="tel" 
                                                 className="text-center w-full h-full p-2" 
                                                 onBlur={(e) => {
-                                                    if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 12 && Number(e.target.value) % 2 === 0) {
+                                                    if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 10 && Number(e.target.value) % 2 === 0) {
                                                         player.upperSection.twos = Number(e.target.value);
                                                         player.getUpperScore();
                                                         player.getGrandTotal();
@@ -128,7 +132,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                     }
                                                 }}
                                                 onChange={(e) => {
-                                                    if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 12 || Number(e.target.value) % 2 !== 0) {
+                                                    if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 10 || Number(e.target.value) % 2 !== 0) {
                                                         e.target.classList.add("font-bold");
                                                         return e.target.classList.add("text-orange-500");
                                                     }
@@ -151,7 +155,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 type="tel" 
                                                 className="text-center w-full h-full p-2" 
                                                 onBlur={(e) => {
-                                                    if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 18 && Number(e.target.value) % 3 === 0) {
+                                                    if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 15 && Number(e.target.value) % 3 === 0) {
                                                         player.upperSection.threes = Number(e.target.value);
                                                         player.getUpperScore();
                                                         player.getGrandTotal();
@@ -164,7 +168,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                     }                                            
                                                 }}
                                                 onChange={(e) => {
-                                                    if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 18 || Number(e.target.value) % 3 !== 0) {
+                                                    if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 15 || Number(e.target.value) % 3 !== 0) {
                                                         e.target.classList.add("font-bold");
                                                         return e.target.classList.add("text-orange-500");
                                                     }
@@ -188,7 +192,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 className="text-center w-full h-full p-2" 
                                                 onBlur={(e) => {
 
-                                                    if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 24 && Number(e.target.value) % 4 === 0) {
+                                                    if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 20 && Number(e.target.value) % 4 === 0) {
                                                         player.upperSection.fours = Number(e.target.value);
                                                         player.getUpperScore();
                                                         player.getGrandTotal();
@@ -201,7 +205,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                     }   
                                                 }}
                                                 onChange={(e) => {
-                                                    if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 24 || Number(e.target.value) % 4 !== 0) {
+                                                    if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 20 || Number(e.target.value) % 4 !== 0) {
                                                         e.target.classList.add("font-bold");
                                                         return e.target.classList.add("text-orange-500");
                                                     }
@@ -224,7 +228,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 type="tel" 
                                                 className="text-center w-full h-full p-2" 
                                                 onBlur={(e) => {
-                                                    if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 30 && Number(e.target.value) % 5 === 0) {
+                                                    if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 25 && Number(e.target.value) % 5 === 0) {
                                                         player.upperSection.fives = Number(e.target.value);
                                                         player.getUpperScore();
                                                         player.getGrandTotal();
@@ -237,7 +241,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                     }  
                                                 }}
                                                 onChange={(e) => {
-                                                    if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 30 || Number(e.target.value) % 5 !== 0) {
+                                                    if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 25 || Number(e.target.value) % 5 !== 0) {
                                                         e.target.classList.add("font-bold");
                                                         return e.target.classList.add("text-orange-500");
                                                     }
@@ -260,7 +264,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 type="tel" 
                                                 className="text-center w-full h-full p-2" 
                                                 onBlur={(e) => {
-                                                    if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 36 && Number(e.target.value) % 6 === 0) {
+                                                    if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 30 && Number(e.target.value) % 6 === 0) {
                                                         player.upperSection.sixes = Number(e.target.value);
                                                         player.getUpperScore();
                                                         player.getGrandTotal();
@@ -273,7 +277,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                     }  
                                                 }}
                                                 onChange={(e) => {
-                                                    if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 36 || Number(e.target.value) % 6 !== 0) {
+                                                    if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 30 || Number(e.target.value) % 6 !== 0) {
                                                         e.target.classList.add("font-bold");
                                                         return e.target.classList.add("text-orange-500");
                                                     }
@@ -317,7 +321,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 type="tel" 
                                                 className="text-center w-full h-full p-2" 
                                                 onBlur={(e) => {
-                                                    if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 36) {
+                                                    if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 30) {
                                                         player.lowerSection.threeOfAKind = Number(e.target.value);
                                                         player.getLowerScore();
                                                         player.getGrandTotal();
@@ -330,7 +334,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                     }  
                                                 }}
                                                 onChange={(e) => {
-                                                    if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 36) {
+                                                    if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 30) {
                                                         e.target.classList.add("font-bold");
                                                         return e.target.classList.add("text-orange-500");
                                                     }
@@ -353,7 +357,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                 type="tel" 
                                                 className="text-center w-full h-full p-2" 
                                                 onBlur={(e) => {
-                                                    if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 36) {
+                                                    if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 30) {
                                                         player.lowerSection.fourOfAKind = Number(e.target.value);
                                                         player.getLowerScore();
                                                         player.getGrandTotal();
@@ -366,7 +370,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                                                     }  
                                                 }}
                                                 onChange={(e) => {
-                                                    if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 36) {
+                                                    if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 30) {
                                                         e.target.classList.add("font-bold");
                                                         return e.target.classList.add("text-orange-500");
                                                     }
@@ -600,7 +604,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
                             <tr className="relative border-orange-500 border-2 bg-orange-300 text-orange-900 dark:bg-orange-700 dark:text-orange-100">
                                 <td className="p-2 border-orange-500 border-2 sticky z-10 left-0 font-bold bg-orange-300 dark:bg-orange-700">total</td>
                                 {playerList.map((player, index) => {
-                                    return <td className="border-orange-500 border-2" key={player.name + "Total"}><input disabled  className="text-center w-full h-full p-2 font-bold" value={player.grandTotal} /></td>
+                                    return <td className="border-orange-500 border-2" key={player.name + "Total"}><input disabled className="text-center w-full h-full p-2 font-bold" value={player.grandTotal} /></td>
                                 })}
                             </tr>
                         </tbody>
@@ -609,12 +613,15 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
 
                 <Link to="../new">
                     <button
-                        className="p-5 rounded-md w-full md:w-3/4 text-xl bg-teal-300 text-teal-900 font-bold my-5 dark:bg-teal-700 dark:text-teal-100" onClick={() => {
+                        className="p-5 mt-16 rounded-md w-full md:w-3/4 text-xl bg-teal-300 text-teal-900 font-bold my-5 dark:bg-teal-700 dark:text-teal-100" onClick={() => {
                         setGameOver(false);
                         setPlayerList([]);
                         setPlayerNumber(0);
                         setTurnCount(0);
-                } }>Start Over</button></Link>
+                        }}>
+                        Start Over
+                    </button>
+                </Link>
             </Trail>
         </section>
      );

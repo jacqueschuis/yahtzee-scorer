@@ -20,31 +20,33 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
         return navigate('../play');
     }
 
-    function Player(name) {
-        this.name = name;
-        this.upperSection = {
-            ones: 0,
-            twos: 0,
-            threes: 0,
-            fours: 0,
-            fives: 0,
-            sixes: 0,
-        };
-        this.countedBonus = false;
-        this.upperScore = 0;
-        this.lowerSection = {
-            threeOfAKind: 0,
-            fourOfAKind: 0,
-            fullHouse: 0,
-            smStraight: 0,
-            lgStraight: 0,
-            yahtzee: 0,
-            chance: 0,
-            yahtzeeBonus: 0,
+    class Player {
+        constructor (name) {
+            this.name = name;
+            this.upperSection = {
+                ones: 0,
+                twos: 0,
+                threes: 0,
+                fours: 0,
+                fives: 0,
+                sixes: 0,
+            };
+            this.countedBonus = false;
+            this.upperScore = 0;
+            this.lowerSection = {
+                threeOfAKind: 0,
+                fourOfAKind: 0,
+                fullHouse: 0,
+                smStraight: 0,
+                lgStraight: 0,
+                yahtzee: 0,
+                chance: 0,
+                yahtzeeBonus: 0,
+            }
+            this.lowerScore = 0;
+            this.grandTotal = 0;
         }
-        this.lowerScore = 0;
-        this.grandTotal = 0;
-        this.getLowerScore = () => {
+        getLowerScore() {
             return this.lowerScore = (
                 this.lowerSection.threeOfAKind +
                 this.lowerSection.fourOfAKind +
@@ -55,8 +57,8 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
                 this.lowerSection.chance +
                 (this.lowerSection.yahtzeeBonus * 100)
             )
-        };
-        this.getUpperScore = () => {
+        }
+        getUpperScore() {
             if (this.countedBonus) {
                 return this.upperScore = (
                     this.upperSection.ones + 
@@ -76,17 +78,17 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
                 this.upperSection.fives +
                 this.upperSection.sixes
                 )
-        };
-        this.getGrandTotal = () => {
+        }
+        getGrandTotal() {
             return this.grandTotal = (
                 this.upperScore + this.lowerScore
             )
-        };
-        this.addBonus = () => {
+        }
+        addBonus() {
             this.upperScore += 35;
             this.getGrandTotal();
-        };
-        this.checkForBonus = () => {
+        }
+        checkForBonus() {
             if (!(this.countedBonus)){
                 if (this.upperScore >= 63) {
                     this.countedBonus = true;
