@@ -10,6 +10,7 @@ const Game = ({dice, newDice, playerList, setPlayerList, isGameOver, setGameOver
         if (!playerList.length) {
             return navigate("../")
         }
+        newDice();
     }, []);
     
     let playerNames = [...playerList];
@@ -40,7 +41,7 @@ const Game = ({dice, newDice, playerList, setPlayerList, isGameOver, setGameOver
 
 
     return (
-        <section id="game" className="h-full flex flex-col items-center md:pt-16 pt-5 ">
+        <section id="game" className="h-full lg:px-24 px-5">
             <Trail>
                 {!isGameOver &&
                     <h1 className="w-full tracking-wider leading-none font-bold text-6xl text-teal-500 dark:text-blue-300">Yahtzee!</h1>
@@ -67,252 +68,252 @@ const Game = ({dice, newDice, playerList, setPlayerList, isGameOver, setGameOver
                     </Link>
                     </div>
                 }
-                <h2 className="text-xl mb-2 text-blue-700 dark:text-blue-100 font-bold">Upper Section</h2>
-                <div className="overflow-auto h-fit w-full mb-5">
-                    <table className="table-auto text-center self-start min-w-full border-2 border-teal-500 border-collapse text-blue-900 dark:text-teal-300">
-                        <thead className="border-teal-500 border-2">
-                            <tr className="border-teal-500 border-2">
-                                <th className="p-2 border-teal-500 border-2 bg-teal-100 dark:bg-teal-700 dark:text-teal-100"></th>
-                                {playerList.map((player, index) => {
-                                    return <th className={`p-2 border-teal-500 border-2 dark:text-teal-100 ${turnCount % playerNumber === index ? "bg-teal-300 dark:bg-teal-500" : ""}`} key={player.name}>{player.name}</th>
-                                })}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky z-10 left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100">ones</td>
-                                {playerList.map((player, index) => {
-                                    const [isDisabled, setIsDisabled] = useState(false);
+                <h2 className="mb-2 text-3xl font-semibold tracking-wider text-orange-500 dark:text-orange-300">Upper Section</h2>
+                <div className="overflow-auto rounded-3xl box-bo z-10 h-fit w-full mb-5 shadow-2xl">
+                        <table className="table-auto min-w-full text-center text-xl self-start text-blue-900 dark:text-teal-300">
+                            <thead className=" dark:text-blue-100 tracking-widest">
+                                <tr>
+                                    <th className="dark:bg-blue-700 bg-teal-500"></th>
+                                    {playerList.map((player, index) => {
+                                        return <th className={`p-2 uppercase font-semibold ${turnCount % playerNumber === index ? "bg-teal-300 dark:bg-blue-600" : " bg-teal-500 dark:bg-blue-700"}`} key={player.name}>{player.name}</th>
+                                    })}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr className="dark:text-teal-100 divide-none font-semibold tracking-wider relative">
+                                    <td className="p-2 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100">ones</td>
+                                    {playerList.map((player, index) => {
+                                        const [isDisabled, setIsDisabled] = useState(false);
 
-                                    return (
-                                        <td className="border-teal-500 border-2" key={player.name + "Ones"}>
-                                            <input
-                                                type="tel"
-                                                className="text-center w-full h-full p-2"
-                                                onBlur={(e) => {
-                                                    if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 5) {
-                                                        player.upperSection.ones = Number(e.target.value);
-                                                        player.getUpperScore();
-                                                        player.getGrandTotal();
-                                                        player.checkForBonus();
-                                                        playerNames[index] = player;
-                                                        setPlayerList(playerNames)
-                                                        nextTurn();
-                                                        setIsDisabled(true);
-                                                        updateWinner();
-                                                    }
-                                                }}
-                                                onChange={(e) => {
-                                                    if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 5) {
-                                                        e.target.classList.add("font-bold");
-                                                        return e.target.classList.add("text-orange-500");
-                                                    }
-                                                    e.target.classList.remove('font-bold');
-                                                    e.target.classList.remove('text-orange-500');
-                                                }}
-                                                disabled={turnCount % playerNumber !== index || isGameOver || isDisabled}/>
+                                        return (
+                                            <td className={`border-0 border-none outline-none outline-0 ${turnCount % playerNumber === index ? "bg-teal-100 dark:bg-blue-600" : " bg-teal-500 dark:bg-blue-700"}`} key={player.name + "Ones"}>
+                                                <input
+                                                    type="tel"
+                                                    className={`text-center outline-none w-full h-full p-2 ${turnCount % playerNumber === index ? "bg-teal-100 dark:bg-blue-600" : " bg-teal-500 dark:bg-blue-700"}`}
+                                                    onBlur={(e) => {
+                                                        if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 5) {
+                                                            player.upperSection.ones = Number(e.target.value);
+                                                            player.getUpperScore();
+                                                            player.getGrandTotal();
+                                                            player.checkForBonus();
+                                                            playerNames[index] = player;
+                                                            setPlayerList(playerNames)
+                                                            nextTurn();
+                                                            setIsDisabled(true);
+                                                            updateWinner();
+                                                        }
+                                                    }}
+                                                    onChange={(e) => {
+                                                        if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 5) {
+                                                            e.target.classList.add("font-bold");
+                                                            return e.target.classList.add("text-orange-500");
+                                                        }
+                                                        e.target.classList.remove('font-bold');
+                                                        e.target.classList.remove('text-orange-500');
+                                                    }}
+                                                    disabled={turnCount % playerNumber !== index || isGameOver || isDisabled}/>
+                                            </td>
+                                        )
+                                    })}
+                                </tr>
+                                <tr className="dark:text-teal-100 divide-none font-semibold tracking-wider relative">
+                                    <td className="p-2 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100">twos</td>
+                                    {playerList.map((player, index) => {
+                                        const [isDisabled, setIsDisabled] = useState(false);
+
+                                        return (
+                                            <td className="" key={player.name + "Twos"}>
+                                                <input
+                                                    type="tel" 
+                                                    className="text-center w-full h-full p-2" 
+                                                    onBlur={(e) => {
+                                                        if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 10 && Number(e.target.value) % 2 === 0) {
+                                                            player.upperSection.twos = Number(e.target.value);
+                                                            player.getUpperScore();
+                                                            player.getGrandTotal();
+                                                            player.checkForBonus();
+                                                            playerNames[index] = player;
+                                                            setPlayerList(playerNames)
+                                                            nextTurn();
+                                                            setIsDisabled(true);
+                                                            updateWinner();
+                                                        }
+                                                    }}
+                                                    onChange={(e) => {
+                                                        if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 10 || Number(e.target.value) % 2 !== 0) {
+                                                            e.target.classList.add("font-bold");
+                                                            return e.target.classList.add("text-orange-500");
+                                                        }
+                                                        e.target.classList.remove('font-bold');
+                                                        e.target.classList.remove('text-orange-500');
+                                                    }}
+                                                    disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
                                         </td>
-                                    )
-                                })}
-                            </tr>
-                            <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky z-10 left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100">twos</td>
-                                {playerList.map((player, index) => {
-                                    const [isDisabled, setIsDisabled] = useState(false);
+                                        )
+                                    })}
+                                </tr>
+                                <tr className="dark:text-teal-100 divide-none font-semibold tracking-wider relative">
+                                    <td className="p-2 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100">threes</td>
+                                    {playerList.map((player, index) => {
+                                        const [isDisabled, setIsDisabled] = useState(false);
 
-                                    return (
-                                        <td className="border-teal-500 border-2" key={player.name + "Twos"}>
-                                            <input
-                                                type="tel" 
-                                                className="text-center w-full h-full p-2" 
-                                                onBlur={(e) => {
-                                                    if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 10 && Number(e.target.value) % 2 === 0) {
-                                                        player.upperSection.twos = Number(e.target.value);
-                                                        player.getUpperScore();
-                                                        player.getGrandTotal();
-                                                        player.checkForBonus();
-                                                        playerNames[index] = player;
-                                                        setPlayerList(playerNames)
-                                                        nextTurn();
-                                                        setIsDisabled(true);
-                                                        updateWinner();
-                                                    }
-                                                }}
-                                                onChange={(e) => {
-                                                    if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 10 || Number(e.target.value) % 2 !== 0) {
-                                                        e.target.classList.add("font-bold");
-                                                        return e.target.classList.add("text-orange-500");
-                                                    }
-                                                    e.target.classList.remove('font-bold');
-                                                    e.target.classList.remove('text-orange-500');
-                                                }}
-                                                disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
-                                    </td>
-                                    )
-                                })}
-                            </tr>
-                            <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky z-10 left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100">threes</td>
-                                {playerList.map((player, index) => {
-                                    const [isDisabled, setIsDisabled] = useState(false);
+                                        return (
+                                            <td className="" key={player.name + "Threes"}>
+                                                <input
+                                                    type="tel" 
+                                                    className="text-center w-full h-full p-2" 
+                                                    onBlur={(e) => {
+                                                        if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 15 && Number(e.target.value) % 3 === 0) {
+                                                            player.upperSection.threes = Number(e.target.value);
+                                                            player.getUpperScore();
+                                                            player.getGrandTotal();
+                                                            player.checkForBonus();
+                                                            playerNames[index] = player;
+                                                            setPlayerList(playerNames)
+                                                            nextTurn();
+                                                            setIsDisabled(true);
+                                                            updateWinner();
+                                                        }                                            
+                                                    }}
+                                                    onChange={(e) => {
+                                                        if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 15 || Number(e.target.value) % 3 !== 0) {
+                                                            e.target.classList.add("font-bold");
+                                                            return e.target.classList.add("text-orange-500");
+                                                        }
+                                                        e.target.classList.remove('font-bold');
+                                                        e.target.classList.remove('text-orange-500');
+                                                    }}
+                                                    disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
+                                            </td>
+                                        )
+                                    })}
+                                </tr>
+                                <tr className="dark:text-teal-100 divide-none font-semibold tracking-wider relative">
+                                    <td className="p-2 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100">fours</td>
+                                    {playerList.map((player, index) => {
+                                        const [isDisabled, setIsDisabled] = useState(false);
 
-                                    return (
-                                        <td className="border-teal-500 border-2" key={player.name + "Threes"}>
-                                            <input
-                                                type="tel" 
-                                                className="text-center w-full h-full p-2" 
-                                                onBlur={(e) => {
-                                                    if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 15 && Number(e.target.value) % 3 === 0) {
-                                                        player.upperSection.threes = Number(e.target.value);
-                                                        player.getUpperScore();
-                                                        player.getGrandTotal();
-                                                        player.checkForBonus();
-                                                        playerNames[index] = player;
-                                                        setPlayerList(playerNames)
-                                                        nextTurn();
-                                                        setIsDisabled(true);
-                                                        updateWinner();
-                                                    }                                            
-                                                }}
-                                                onChange={(e) => {
-                                                    if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 15 || Number(e.target.value) % 3 !== 0) {
-                                                        e.target.classList.add("font-bold");
-                                                        return e.target.classList.add("text-orange-500");
-                                                    }
-                                                    e.target.classList.remove('font-bold');
-                                                    e.target.classList.remove('text-orange-500');
-                                                }}
-                                                disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
-                                        </td>
-                                    )
-                                })}
-                            </tr>
-                            <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky z-10 left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100">fours</td>
-                                {playerList.map((player, index) => {
-                                    const [isDisabled, setIsDisabled] = useState(false);
+                                        return (
+                                            <td className="" key={player.name + "Fours"}>
+                                                <input
+                                                    type="tel" 
+                                                    className="text-center w-full h-full p-2" 
+                                                    onBlur={(e) => {
 
-                                    return (
-                                        <td className="border-teal-500 border-2" key={player.name + "Fours"}>
-                                            <input
-                                                type="tel" 
-                                                className="text-center w-full h-full p-2" 
-                                                onBlur={(e) => {
+                                                        if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 20 && Number(e.target.value) % 4 === 0) {
+                                                            player.upperSection.fours = Number(e.target.value);
+                                                            player.getUpperScore();
+                                                            player.getGrandTotal();
+                                                            player.checkForBonus();
+                                                            playerNames[index] = player;
+                                                            setPlayerList(playerNames)
+                                                            nextTurn();
+                                                            setIsDisabled(true);
+                                                            updateWinner();
+                                                        }   
+                                                    }}
+                                                    onChange={(e) => {
+                                                        if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 20 || Number(e.target.value) % 4 !== 0) {
+                                                            e.target.classList.add("font-bold");
+                                                            return e.target.classList.add("text-orange-500");
+                                                        }
+                                                        e.target.classList.remove('font-bold');
+                                                        e.target.classList.remove('text-orange-500');
+                                                    }}
+                                                    disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
+                                            </td>
+                                        )
+                                    })}
+                                </tr>
+                                <tr className="dark:text-teal-100 divide-none font-semibold tracking-wider relative">
+                                    <td className="p-2 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100">fives</td>
+                                    {playerList.map((player, index) => {
+                                        const [isDisabled, setIsDisabled] = useState(false);
 
-                                                    if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 20 && Number(e.target.value) % 4 === 0) {
-                                                        player.upperSection.fours = Number(e.target.value);
-                                                        player.getUpperScore();
-                                                        player.getGrandTotal();
-                                                        player.checkForBonus();
-                                                        playerNames[index] = player;
-                                                        setPlayerList(playerNames)
-                                                        nextTurn();
-                                                        setIsDisabled(true);
-                                                        updateWinner();
-                                                    }   
-                                                }}
-                                                onChange={(e) => {
-                                                    if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 20 || Number(e.target.value) % 4 !== 0) {
-                                                        e.target.classList.add("font-bold");
-                                                        return e.target.classList.add("text-orange-500");
-                                                    }
-                                                    e.target.classList.remove('font-bold');
-                                                    e.target.classList.remove('text-orange-500');
-                                                }}
-                                                disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
-                                        </td>
-                                    )
-                                })}
-                            </tr>
-                            <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky z-10 left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100">fives</td>
-                                {playerList.map((player, index) => {
-                                    const [isDisabled, setIsDisabled] = useState(false);
+                                        return (
+                                            <td className="" key={player.name + "Fives"}>
+                                                <input
+                                                    type="tel" 
+                                                    className="text-center w-full h-full p-2" 
+                                                    onBlur={(e) => {
+                                                        if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 25 && Number(e.target.value) % 5 === 0) {
+                                                            player.upperSection.fives = Number(e.target.value);
+                                                            player.getUpperScore();
+                                                            player.getGrandTotal();
+                                                            player.checkForBonus();
+                                                            playerNames[index] = player;
+                                                            setPlayerList(playerNames)
+                                                            nextTurn();
+                                                            setIsDisabled(true);
+                                                            updateWinner();
+                                                        }  
+                                                    }}
+                                                    onChange={(e) => {
+                                                        if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 25 || Number(e.target.value) % 5 !== 0) {
+                                                            e.target.classList.add("font-bold");
+                                                            return e.target.classList.add("text-orange-500");
+                                                        }
+                                                        e.target.classList.remove('font-bold');
+                                                        e.target.classList.remove('text-orange-500');
+                                                    }}
+                                                    disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
+                                            </td>
+                                        )
+                                    })}
+                                </tr>
+                                <tr className="dark:text-teal-100 divide-none font-semibold tracking-wider relative">
+                                    <td className="p-2 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100">sixes</td>
+                                    {playerList.map((player, index) => {
+                                        const [isDisabled, setIsDisabled] = useState(false);
 
-                                    return (
-                                        <td className="border-teal-500 border-2" key={player.name + "Fives"}>
-                                            <input
-                                                type="tel" 
-                                                className="text-center w-full h-full p-2" 
-                                                onBlur={(e) => {
-                                                    if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 25 && Number(e.target.value) % 5 === 0) {
-                                                        player.upperSection.fives = Number(e.target.value);
-                                                        player.getUpperScore();
-                                                        player.getGrandTotal();
-                                                        player.checkForBonus();
-                                                        playerNames[index] = player;
-                                                        setPlayerList(playerNames)
-                                                        nextTurn();
-                                                        setIsDisabled(true);
-                                                        updateWinner();
-                                                    }  
-                                                }}
-                                                onChange={(e) => {
-                                                    if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 25 || Number(e.target.value) % 5 !== 0) {
-                                                        e.target.classList.add("font-bold");
-                                                        return e.target.classList.add("text-orange-500");
-                                                    }
-                                                    e.target.classList.remove('font-bold');
-                                                    e.target.classList.remove('text-orange-500');
-                                                }}
-                                                disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
-                                        </td>
-                                    )
-                                })}
-                            </tr>
-                            <tr className="relative">
-                                <td className="p-2 border-teal-500 border-2 sticky z-10 left-0 font-bold bg-teal-300 dark:bg-teal-500 dark:text-teal-100">sixes</td>
-                                {playerList.map((player, index) => {
-                                    const [isDisabled, setIsDisabled] = useState(false);
-
-                                    return (
-                                        <td className="border-teal-500 border-2" key={player.name + "Sixes"}>
-                                            <input
-                                                type="tel" 
-                                                className="text-center w-full h-full p-2" 
-                                                onBlur={(e) => {
-                                                    if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 30 && Number(e.target.value) % 6 === 0) {
-                                                        player.upperSection.sixes = Number(e.target.value);
-                                                        player.getUpperScore();
-                                                        player.getGrandTotal();
-                                                        player.checkForBonus();
-                                                        playerNames[index] = player;
-                                                        setPlayerList(playerNames)
-                                                        nextTurn();
-                                                        setIsDisabled(true);
-                                                        updateWinner();
-                                                    }  
-                                                }}
-                                                onChange={(e) => {
-                                                    if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 30 || Number(e.target.value) % 6 !== 0) {
-                                                        e.target.classList.add("font-bold");
-                                                        return e.target.classList.add("text-orange-500");
-                                                    }
-                                                    e.target.classList.remove('font-bold');
-                                                    e.target.classList.remove('text-orange-500');
-                                                }}
-                                                disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
-                                        </td>
-                                    )
-                                })}
-                            </tr>
-                            <tr className="relative bg-teal-100  dark:bg-teal-700 dark:text-teal-100">
-                                <td className="p-2 border-teal-500 border-2 sticky z-10 left-0 font-bold bg-teal-100 dark:bg-teal-700">upper</td>
-                                {playerList.map((player, index) => {
-                                    return <td className="border-teal-500 border-2" key={player.name + "UpperScore"}><input disabled className="text-center w-full h-full p-2 font-bold" value={player.upperScore} /></td>
-                                })}
-                            </tr>
-                        </tbody>
-                    </table>
+                                        return (
+                                            <td className="" key={player.name + "Sixes"}>
+                                                <input
+                                                    type="tel" 
+                                                    className="text-center w-full h-full p-2" 
+                                                    onBlur={(e) => {
+                                                        if (e.target.value && e.target.value.match(/^[0-9]*$/) && Number(e.target.value) >= 0 && Number(e.target.value) <= 30 && Number(e.target.value) % 6 === 0) {
+                                                            player.upperSection.sixes = Number(e.target.value);
+                                                            player.getUpperScore();
+                                                            player.getGrandTotal();
+                                                            player.checkForBonus();
+                                                            playerNames[index] = player;
+                                                            setPlayerList(playerNames)
+                                                            nextTurn();
+                                                            setIsDisabled(true);
+                                                            updateWinner();
+                                                        }  
+                                                    }}
+                                                    onChange={(e) => {
+                                                        if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 30 || Number(e.target.value) % 6 !== 0) {
+                                                            e.target.classList.add("font-bold");
+                                                            return e.target.classList.add("text-orange-500");
+                                                        }
+                                                        e.target.classList.remove('font-bold');
+                                                        e.target.classList.remove('text-orange-500');
+                                                    }}
+                                                    disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
+                                            </td>
+                                        )
+                                    })}
+                                </tr>
+                                <tr className="relative dark:text-teal-100 font-semibold tracking-wider">
+                                    <td className="p-2 sticky z-10 left-0 dark:bg-blue-600">upper</td>
+                                    {playerList.map((player, index) => {
+                                        return <td className={`${ turnCount % playerNumber === index? "dark:bg-blue-500" : "dark:bg-blue-600"}`} key={player.name + "UpperScore"}><input disabled className={`text-center w-full h-full p-2 dark:text-blue-900 ${ turnCount % playerNumber === index? "dark:bg-blue-500" : "dark:bg-blue-600"}`} value={player.upperScore} /></td>
+                                    })}
+                                </tr>
+                            </tbody>
+                        </table>
                 </div>
-                <h2 className="text-xl mb-2 text-blue-700 dark:text-blue-100 font-bold">Lower Section</h2>
-                <div className="overflow-auto h-fit w-full">
+                <h2 className="mb-3 text-3xl font-semibold tracking-wider text-orange-500 dark:text-orange-300">Lower Section</h2>
+                <div className="overflow-auto rounded-3xl h-fit w-full">
                     <table className="table-auto text-center self-start min-w-full border-2 border-teal-500 border-collapse text-blue-900 dark:text-teal-300">
                         <thead className="border-teal-500 border-2">
                             <tr className="border-teal-500 border-2">
                                 <th className="p-2 border-teal-500 border-2 bg-teal-100 dark:bg-teal-700 dark:text-teal-100"></th>
                                 {playerList.map((player, index) => {
-                                    return <th className={`p-2 border-teal-500 border-2 dark:text-teal-100 ${turnCount % playerNumber === index ? "bg-teal-300 dark:bg-teal-500" : ""}`} key={player.name}>{player.name}</th>
+                                    return <th className={`p-2 border-teal-500 border-2 dark:text-teal-100 ${turnCount % playerNumber === index ? "bg-teal-300 dark:bg-blue-700" : ""}`} key={player.name}>{player.name}</th>
                                 })}
                             </tr>
                         </thead>

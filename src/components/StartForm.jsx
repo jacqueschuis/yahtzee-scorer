@@ -121,7 +121,7 @@ const StartForm = ({dice, newDice, playerNumber, setPlayerNumber, playerList, se
                 </Trail>
             </div>
             <form className="flex flex-col w-full items-center justify-center text-blue-900 dark:text-blue-100 text-lg" onSubmit={handleSubmit}>
-                        <label htmlFor="player-number" className="mb-3 text-3xl font-semibold tracking-widest text-orange-500 dark:text-orange-300">Number of Players</label>
+                        <label htmlFor="player-number" className="mb-3 text-3xl font-semibold tracking-wide text-orange-500 dark:text-orange-300">Number of Players</label>
                         <input 
                             type="tel"
                             id="player-number" 
@@ -135,7 +135,7 @@ const StartForm = ({dice, newDice, playerNumber, setPlayerNumber, playerList, se
                             }} />
                         <Trail>
                         { playerNumber > 0  && 
-                            <p className="mb-3 text-3xl font-semibold tracking-widest text-orange-500 dark:text-orange-300">
+                            <p className="mb-3 text-3xl font-semibold tracking-wide text-orange-500 dark:text-orange-300">
                                 Player Names
                             </p>
                         }

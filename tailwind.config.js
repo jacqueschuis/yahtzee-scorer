@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  important: true,
   darkMode: "class",
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
@@ -9,9 +10,13 @@ export default {
     colors: {
       blue: {
         100: "hsl(197,100%,95%)",
+        200: "hsl(197,60%,83%)",
         300: "hsl(197,60%,70%)",
+        400: "hsl(197,50%,56%)",
         500: "hsl(197,50%,45%)",
+        600: "hsl(197,50%,32%)",
         700: "hsl(197,60%,24%)",
+        800: "hsl(197,60%,13%)",
         900: "hsl(197,100%,8%)",
       },
       teal: {
