@@ -34,7 +34,9 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={router} />
+      <main className="w-full min-h-screen h-full py-10 md:flex-col bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-blue-100 font-sans flex justify-center leading-none font-normal">
+        <RouterProvider router={router} />
+      </main>
     </>
   )
 }

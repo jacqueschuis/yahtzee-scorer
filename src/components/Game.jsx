@@ -39,7 +39,7 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
 
 
     return (
-        <section id="game" className="flex flex-col items-center md:pt-16 pt-5 ">
+        <section id="game" className="h-full flex flex-col items-center md:pt-16 pt-5 ">
             <Trail>
                 <h1 className="font-bold text-xl text-teal-500 dark:text-teal-300">Yahtzee!</h1>
                 {isGameOver && 
