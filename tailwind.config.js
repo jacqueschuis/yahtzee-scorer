@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: "class",
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     fontFamily: {
@@ -25,7 +24,7 @@ export default {
         100: "hsl(12,100%,90%)",
         300: "hsl(12,90%,75%)",
         500: "hsl(12,76%,40%)",
-        700: "hsl(12,90%,20%)",
+        700: "hsl(12,84%,34%)",
         900: "hsl(12,100%,14%)",
       },
       extend: {},
