@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Trail from "./Trail";
+import Dice from "./Dice";
 
-const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWinner, turnCount, setTurnCount, playerNumber, setPlayerNumber, turnsLeft, setTurnsLeft}) => {
+const Game = ({dice, newDice, playerList, setPlayerList, isGameOver, setGameOver, winner, setWinner, turnCount, setTurnCount, playerNumber, setPlayerNumber, turnsLeft, setTurnsLeft}) => {
     const navigate = useNavigate();
     
     useEffect(() => {
@@ -41,25 +42,31 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
     return (
         <section id="game" className="h-full flex flex-col items-center md:pt-16 pt-5 ">
             <Trail>
-                <h1 className="font-bold text-xl text-teal-500 dark:text-teal-300">Yahtzee!</h1>
-                {isGameOver && 
-                <div>
-                    <h2 className="font-bold text-5xl mt-5 mb-2 text-teal-500 dark:text-teal-300">{winner.name} is the winner!</h2>
-                    <Link to="../new">
-                    <button
-                        className="p-5 mb-16 rounded-md w-full md:w-3/4 text-xl bg-teal-300 text-teal-900 font-bold my-5 dark:bg-teal-700 dark:text-teal-100" onClick={() => {
-                        setGameOver(false);
-                        setPlayerList([]);
-                        setPlayerNumber(0);
-                        setTurnCount(0);
-                        }}>
-                        Start Over
-                    </button>
-                </Link>
-                </div>
+                {!isGameOver &&
+                    <h1 className="w-full tracking-wider leading-none font-bold text-6xl text-teal-500 dark:text-blue-300">Yahtzee!</h1>
                 }
-
-
+                <div className="pt-2 mb-5 w-full flex lg:justify-center lg:gap-24 justify-evenly">
+                    {dice.map((di, index) => {
+                    return <Dice key={`formDi${index}`} newDice={newDice} value={di} />
+                    })}
+                </div>
+                {isGameOver && 
+                    <div>
+                        <h2 className="w-full tracking-wider leading-none font-bold text-6xl text-teal-500 dark:text-blue-300"><span className="text-orange-500 dark:text-orange-300">{winner.name}</span> is the winner!</h2>
+                        <Link to="../new">
+                        <button
+                            className="select-none p-5 rounded-3xl w-60 text-2xl tracking-wider bg-teal-300 text-teal-900 hover:bg-teal-900 hover:text-teal-300 font-bold my-5 dark:bg-blue-700 dark:text-teal-100 dark:hover:bg-teal-100 transition-all dark:hover:text-blue-700" 
+                            onClick={() => {
+                            setGameOver(false);
+                            setPlayerList([]);
+                            setPlayerNumber(0);
+                            setTurnCount(0);
+                            }}>
+                            Start Over
+                        </button>
+                    </Link>
+                    </div>
+                }
                 <h2 className="text-xl mb-2 text-blue-700 dark:text-blue-100 font-bold">Upper Section</h2>
                 <div className="overflow-auto h-fit w-full mb-5">
                     <table className="table-auto text-center self-start min-w-full border-2 border-teal-500 border-collapse text-blue-900 dark:text-teal-300">
@@ -613,7 +620,8 @@ const Game = ({playerList, setPlayerList, isGameOver, setGameOver, winner, setWi
 
                 <Link to="../new">
                     <button
-                        className="p-5 mt-16 rounded-md w-full md:w-3/4 text-xl bg-teal-300 text-teal-900 font-bold my-5 dark:bg-teal-700 dark:text-teal-100" onClick={() => {
+                        className="select-none p-5 rounded-3xl w-60 text-2xl tracking-wider bg-teal-300 text-teal-900 hover:bg-teal-900 hover:text-teal-300 font-bold my-5 dark:bg-blue-700 dark:text-teal-100 dark:hover:bg-teal-100 transition-all dark:hover:text-blue-700" 
+                        onClick={() => {
                         setGameOver(false);
                         setPlayerList([]);
                         setPlayerNumber(0);

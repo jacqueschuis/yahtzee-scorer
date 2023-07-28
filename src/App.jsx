@@ -16,18 +16,31 @@ function App() {
   const [turnCount, setTurnCount] = useState(0);
   const [turnsLeft, setTurnsLeft] = useState(13);
 
+  const [dice, setDice] = useState([]);
+
+  const newDice = () => {
+      setDice([
+          Math.floor(Math.random()*6 + 1),
+          Math.floor(Math.random()*6 + 1),
+          Math.floor(Math.random()*6 + 1),
+          Math.floor(Math.random()*6 + 1),
+          Math.floor(Math.random()*6 + 1),
+      ])
+  }
+
+
   const router = createBrowserRouter([
     {
       path: '/new',
-      element: <StartForm playerNumber={playerNumber} setPlayerNumber={setPlayerNumber} playerList={playerList} setPlayerList={setPlayerList} setTurnsLeft={setTurnsLeft} setGameOver={setGameOver} />,
+      element: <StartForm dice={dice} newDice={newDice} playerNumber={playerNumber} setPlayerNumber={setPlayerNumber} playerList={playerList} setPlayerList={setPlayerList} setTurnsLeft={setTurnsLeft} setGameOver={setGameOver} />,
     },
     {
       path: '/play',
-      element: <Game playerList={playerList} setPlayerList={setPlayerList} isGameOver={isGameOver} setGameOver={setGameOver} winner={winner} setWinner={setWinner} turnCount={turnCount} setTurnCount={setTurnCount} playerNumber={playerNumber} setPlayerNumber={setPlayerNumber} turnsLeft={turnsLeft} setTurnsLeft={setTurnsLeft} />
+      element: <Game dice={dice} newDice={newDice} playerList={playerList} setPlayerList={setPlayerList} isGameOver={isGameOver} setGameOver={setGameOver} winner={winner} setWinner={setWinner} turnCount={turnCount} setTurnCount={setTurnCount} playerNumber={playerNumber} setPlayerNumber={setPlayerNumber} turnsLeft={turnsLeft} setTurnsLeft={setTurnsLeft} />
     },
     {
       path: '*',
-      element: <Home />
+      element: <Home dice={dice} newDice={newDice} />
     }
   ]);
 

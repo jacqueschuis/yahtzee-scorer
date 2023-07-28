@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Trail from "./Trail";
 import Dice from "./Dice";
 
-const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, setTurnsLeft, setGameOver}) => {
+const StartForm = ({dice, newDice, playerNumber, setPlayerNumber, playerList, setPlayerList, setTurnsLeft, setGameOver}) => {
     const navigate = useNavigate();
     let playerInputs = [];
     let playerNames = [...playerList];
@@ -103,21 +103,10 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
         }
     }
 
-    const [dice, setDice] = useState([]);
-
-    useEffect(() => {
+      useEffect(() => {
         newDice()
-    }, [])
+  }, [])
 
-    const newDice = () => {
-        setDice([
-            Math.floor(Math.random()*6 + 1),
-            Math.floor(Math.random()*6 + 1),
-            Math.floor(Math.random()*6 + 1),
-            Math.floor(Math.random()*6 + 1),
-            Math.floor(Math.random()*6 + 1),
-        ])
-    }
 
     return ( 
         <section id="new-game" className="h-full">
@@ -128,7 +117,6 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
                         {dice.map((di, index) => {
                         return <Dice key={`formDi${index}`} newDice={newDice} value={di} />
                         })}
-                        
                     </div>
                 </Trail>
             </div>

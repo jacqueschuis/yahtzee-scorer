@@ -1,24 +1,14 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Trail from "./Trail";
 import Dice from "./Dice";
 
-const Home = () => {
-    const [homeDice, setHomeDice] = useState([]);
+const Home = ({dice, newDice}) => {
 
-    useEffect(() => {
+      useEffect(() => {
         newDice()
-    }, [])
+  }, [])
 
-    const newDice = () => {
-        setHomeDice([
-            Math.floor(Math.random()*6 + 1),
-            Math.floor(Math.random()*6 + 1),
-            Math.floor(Math.random()*6 + 1),
-            Math.floor(Math.random()*6 + 1),
-            Math.floor(Math.random()*6 + 1),
-        ])
-    }
 
     return ( 
         <section id="home" className="w-full h-full flex flex-col lg:gap-10 items-center justify-center">
@@ -30,7 +20,7 @@ const Home = () => {
                             <h2 className="w-full font-semibold lg:text-7xl md:text-6xl sm:text-5xl text-4xl tracking-[.2em] md:tracking-[.5em] text-orange-500 dark:text-orange-300">scorer</h2>
                         </div>
                         <div className="md:pt-5 w-full flex lg:justify-end lg:gap-24 justify-evenly">
-                          {homeDice.map((di, index) => {
+                          {dice.map((di, index) => {
                             return <Dice key={`homeDi${index}`} newDice={newDice} value={di} />
                           })}
                           
