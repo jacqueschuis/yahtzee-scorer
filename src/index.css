@@ -1,19 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Prompt:wght@400;600;900&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  font-family: "Poppins", sans-serif;
-  line-height: 1;
-  font-weight: 400;
-  display: flex;
-  justify-content: center;
-
-  color-scheme: light dark;
-  background-color: "hsl(193,100%, 5%)";
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -24,23 +15,8 @@
 html,
 body {
   overflow-x: hidden;
-}
-
-body {
+  width: 100%;
   margin: 0;
-  min-width: 320px;
+  min-width: 280px;
   min-height: 100vh;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: "hsl(193,100%,95%)";
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }

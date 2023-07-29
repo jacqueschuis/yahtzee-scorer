@@ -16,8 +16,8 @@ const Trail = ({ children }) => {
 
     return ( 
         <>
-            {trail.map(({height, ...style}, index) => (
-                <animated.div key={index} style={style} className="w-full">
+            {trail.map(({...style}, index) => (
+                <animated.div key={index} style={style}>
                     {items[index]}
                 </animated.div>
             ))}

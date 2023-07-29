@@ -1,7 +1,9 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Trail from "./Trail";
+import Dice from "./Dice";
 
-const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, setTurnsLeft, setGameOver}) => {
+const StartForm = ({dice, newDice, playerNumber, setPlayerNumber, playerList, setPlayerList, setTurnsLeft, setGameOver}) => {
     const navigate = useNavigate();
     let playerInputs = [];
     let playerNames = [...playerList];
@@ -101,61 +103,71 @@ const StartForm = ({playerNumber, setPlayerNumber, playerList, setPlayerList, se
         }
     }
 
-    return ( 
-        <section className=" w-full h-full flex justify-center items-center md:pt-16">
-                <div className="w-full">
-            <Trail>
-                    <h1 className="font-bold text-5xl mb-5 text-teal-500 dark:text-teal-300">New Game</h1>
-                    <form className="flex flex-col w-full items-center justify-center text-blue-900 dark:text-teal-300 text-lg" onSubmit={handleSubmit}>
-                        <Trail>
+      useEffect(() => {
+        newDice()
+  }, [])
 
-                        </Trail>
-                        <label htmlFor="player-number" className="text-xl mb-2 text-blue-700 dark:text-blue-100 font-bold">Number of Players</label>
+
+    return ( 
+        <section id="new-game" className="h-full">
+            <div className="mb-10">
+                <Trail>
+                    <h1 className="w-full tracking-wider leading-none font-bold md:text-8xl sm:text-7xl text-6xl text-teal-500 dark:text-blue-300">New Game</h1>
+                    <div className="pt-2 w-full flex lg:justify-center lg:gap-24 justify-evenly">
+                        {dice.map((di, index) => {
+                        return <Dice key={`formDi${index}`} newDice={newDice} value={di} />
+                        })}
+                    </div>
+                </Trail>
+            </div>
+            <form className="flex flex-col w-full items-center justify-center text-blue-900 dark:text-blue-100 text-lg" onSubmit={handleSubmit}>
+                        <label htmlFor="player-number" className="mb-3 text-3xl font-semibold tracking-wide text-orange-500 dark:text-orange-300">Number of Players</label>
                         <input 
                             type="tel"
                             id="player-number" 
-                            placeholder="Number of Players" 
-                            className="p-3 rounded-md mb-8 dark:bg-teal-900 border-teal-500 border-2  outline-orange-300 placeholder:text-teal-300"
+                            className="py-3 px-5 rounded-md mb-8 dark:bg-blue-700 bg-blue-100 dark:border-blue-300 border-teal-500 border-4 focus:outline-none tracking-wide"
                             onChange={(e) => {
                                 if (e.target.value.match(/^[0-9]*$/)) {
-                                    e.target.classList.remove('text-red-500')
                                     return setPlayerNumber(Number(e.target.value))
                                 } 
                                 setPlayerNumber(0);
                                 setPlayerList([])
-                                e.target.classList.add('text-red-500')
                             }} />
                         <Trail>
                         { playerNumber > 0  && 
-                            <p className="text-xl mb-2 text-blue-700 dark:text-blue-100 font-bold">
+                            <p className="mb-3 text-3xl font-semibold tracking-wide text-orange-500 dark:text-orange-300">
                                 Player Names
                             </p>
                         }
                         {
                             playerInputs.map((el, index) => {
                                 return(
-                                        <input required key={el} type="text" placeholder={`${el}`} className="p-3 rounded-md mb-3 dark:bg-teal-900 border-teal-500 border-2 outline-orange-300 placeholder:text-teal-300" onChange={(e) => {
-                                            if (e.target.value) {
-                                                playerNames[index] = new Player(e.target.value)
-                                                return setPlayerList(playerNames);
-                                            }
-                                            playerNames[index] = undefined
-                                            setPlayerList(playerNames)
-                                        }}/>
+                                        <input 
+                                            required 
+                                            key={el} 
+                                            type="text" 
+                                            placeholder={`${el}`}
+                                            className="py-3 px-5 rounded-md mb-8 dark:bg-blue-700 bg-blue-100 dark:border-blue-300 border-teal-500 border-4 focus:outline-none tracking-wide"
+                                            onChange={(e) => {
+                                                if (e.target.value) {
+                                                    playerNames[index] = new Player(e.target.value)
+                                                    return setPlayerList(playerNames);
+                                                }
+                                                playerNames[index] = undefined
+                                                setPlayerList(playerNames)
+                                            }}/>
                                         )
                                     })
                                 }
                          </Trail>
                          {(playerList.length === playerNumber) && playerList.length !== 0 && !isNaN(playerNumber) && !playerList.includes(undefined) &&
                             <Trail>
-                                <button className="p-5 rounded-md w-full md:w-3/4 text-xl bg-teal-300 text-teal-900 font-bold my-5 dark:bg-teal-500 dark:text-teal-100">
+                                <button className="select-none p-5 rounded-3xl w-60 text-2xl tracking-wider bg-teal-300 text-teal-900 hover:bg-teal-900 hover:text-teal-300 font-bold my-5 dark:bg-blue-700 dark:text-teal-100 dark:hover:bg-teal-100 transition-all dark:hover:text-blue-700">
                                 Start Game
                                 </button>
                             </Trail>
                          }
-                    </form>
-            </Trail>
-                </div>
+            </form>
         </section>
      );
 }
