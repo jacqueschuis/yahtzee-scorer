@@ -107,10 +107,8 @@ const Game = ({dice, newDice, playerList, setPlayerList, isGameOver, setGameOver
                                                 }}
                                                 onChange={(e) => {
                                                     if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 5) {
-                                                        
                                                         return e.target.classList.add("text-orange-500");
                                                     }
-                                                    
                                                     e.target.classList.remove('text-orange-500');
                                                 }}
                                                 disabled={turnCount % playerNumber !== index || isGameOver || isDisabled}/>
@@ -143,10 +141,8 @@ const Game = ({dice, newDice, playerList, setPlayerList, isGameOver, setGameOver
                                                 }}
                                                 onChange={(e) => {
                                                     if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 10 || Number(e.target.value) % 2 !== 0) {
-                                                        
                                                         return e.target.classList.add("text-orange-500");
                                                     }
-                                                    
                                                     e.target.classList.remove('text-orange-500');
                                                 }}
                                                 disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
@@ -179,10 +175,8 @@ const Game = ({dice, newDice, playerList, setPlayerList, isGameOver, setGameOver
                                                 }}
                                                 onChange={(e) => {
                                                     if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 15 || Number(e.target.value) % 3 !== 0) {
-                                                        
                                                         return e.target.classList.add("text-orange-500");
                                                     }
-                                                    
                                                     e.target.classList.remove('text-orange-500');
                                                 }}
                                                 disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
@@ -216,10 +210,8 @@ const Game = ({dice, newDice, playerList, setPlayerList, isGameOver, setGameOver
                                                 }}
                                                 onChange={(e) => {
                                                     if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 20 || Number(e.target.value) % 4 !== 0) {
-                                                        
                                                         return e.target.classList.add("text-orange-500");
                                                     }
-                                                    
                                                     e.target.classList.remove('text-orange-500');
                                                 }}
                                                 disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
@@ -252,10 +244,8 @@ const Game = ({dice, newDice, playerList, setPlayerList, isGameOver, setGameOver
                                                 }}
                                                 onChange={(e) => {
                                                     if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 25 || Number(e.target.value) % 5 !== 0) {
-                                                        
                                                         return e.target.classList.add("text-orange-500");
                                                     }
-                                                    
                                                     e.target.classList.remove('text-orange-500');
                                                 }}
                                                 disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
@@ -288,10 +278,8 @@ const Game = ({dice, newDice, playerList, setPlayerList, isGameOver, setGameOver
                                                 }}
                                                 onChange={(e) => {
                                                     if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 30 || Number(e.target.value) % 6 !== 0) {
-                                                        
                                                         return e.target.classList.add("text-orange-500");
                                                     }
-                                                    
                                                     e.target.classList.remove('text-orange-500');
                                                 }}
                                                 disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
@@ -349,10 +337,8 @@ const Game = ({dice, newDice, playerList, setPlayerList, isGameOver, setGameOver
                                                 }}
                                                 onChange={(e) => {
                                                     if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 30) {
-                                                        
                                                         return e.target.classList.add("text-orange-500");
                                                     }
-                                                    
                                                     e.target.classList.remove('text-orange-500');
                                                 }}
                                                 disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
@@ -385,10 +371,8 @@ const Game = ({dice, newDice, playerList, setPlayerList, isGameOver, setGameOver
                                                 }}
                                                 onChange={(e) => {
                                                     if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 30) {
-                                                        
                                                         return e.target.classList.add("text-orange-500");
                                                     }
-                                                    
                                                     e.target.classList.remove('text-orange-500');
                                                 }}
                                                 disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
@@ -421,10 +405,8 @@ const Game = ({dice, newDice, playerList, setPlayerList, isGameOver, setGameOver
                                                 }}
                                                 onChange={(e) => {
                                                 if (Number(e.target.value) === 25 || Number(e.target.value) === 0) {
-                                                        
                                                     return e.target.classList.remove('text-orange-500');
                                                     }
-                                                        
                                                     return e.target.classList.add("text-orange-500");
                                                 }}
                                                 disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
@@ -457,10 +439,8 @@ const Game = ({dice, newDice, playerList, setPlayerList, isGameOver, setGameOver
                                                 }}
                                                 onChange={(e) => {
                                                     if (Number(e.target.value) === 30 || Number(e.target.value) === 0) {
-                                                        
                                                         return e.target.classList.remove('text-orange-500');
                                                     }
-                                                        
                                                     return e.target.classList.add("text-orange-500");
                                                 }}
                                                 disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
@@ -493,10 +473,8 @@ const Game = ({dice, newDice, playerList, setPlayerList, isGameOver, setGameOver
                                                 }}
                                                 onChange={(e) => {
                                                     if (Number(e.target.value) === 40 || Number(e.target.value) === 0) {
-                                                        
                                                         return e.target.classList.remove('text-orange-500');
                                                     }
-                                                        
                                                     return e.target.classList.add("text-orange-500");
                                                 }}
                                                 disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
@@ -529,10 +507,8 @@ const Game = ({dice, newDice, playerList, setPlayerList, isGameOver, setGameOver
                                                 }}
                                                 onChange={(e) => {
                                                     if (Number(e.target.value) === 50 || Number(e.target.value) === 0) {
-                                                        
                                                         return e.target.classList.remove('text-orange-500');
                                                     }
-                                                        
                                                     return e.target.classList.add("text-orange-500");
                                                 }}
                                                 disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
@@ -565,10 +541,8 @@ const Game = ({dice, newDice, playerList, setPlayerList, isGameOver, setGameOver
                                                 }}
                                                 onChange={(e) => {
                                                     if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 36) {
-                                                        
                                                         return e.target.classList.add("text-orange-500");
                                                     }
-                                                    
                                                     e.target.classList.remove('text-orange-500');
                                                 }}
                                                 disabled={turnCount % playerNumber !== index || isGameOver || isDisabled } />
@@ -592,13 +566,11 @@ const Game = ({dice, newDice, playerList, setPlayerList, isGameOver, setGameOver
                                                         player.checkForBonus();
                                                         playerNames[index] = player;
                                                         setPlayerList(playerNames)
-                                                        nextTurn();
                                                         updateWinner();
                                                     }  
                                                 }}
                                                 onChange={(e) => {
                                                     if (!e.target.value.match(/^[0-9]*$/) || Number(e.target.value) < 0 || Number(e.target.value) > 5) {
-                                                        
                                                         return e.target.classList.add("text-orange-500");
                                                     }
                                                     e.target.classList.remove('text-orange-500');
