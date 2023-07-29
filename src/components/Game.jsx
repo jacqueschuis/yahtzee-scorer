@@ -72,8 +72,8 @@ const Game = ({dice, newDice, playerList, setPlayerList, isGameOver, setGameOver
                 </div>
                 <h2 className="mb-2 text-3xl font-semibold tracking-wider text-orange-500 dark:text-orange-300">Upper Section</h2>
                 <div className="overflow-auto rounded-3xl h-fit w-full mb-5 shadow-2xl">
-                    <table className="table-auto min-w-full max-w-[1000px] text-center md:text-xl self-start text-blue-900 dark:text-teal-300">
-                        <thead className="dark:text-blue-100 tracking-widest">
+                    <table className="table-auto w-full text-center md:text-xl self-start text-blue-900 dark:text-teal-300">
+                        <thead className="dark:text-blue-100 tracking-wider">
                             <tr>
                                 <th className="dark:bg-blue-700 bg-teal-500"></th>
                                 {playerList.map((player, index) => {
@@ -302,8 +302,8 @@ const Game = ({dice, newDice, playerList, setPlayerList, isGameOver, setGameOver
                 </div>
                 <h2 className="mb-3 text-3xl font-semibold tracking-wider text-orange-500 dark:text-orange-300">Lower Section</h2>
                 <div className="overflow-auto rounded-3xl h-fit w-full mb-5 shadow-2xl">
-                    <table className="table-auto min-w-full max-w-[1000px] text-center md:text-xl self-start text-blue-900 dark:text-teal-300">
-                        <thead className="dark:text-blue-100 tracking-widest">
+                    <table className="table-auto w-full text-center md:text-xl self-start text-blue-900 dark:text-teal-300">
+                        <thead className="dark:text-blue-100 tracking-wider">
                             <tr>
                                 <th className="dark:bg-blue-700 bg-teal-500"></th>
                                 {playerList.map((player, index) => {
@@ -554,7 +554,7 @@ const Game = ({dice, newDice, playerList, setPlayerList, isGameOver, setGameOver
                                 <td className="text-sm md:text-xl p-2 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100">yahtzee bonus</td>
                                 {playerList.map((player, index) => {
                                     return (
-                                        <td className={`border-0 border-none outline-none outline-0 ${turnCount % playerNumber === index ? "bg-teal-300 dark:bg-blue-600" : " bg-teal-500 dark:bg-blue-700"}`} key={player.name + "YahtzeeBonus"}>
+                                        <td className={`border-0 border-none outline-none outline-0 ${turnCount % playerNumber === index ? "bg-teal-300 dark:bg-blue-600" : " bg-teal-500 dark:bg-blue-700"}`} key={player.name + "YB"}>
                                             <input
                                                 type="tel" 
                                                 className={`text-center  outline-none w-full h-full p-2 ${turnCount % playerNumber === index ? "bg-teal-300 dark:bg-blue-600" : " bg-teal-500 dark:bg-blue-700"}`} 
@@ -595,7 +595,7 @@ const Game = ({dice, newDice, playerList, setPlayerList, isGameOver, setGameOver
                                 {playerList.map((player, index) => {
                                     return (
                                         <td className={`${ turnCount % playerNumber === index? "dark:bg-orange-500 bg-orange-100" : "dark:bg-orange-700 bg-orange-300"}`} key={player.name + "Total"}>
-                                            <input disabled className={`text-center p-2 ${ turnCount % playerNumber === index? "dark:bg-orange-500 bg-orange-100" : "dark:bg-orange-700 bg-orange-300"}`} value={player.grandTotal} />
+                                            <input disabled className={`text-center w-full p-2 ${ turnCount % playerNumber === index? "dark:bg-orange-500 bg-orange-100" : "dark:bg-orange-700 bg-orange-300"}`} value={player.grandTotal} />
                                         </td>
                                     )
                                 })}
