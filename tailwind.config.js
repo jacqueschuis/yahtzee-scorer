@@ -1,7 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   important: true,
-  darkMode: "class",
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     fontFamily: {
@@ -21,9 +20,13 @@ export default {
       },
       teal: {
         100: "hsl(173,95%,90%)",
+        200: "hsl(173,95%,80%)",
         300: "hsl(173,70%,60%)",
+        400: "hsl(173,70%,50%)",
         500: "hsl(173,80%,39%)",
+        600: "hsl(173,80%,32%)",
         700: "hsl(173,80%,24%)",
+        800: "hsl(173,80%,17%)",
         900: "hsl(173,100%,10%)",
       },
       orange: {
