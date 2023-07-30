@@ -4,8 +4,6 @@ import Trail from "./Trail";
 import Dice from "./Dice";
 
 const Game = ({
-  dice,
-  newDice,
   playerList,
   setPlayerList,
   isGameOver,
@@ -25,7 +23,6 @@ const Game = ({
     if (!playerList.length) {
       return navigate("/");
     }
-    newDice();
   }, []);
 
   let playerNames = [...playerList];
@@ -85,13 +82,7 @@ const Game = ({
               </Link>
             </div>
           )}
-          <div className="pt-2 mb-5 w-full flex lg:justify-center lg:gap-24 justify-evenly">
-            {dice.map((di, index) => {
-              return (
-                <Dice key={`formDi${index}`} onClick={newDice} value={di} />
-              );
-            })}
-          </div>
+          <Dice className="pt-2 mb-5 w-full flex lg:justify-center lg:gap-24 justify-evenly" />
         </div>
         <h2 className="mb-2 text-3xl font-semibold tracking-wider text-orange-500 dark:text-orange-300">
           Upper Section

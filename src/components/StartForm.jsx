@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Trail from "./Trail";
 import Dice from "./Dice";
@@ -80,8 +79,6 @@ class Player {
 }
 
 const StartForm = ({
-  dice,
-  newDice,
   playerNumber,
   setPlayerNumber,
   playerList,
@@ -107,10 +104,6 @@ const StartForm = ({
     return navigate("/play");
   };
 
-  useEffect(() => {
-    newDice();
-  }, []);
-
   return (
     <section id="new-game" className="h-full">
       <div className="mb-10">
@@ -118,13 +111,7 @@ const StartForm = ({
           <h1 className="w-full tracking-wider leading-none font-bold md:text-8xl sm:text-7xl text-6xl text-teal-500 dark:text-blue-300">
             New Game
           </h1>
-          <div className="pt-2 w-full flex lg:justify-center lg:gap-24 justify-evenly">
-            {dice.map((di, index) => {
-              return (
-                <Dice key={`formDi${index}`} onClick={newDice} value={di} />
-              );
-            })}
-          </div>
+          <Dice className="pt-2 w-full flex lg:justify-center lg:gap-24 justify-evenly" />
         </Trail>
       </div>
       <form

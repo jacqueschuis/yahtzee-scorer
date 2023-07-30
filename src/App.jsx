@@ -16,25 +16,11 @@ function App() {
   const [turnCount, setTurnCount] = useState(0);
   const [turnsLeft, setTurnsLeft] = useState(13);
 
-  const [dice, setDice] = useState([]);
-
-  const newDice = () => {
-    setDice([
-      Math.floor(Math.random() * 6 + 1),
-      Math.floor(Math.random() * 6 + 1),
-      Math.floor(Math.random() * 6 + 1),
-      Math.floor(Math.random() * 6 + 1),
-      Math.floor(Math.random() * 6 + 1),
-    ]);
-  };
-
   const router = createBrowserRouter([
     {
       path: "/new",
       element: (
         <StartForm
-          dice={dice}
-          newDice={newDice}
           playerNumber={playerNumber}
           setPlayerNumber={setPlayerNumber}
           playerList={playerList}
@@ -48,8 +34,6 @@ function App() {
       path: "/play",
       element: (
         <Game
-          dice={dice}
-          newDice={newDice}
           playerList={playerList}
           setPlayerList={setPlayerList}
           isGameOver={isGameOver}
@@ -67,7 +51,7 @@ function App() {
     },
     {
       path: "*",
-      element: <Home dice={dice} newDice={newDice} />,
+      element: <Home />,
     },
   ]);
 

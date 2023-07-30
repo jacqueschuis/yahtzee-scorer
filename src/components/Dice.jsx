@@ -1,7 +1,8 @@
-const Dice = ({ value, onClick }) => {
+import { useState } from "react";
+
+const DiceItem = ({ value }) => {
   return (
     <svg
-      onClick={onClick}
       xmlns="http://www.w3.org/2000/svg"
       className=" cursor-pointer lg:w-10 w-8 fill-teal-500 dark:fill-blue-300 hover:fill-teal-900 dark:hover:fill-blue-100 transition-all"
       viewBox="0 0 16 16"
@@ -43,6 +44,34 @@ const Dice = ({ value, onClick }) => {
         </>
       )}
     </svg>
+  );
+};
+
+const generateNewDice = () => {
+  return [
+    Math.floor(Math.random() * 6 + 1),
+    Math.floor(Math.random() * 6 + 1),
+    Math.floor(Math.random() * 6 + 1),
+    Math.floor(Math.random() * 6 + 1),
+    Math.floor(Math.random() * 6 + 1),
+  ];
+};
+
+const Dice = ({ className }) => {
+  const [dice, setDice] = useState(generateNewDice());
+
+  const handleRollDice = () => setDice(generateNewDice());
+
+  return (
+    <div className={className}>
+      {dice.map((die, index) => {
+        return (
+          <button key={index} onClick={handleRollDice}>
+            <DiceItem value={die} />
+          </button>
+        );
+      })}
+    </div>
   );
 };
 

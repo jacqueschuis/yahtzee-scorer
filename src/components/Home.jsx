@@ -1,13 +1,8 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Trail from "./Trail";
 import Dice from "./Dice";
 
-const Home = ({ dice, newDice }) => {
-  useEffect(() => {
-    newDice();
-  }, []);
-
+const Home = () => {
   return (
     <section
       id="home"
@@ -30,13 +25,7 @@ const Home = ({ dice, newDice }) => {
                 scorer
               </h2>
             </div>
-            <div className="md:pt-5 w-full flex lg:justify-end lg:gap-24 justify-evenly">
-              {dice.map((di, index) => {
-                return (
-                  <Dice key={`homeDi${index}`} newDice={newDice} value={di} />
-                );
-              })}
-            </div>
+            <Dice className="md:pt-5 w-full flex lg:justify-end lg:gap-24 justify-evenly" />
             <Link to="/new">
               <button className="select-none self-end p-5 hidden lg:inline-block rounded-3xl w-60 text-2xl tracking-wider bg-teal-300 text-teal-900 hover:bg-teal-900 hover:text-teal-300 font-bold my-5 dark:bg-blue-700 dark:text-teal-100 dark:hover:bg-teal-100 transition-all dark:hover:text-blue-700">
                 New Game
