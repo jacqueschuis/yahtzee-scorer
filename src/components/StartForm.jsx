@@ -104,7 +104,7 @@ const StartForm = ({
     setPlayerList(adjustedPlayers);
     setTurnsLeft(playerNumber * 13);
     setGameOver(false);
-    return navigate("../play");
+    return navigate("/play");
   };
 
   useEffect(() => {

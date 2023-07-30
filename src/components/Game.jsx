@@ -23,7 +23,7 @@ const Game = ({
 
   useEffect(() => {
     if (!playerList.length) {
-      return navigate("../");
+      return navigate("/");
     }
     newDice();
   }, []);
@@ -70,7 +70,7 @@ const Game = ({
                 </span>{" "}
                 is the winner!
               </h2>
-              <Link to="../new">
+              <Link to="/new">
                 <button
                   className="select-none p-5 rounded-3xl w-60 text-2xl tracking-wider bg-teal-300 text-teal-900 hover:bg-teal-900 hover:text-teal-300 font-bold my-5 dark:bg-blue-700 dark:text-teal-100 dark:hover:bg-teal-100 transition-all dark:hover:text-blue-700"
                   onClick={() => {
@@ -1116,7 +1116,7 @@ const Game = ({
           </table>
         </div>
 
-        <Link to="../new">
+        <Link to="/new">
           <button
             className="select-none p-5 rounded-3xl w-60 text-2xl tracking-wider bg-teal-300 text-teal-900 hover:bg-teal-900 hover:text-teal-300 font-bold my-5 dark:bg-blue-700 dark:text-teal-100 dark:hover:bg-teal-100 transition-all dark:hover:text-blue-700"
             onClick={() => {
