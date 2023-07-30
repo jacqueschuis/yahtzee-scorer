@@ -138,7 +138,7 @@ const StartForm = ({
           Number of Players
         </label>
         <input
-          type="tel"
+          type="number"
           id="player-number"
           className="py-3 px-5 rounded-md mb-8 dark:bg-blue-700 bg-blue-100 dark:border-blue-300 border-teal-500 border-4 focus:outline-none tracking-wide"
           onChange={(e) => {

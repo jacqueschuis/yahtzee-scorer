@@ -119,7 +119,7 @@ const Game = ({
             </thead>
             <tbody>
               <tr className="dark:text-blue-100 text-teal-900 divide-none font-semibold tracking-wider relative">
-                <td className="text-sm md:text-xl p-2 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100">
+                <td className="text-sm md:text-xl p-2 w-40 sm:w-48 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100">
                   ones
                 </td>
                 {playerList.map((player, index) => {
@@ -135,7 +135,7 @@ const Game = ({
                       key={player.name + "Ones"}
                     >
                       <input
-                        type="tel"
+                        type="number"
                         className={`text-center outline-none w-full h-full p-2 ${
                           !isDisabled && turnCount % playerNumber === index
                             ? "bg-teal-200 dark:bg-blue-500"
@@ -180,7 +180,7 @@ const Game = ({
                 })}
               </tr>
               <tr className="dark:text-blue-100 text-teal-900 divide-none font-semibold tracking-wider relative">
-                <td className="text-sm md:text-xl p-2 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100">
+                <td className="text-sm md:text-xl p-2 w-40 sm:w-48 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100">
                   twos
                 </td>
                 {playerList.map((player, index) => {
@@ -196,7 +196,7 @@ const Game = ({
                       key={player.name + "Twos"}
                     >
                       <input
-                        type="tel"
+                        type="number"
                         className={`text-center  outline-none w-full h-full p-2 ${
                           !isDisabled && turnCount % playerNumber === index
                             ? "bg-teal-300 dark:bg-blue-600"
@@ -243,7 +243,7 @@ const Game = ({
                 })}
               </tr>
               <tr className="dark:text-blue-100 text-teal-900 divide-none font-semibold tracking-wider relative">
-                <td className="text-sm md:text-xl p-2 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100">
+                <td className="text-sm md:text-xl p-2 w-40 sm:w-48 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100">
                   threes
                 </td>
                 {playerList.map((player, index) => {
@@ -259,7 +259,7 @@ const Game = ({
                       key={player.name + "Threes"}
                     >
                       <input
-                        type="tel"
+                        type="number"
                         className={`text-center outline-none w-full h-full p-2 ${
                           !isDisabled && turnCount % playerNumber === index
                             ? "bg-teal-200 dark:bg-blue-500"
@@ -306,7 +306,7 @@ const Game = ({
                 })}
               </tr>
               <tr className="dark:text-blue-100 text-teal-900 divide-none font-semibold tracking-wider relative">
-                <td className="text-sm md:text-xl p-2 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100">
+                <td className="text-sm md:text-xl p-2 w-40 sm:w-48 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100">
                   fours
                 </td>
                 {playerList.map((player, index) => {
@@ -322,7 +322,7 @@ const Game = ({
                       key={player.name + "Fours"}
                     >
                       <input
-                        type="tel"
+                        type="number"
                         className={`text-center  outline-none w-full h-full p-2 ${
                           !isDisabled && turnCount % playerNumber === index
                             ? "bg-teal-300 dark:bg-blue-600"
@@ -369,7 +369,7 @@ const Game = ({
                 })}
               </tr>
               <tr className="dark:text-teal-100 divide-none font-semibold tracking-wider relative">
-                <td className="text-sm md:text-xl p-2 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100">
+                <td className="text-sm md:text-xl p-2 w-40 sm:w-48 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100">
                   fives
                 </td>
                 {playerList.map((player, index) => {
@@ -385,7 +385,7 @@ const Game = ({
                       key={player.name + "Fives"}
                     >
                       <input
-                        type="tel"
+                        type="number"
                         className={`text-center  outline-none w-full h-full p-2 ${
                           !isDisabled && turnCount % playerNumber === index
                             ? "bg-teal-200 dark:bg-blue-500"
@@ -432,7 +432,7 @@ const Game = ({
                 })}
               </tr>
               <tr className="dark:text-teal-100 divide-none font-semibold tracking-wider relative">
-                <td className="text-sm md:text-xl p-2 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100">
+                <td className="text-sm md:text-xl p-2 w-40 sm:w-48 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100">
                   sixes
                 </td>
                 {playerList.map((player, index) => {
@@ -448,7 +448,7 @@ const Game = ({
                       key={player.name + "Sixes"}
                     >
                       <input
-                        type="tel"
+                        type="number"
                         className={`text-center  outline-none w-full h-full p-2 ${
                           !isDisabled && turnCount % playerNumber === index
                             ? "bg-teal-300 dark:bg-blue-600"
@@ -495,7 +495,7 @@ const Game = ({
                 })}
               </tr>
               <tr className="relative dark:text-blue-100 text-teal-900 font-semibold tracking-wider">
-                <td className="border-0 border-none outline-0 outline-none dark:text-teal-100 p-2 sticky z-10 left-0 dark:bg-blue-600 bg-teal-400">
+                <td className="border-0 border-none outline-0 outline-none dark:text-teal-100 p-2 w-40 sm:w-48 sticky z-10 left-0 dark:bg-blue-600 bg-teal-400">
                   upper
                 </td>
                 {playerList.map((player, index) => {
@@ -551,7 +551,7 @@ const Game = ({
             <tbody>
               <tr className="dark:text-blue-100 text-teal-900 divide-none font-semibold tracking-wider relative">
                 <td
-                  className="text-sm md:text-xl p-2 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100"
+                  className="text-sm md:text-xl p-2 w-40 sm:w-48 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100"
                   onClick={() => setThreeKindClick(!threeKindClick)}
                 >
                   {threeKindClick ? "total all" : "3/kind"}
@@ -569,7 +569,7 @@ const Game = ({
                       key={player.name + "ThreeKind"}
                     >
                       <input
-                        type="tel"
+                        type="number"
                         className={`text-center  outline-none w-full h-full p-2 ${
                           !isDisabled && turnCount % playerNumber === index
                             ? "bg-teal-200 dark:bg-blue-500"
@@ -617,7 +617,7 @@ const Game = ({
               </tr>
               <tr className="dark:text-blue-100 text-teal-900 divide-none font-semibold tracking-wider relative">
                 <td
-                  className="text-sm md:text-xl p-2 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100"
+                  className="text-sm md:text-xl p-2 w-40 sm:w-48 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100"
                   onClick={() => setFourKindClick(!fourKindClick)}
                 >
                   {fourKindClick ? "total all" : "4/kind"}
@@ -635,7 +635,7 @@ const Game = ({
                       key={player.name + "FourOfAKind"}
                     >
                       <input
-                        type="tel"
+                        type="number"
                         className={`text-center  outline-none w-full h-full p-2 ${
                           !isDisabled && turnCount % playerNumber === index
                             ? "bg-teal-300 dark:bg-blue-600"
@@ -683,7 +683,7 @@ const Game = ({
               </tr>
               <tr className="dark:text-blue-100 text-teal-900 divide-none font-semibold tracking-wider relative">
                 <td
-                  className="text-sm md:text-xl p-2 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100"
+                  className="text-sm md:text-xl p-2 w-40 sm:w-48 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100"
                   onClick={() => setFullHouseClick(!fullHouseClick)}
                 >
                   {fullHouseClick ? "25" : "full house"}
@@ -701,7 +701,7 @@ const Game = ({
                       key={player.name + "FullHouse"}
                     >
                       <input
-                        type="tel"
+                        type="number"
                         className={`text-center  outline-none w-full h-full p-2 ${
                           !isDisabled && turnCount % playerNumber === index
                             ? "bg-teal-200 dark:bg-blue-500"
@@ -747,7 +747,7 @@ const Game = ({
               </tr>
               <tr className="dark:text-blue-100 text-teal-900 divide-none font-semibold tracking-wider relative">
                 <td
-                  className="text-sm md:text-xl p-2 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100"
+                  className="text-sm md:text-xl p-2 w-40 sm:w-48 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100"
                   onClick={() => setSmStraightClick(!smStraightClick)}
                 >
                   {smStraightClick ? "30" : "sm straight"}
@@ -765,7 +765,7 @@ const Game = ({
                       key={player.name + "SmStraight"}
                     >
                       <input
-                        type="tel"
+                        type="number"
                         className={`text-center  outline-none w-full h-full p-2 ${
                           !isDisabled && turnCount % playerNumber === index
                             ? "bg-teal-300 dark:bg-blue-600"
@@ -811,7 +811,7 @@ const Game = ({
               </tr>
               <tr className="dark:text-blue-100 text-teal-900 divide-none font-semibold tracking-wider relative">
                 <td
-                  className="text-sm md:text-xl p-2 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100"
+                  className="text-sm md:text-xl p-2 w-40 sm:w-48 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100"
                   onClick={() => setLgStraightClick(!lgStraightClick)}
                 >
                   {lgStraightClick ? "40" : "lg straight"}
@@ -829,7 +829,7 @@ const Game = ({
                       key={player.name + "LgStraight"}
                     >
                       <input
-                        type="tel"
+                        type="number"
                         className={`text-center outline-none w-full h-full p-2 ${
                           !isDisabled && turnCount % playerNumber === index
                             ? "bg-teal-200 dark:bg-blue-500"
@@ -875,7 +875,7 @@ const Game = ({
               </tr>
               <tr className="dark:text-blue-100 text-teal-900 divide-none font-semibold tracking-wider relative">
                 <td
-                  className="text-sm md:text-xl p-2 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100"
+                  className="text-sm md:text-xl p-2 w-40 sm:w-48 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100"
                   onClick={() => setYahtzeeClick(!yahtzeeClick)}
                 >
                   {yahtzeeClick ? "50" : "yahtzee"}
@@ -893,7 +893,7 @@ const Game = ({
                       key={player.name + "Yahtzee"}
                     >
                       <input
-                        type="tel"
+                        type="number"
                         className={`text-center  outline-none w-full h-full p-2 ${
                           !isDisabled && turnCount % playerNumber === index
                             ? "bg-teal-300 dark:bg-blue-600"
@@ -939,7 +939,7 @@ const Game = ({
               </tr>
               <tr className="dark:text-blue-100 text-teal-900 divide-none font-semibold tracking-wider relative">
                 <td
-                  className="text-sm md:text-xl p-2 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100"
+                  className="text-sm md:text-xl p-2 w-40 sm:w-48 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100"
                   onClick={() => setChanceClick(!chanceClick)}
                 >
                   {chanceClick ? "total all" : "chance"}
@@ -957,7 +957,7 @@ const Game = ({
                       key={player.name + "Chance"}
                     >
                       <input
-                        type="tel"
+                        type="number"
                         className={`text-center outline-none w-full h-full p-2 ${
                           !isDisabled && turnCount % playerNumber === index
                             ? "bg-teal-200 dark:bg-blue-500"
@@ -1002,7 +1002,7 @@ const Game = ({
                 })}
               </tr>
               <tr className="dark:text-blue-100 text-teal-900 divide-none font-semibold tracking-wider relative">
-                <td className="text-sm md:text-xl p-2 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100">
+                <td className="text-sm md:text-xl p-2 w-40 sm:w-48 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100">
                   yahtzee bonus
                 </td>
                 {playerList.map((player, index) => {
@@ -1016,7 +1016,7 @@ const Game = ({
                       key={player.name + "YB"}
                     >
                       <input
-                        type="tel"
+                        type="number"
                         className={`text-center  outline-none w-full h-full p-2 ${
                           turnCount % playerNumber === index
                             ? "bg-teal-300 dark:bg-blue-600"
@@ -1059,7 +1059,7 @@ const Game = ({
                 })}
               </tr>
               <tr className="relative dark:text-blue-100 text-teal-900 font-semibold tracking-wider">
-                <td className="border-0 border-none outline-0 outline-none dark:text-teal-100 p-2 sticky z-10 left-0 dark:bg-blue-600 bg-teal-400">
+                <td className="border-0 border-none outline-0 outline-none dark:text-teal-100 p-2 w-40 sm:w-48 sticky z-10 left-0 dark:bg-blue-600 bg-teal-400">
                   lower
                 </td>
                 {playerList.map((player, index) => {
@@ -1086,7 +1086,7 @@ const Game = ({
                 })}
               </tr>
               <tr className="relative font-semibold tracking-wider bg-orange-300 text-orange-900 dark:bg-orange-700 dark:text-orange-100">
-                <td className="p-2 sticky z-10 left-0 uppercase bg-orange-300 dark:bg-orange-700">
+                <td className="p-2 w-40 sm:w-48 sticky z-10 left-0 uppercase bg-orange-300 dark:bg-orange-700">
                   total
                 </td>
                 {playerList.map((player, index) => {
