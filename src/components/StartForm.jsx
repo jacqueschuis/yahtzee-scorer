@@ -94,6 +94,23 @@ const StartForm = ({
     playerInputs.push(`Player ${i + 1} Name`);
   }
 
+  const handleSetNumberOfPlayers = (e) => {
+    if (e.target.value.match(/^[0-9]*$/)) {
+      return setPlayerNumber(Number(e.target.value));
+    }
+    setPlayerNumber(0);
+    setPlayerList([]);
+  };
+
+  const handleSetPlayerName = (e, index) => {
+    if (e.target.value) {
+      playerNames[index] = new Player(e.target.value);
+      return setPlayerList(playerNames);
+    }
+    playerNames[index] = undefined;
+    setPlayerList(playerNames);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     let adjustedPlayers = [...playerList];
@@ -103,6 +120,12 @@ const StartForm = ({
     setGameOver(false);
     return navigate("/play");
   };
+
+  const isReadyToStart =
+    playerList.length === playerNumber &&
+    playerList.length !== 0 &&
+    !isNaN(playerNumber) &&
+    !playerList.includes(undefined);
 
   return (
     <section id="new-game" className="h-full">
@@ -128,13 +151,7 @@ const StartForm = ({
           type="number"
           id="player-number"
           className="py-3 px-5 rounded-md mb-8 dark:bg-blue-700 bg-blue-100 dark:border-blue-300 border-teal-500 border-4 focus:outline-none tracking-wide"
-          onChange={(e) => {
-            if (e.target.value.match(/^[0-9]*$/)) {
-              return setPlayerNumber(Number(e.target.value));
-            }
-            setPlayerNumber(0);
-            setPlayerList([]);
-          }}
+          onChange={handleSetNumberOfPlayers}
         />
         <Trail>
           {playerNumber > 0 && (
@@ -150,28 +167,18 @@ const StartForm = ({
                 type="text"
                 placeholder={`${el}`}
                 className="py-3 px-5 rounded-md mb-8 dark:bg-blue-700 bg-blue-100 dark:border-blue-300 border-teal-500 border-4 focus:outline-none tracking-wide"
-                onChange={(e) => {
-                  if (e.target.value) {
-                    playerNames[index] = new Player(e.target.value);
-                    return setPlayerList(playerNames);
-                  }
-                  playerNames[index] = undefined;
-                  setPlayerList(playerNames);
-                }}
+                onChange={(e) => handleSetPlayerName(e, index)}
               />
             );
           })}
         </Trail>
-        {playerList.length === playerNumber &&
-          playerList.length !== 0 &&
-          !isNaN(playerNumber) &&
-          !playerList.includes(undefined) && (
-            <Trail>
-              <button className="select-none p-5 rounded-3xl w-60 text-2xl tracking-wider bg-teal-300 text-teal-900 hover:bg-teal-900 hover:text-teal-300 font-bold my-5 dark:bg-blue-700 dark:text-teal-100 dark:hover:bg-teal-100 transition-all dark:hover:text-blue-700">
-                Start Game
-              </button>
-            </Trail>
-          )}
+        {isReadyToStart && (
+          <Trail>
+            <button className="select-none p-5 rounded-3xl w-60 text-2xl tracking-wider bg-teal-300 text-teal-900 hover:bg-teal-900 hover:text-teal-300 font-bold my-5 dark:bg-blue-700 dark:text-teal-100 dark:hover:bg-teal-100 transition-all dark:hover:text-blue-700">
+              Start Game
+            </button>
+          </Trail>
+        )}
       </form>
     </section>
   );

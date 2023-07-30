@@ -12,10 +12,9 @@ const Game = ({
   setWinner,
   turnCount,
   setTurnCount,
-  playerNumber,
-  setPlayerNumber,
   turnsLeft,
   setTurnsLeft,
+  onStartOver,
 }) => {
   const navigate = useNavigate();
 
@@ -50,6 +49,8 @@ const Game = ({
   const [yahtzeeClick, setYahtzeeClick] = useState(false);
   const [chanceClick, setChanceClick] = useState(false);
 
+  const playerNumber = playerList.length;
+
   return (
     <section id="game" className="h-full w-full lg:px-24 px-5">
       <Trail>
@@ -70,12 +71,7 @@ const Game = ({
               <Link to="/new">
                 <button
                   className="select-none p-5 rounded-3xl w-60 text-2xl tracking-wider bg-teal-300 text-teal-900 hover:bg-teal-900 hover:text-teal-300 font-bold my-5 dark:bg-blue-700 dark:text-teal-100 dark:hover:bg-teal-100 transition-all dark:hover:text-blue-700"
-                  onClick={() => {
-                    setGameOver(false);
-                    setPlayerList([]);
-                    setPlayerNumber(0);
-                    setTurnCount(0);
-                  }}
+                  onClick={onStartOver}
                 >
                   Start Over
                 </button>
@@ -93,11 +89,13 @@ const Game = ({
               <tr>
                 <th className="dark:bg-blue-700 bg-teal-500"></th>
                 {playerList.map((player, index) => {
+                  const isPlayerTurn = turnCount % playerNumber === index;
+
                   return (
                     <th
                       className={`p-2 uppercase font-semibold ${
-                        turnCount % playerNumber === index
-                          ? "bg-teal-300 dark:bg-blue-600"
+                        isPlayerTurn
+                          ? "bg-teal-300 dark:bg-blue-60"
                           : " bg-teal-500 dark:bg-blue-700"
                       }`}
                       key={player.name}
@@ -115,11 +113,12 @@ const Game = ({
                 </td>
                 {playerList.map((player, index) => {
                   const [isDisabled, setIsDisabled] = useState(false);
+                  const isPlayerTurn = turnCount % playerNumber === index;
 
                   return (
                     <td
                       className={`border-0 border-none outline-none outline-0 ${
-                        !isDisabled && turnCount % playerNumber === index
+                        !isDisabled && isPlayerTurn
                           ? "bg-teal-200 dark:bg-blue-500"
                           : " bg-teal-500 dark:bg-blue-700"
                       }`}
@@ -128,7 +127,7 @@ const Game = ({
                       <input
                         type="number"
                         className={`text-center outline-none w-full h-full p-2 ${
-                          !isDisabled && turnCount % playerNumber === index
+                          !isDisabled && isPlayerTurn
                             ? "bg-teal-200 dark:bg-blue-500"
                             : " bg-teal-500 dark:bg-blue-700"
                         }`}
@@ -160,11 +159,7 @@ const Game = ({
                           }
                           e.target.classList.remove("text-orange-500");
                         }}
-                        disabled={
-                          turnCount % playerNumber !== index ||
-                          isGameOver ||
-                          isDisabled
-                        }
+                        disabled={!isPlayerTurn || isGameOver || isDisabled}
                       />
                     </td>
                   );
@@ -1110,12 +1105,7 @@ const Game = ({
         <Link to="/new">
           <button
             className="select-none p-5 rounded-3xl w-60 text-2xl tracking-wider bg-teal-300 text-teal-900 hover:bg-teal-900 hover:text-teal-300 font-bold my-5 dark:bg-blue-700 dark:text-teal-100 dark:hover:bg-teal-100 transition-all dark:hover:text-blue-700"
-            onClick={() => {
-              setGameOver(false);
-              setPlayerList([]);
-              setPlayerNumber(0);
-              setTurnCount(0);
-            }}
+            onClick={onStartOver}
           >
             Start Over
           </button>

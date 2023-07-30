@@ -16,6 +16,13 @@ function App() {
   const [turnCount, setTurnCount] = useState(0);
   const [turnsLeft, setTurnsLeft] = useState(13);
 
+  const handleStartOver = () => {
+    setGameOver(false);
+    setPlayerList([]);
+    setPlayerNumber(0);
+    setTurnCount(0);
+  };
+
   const router = createBrowserRouter([
     {
       path: "/new",
@@ -42,10 +49,9 @@ function App() {
           setWinner={setWinner}
           turnCount={turnCount}
           setTurnCount={setTurnCount}
-          playerNumber={playerNumber}
-          setPlayerNumber={setPlayerNumber}
           turnsLeft={turnsLeft}
           setTurnsLeft={setTurnsLeft}
+          onStartOver={handleStartOver}
         />
       ),
     },
