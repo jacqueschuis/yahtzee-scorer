@@ -1,21 +1,22 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { times } from "../utils";
 import Trail from "./Trail";
 import Dice from "./Dice";
 
-class Player {
-  constructor(name) {
-    this.name = name;
-    this.upperSection = {
+const generateNewPlayer = (name = "") => {
+  return {
+    name,
+    upperSectionScores: {
       ones: 0,
       twos: 0,
       threes: 0,
       fours: 0,
       fives: 0,
       sixes: 0,
-    };
-    this.countedBonus = false;
-    this.upperScore = 0;
-    this.lowerSection = {
+    },
+    lowerSectionScores: {
       threeOfAKind: 0,
       fourOfAKind: 0,
       fullHouse: 0,
@@ -24,108 +25,55 @@ class Player {
       yahtzee: 0,
       chance: 0,
       yahtzeeBonus: 0,
-    };
-    this.lowerScore = 0;
-    this.grandTotal = 0;
-  }
-  getLowerScore() {
-    return (this.lowerScore =
-      this.lowerSection.threeOfAKind +
-      this.lowerSection.fourOfAKind +
-      this.lowerSection.fullHouse +
-      this.lowerSection.smStraight +
-      this.lowerSection.lgStraight +
-      this.lowerSection.yahtzee +
-      this.lowerSection.chance +
-      this.lowerSection.yahtzeeBonus * 100);
-  }
-  getUpperScore() {
-    if (this.countedBonus) {
-      return (this.upperScore =
-        this.upperSection.ones +
-        this.upperSection.twos +
-        this.upperSection.threes +
-        this.upperSection.fours +
-        this.upperSection.fives +
-        this.upperSection.sixes +
-        35);
-    }
-    return (this.upperScore =
-      this.upperSection.ones +
-      this.upperSection.twos +
-      this.upperSection.threes +
-      this.upperSection.fours +
-      this.upperSection.fives +
-      this.upperSection.sixes);
-  }
-  getGrandTotal() {
-    return (this.grandTotal = this.upperScore + this.lowerScore);
-  }
-  addBonus() {
-    this.upperScore += 35;
-    this.getGrandTotal();
-  }
-  checkForBonus() {
-    if (!this.countedBonus) {
-      if (this.upperScore >= 63) {
-        this.countedBonus = true;
-        console.log("adding bonus");
-        return this.addBonus();
-      }
-      return;
-    }
-    return;
-  }
-}
+    },
+    hasCountedBonus: false,
+  };
+};
 
-const StartForm = ({
-  playerNumber,
-  setPlayerNumber,
-  playerList,
-  setPlayerList,
-  setTurnsLeft,
-  setGameOver,
-}) => {
+const StartForm = ({ players, onUpdatePlayers, onStartGame }) => {
   const navigate = useNavigate();
-  let playerInputs = [];
-  let playerNames = [...playerList];
+  const [count, setPlayerCount] = useState();
 
-  for (let i = 0; i < playerNumber; i++) {
-    playerInputs.push(`Player ${i + 1} Name`);
-  }
+  const isReadyToStart =
+    players.length > 0 &&
+    players.every((player) => player.name && player.name.trim().length > 0);
 
   const handleSetNumberOfPlayers = (e) => {
-    if (e.target.value.match(/^[0-9]*$/)) {
-      return setPlayerNumber(Number(e.target.value));
+    const val = Number(e.target.value) || 0;
+
+    if (val >= 0) {
+      const MAX_PLAYERS = 20;
+      const count = Math.min(val, MAX_PLAYERS);
+
+      setPlayerCount(count);
+      onUpdatePlayers(
+        times(count, (index) => players[index] || generateNewPlayer()),
+      );
+    } else {
+      setPlayerCount();
+      onUpdatePlayers([]);
     }
-    setPlayerNumber(0);
-    setPlayerList([]);
   };
 
-  const handleSetPlayerName = (e, index) => {
-    if (e.target.value) {
-      playerNames[index] = new Player(e.target.value);
-      return setPlayerList(playerNames);
-    }
-    playerNames[index] = undefined;
-    setPlayerList(playerNames);
+  const handleSetPlayerName = (value, index) => {
+    onUpdatePlayers(
+      players.map((player, i) => {
+        if (i === index) {
+          return { ...player, name: value };
+        } else {
+          return player;
+        }
+      }),
+    );
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let adjustedPlayers = [...playerList];
-    adjustedPlayers.splice(playerNumber, playerList.length - playerNumber);
-    setPlayerList(adjustedPlayers);
-    setTurnsLeft(playerNumber * 13);
-    setGameOver(false);
-    return navigate("/play");
-  };
 
-  const isReadyToStart =
-    playerList.length === playerNumber &&
-    playerList.length !== 0 &&
-    !isNaN(playerNumber) &&
-    !playerList.includes(undefined);
+    if (isReadyToStart) {
+      return navigate("/play");
+    }
+  };
 
   return (
     <section id="new-game" className="h-full">
@@ -154,20 +102,21 @@ const StartForm = ({
           onChange={handleSetNumberOfPlayers}
         />
         <Trail>
-          {playerNumber > 0 && (
+          {players.length > 0 && (
             <p className="mb-3 text-3xl font-semibold tracking-wide text-orange-500 dark:text-orange-300">
               Player Names
             </p>
           )}
-          {playerInputs.map((el, index) => {
+          {players.map((player, index) => {
             return (
               <input
                 required
-                key={el}
+                key={index}
                 type="text"
-                placeholder={`${el}`}
+                placeholder="Enter name"
                 className="py-3 px-5 rounded-md mb-8 dark:bg-blue-700 bg-blue-100 dark:border-blue-300 border-teal-500 border-4 focus:outline-none tracking-wide"
-                onChange={(e) => handleSetPlayerName(e, index)}
+                value={player.name}
+                onChange={(e) => handleSetPlayerName(e.target.value, index)}
               />
             );
           })}

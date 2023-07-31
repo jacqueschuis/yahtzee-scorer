@@ -9,48 +9,21 @@ import Game from "./components/Game";
 import Home from "./components/Home";
 
 function App() {
-  const [isGameOver, setGameOver] = useState(false);
-  const [winner, setWinner] = useState(null);
-  const [playerNumber, setPlayerNumber] = useState(0);
-  const [playerList, setPlayerList] = useState([]);
-  const [turnCount, setTurnCount] = useState(0);
-  const [turnsLeft, setTurnsLeft] = useState(13);
+  const [players, setPlayers] = useState([]);
 
-  const handleStartOver = () => {
-    setGameOver(false);
-    setPlayerList([]);
-    setPlayerNumber(0);
-    setTurnCount(0);
-  };
+  const handleStartOver = () => setPlayers([]);
 
   const router = createBrowserRouter([
     {
       path: "/new",
-      element: (
-        <StartForm
-          playerNumber={playerNumber}
-          setPlayerNumber={setPlayerNumber}
-          playerList={playerList}
-          setPlayerList={setPlayerList}
-          setTurnsLeft={setTurnsLeft}
-          setGameOver={setGameOver}
-        />
-      ),
+      element: <StartForm players={players} onUpdatePlayers={setPlayers} />,
     },
     {
       path: "/play",
       element: (
         <Game
-          playerList={playerList}
-          setPlayerList={setPlayerList}
-          isGameOver={isGameOver}
-          setGameOver={setGameOver}
-          winner={winner}
-          setWinner={setWinner}
-          turnCount={turnCount}
-          setTurnCount={setTurnCount}
-          turnsLeft={turnsLeft}
-          setTurnsLeft={setTurnsLeft}
+          players={players}
+          onUpdatePlayers={setPlayers}
           onStartOver={handleStartOver}
         />
       ),
