@@ -176,7 +176,7 @@ const Game = ({ players, onUpdatePlayers, onStartOver }) => {
                     <th
                       className={`p-2 uppercase font-semibold ${
                         isPlayerTurn(index)
-                          ? "bg-teal-300 dark:bg-blue-60"
+                          ? "bg-teal-300 dark:bg-blue-600"
                           : " bg-teal-500 dark:bg-blue-700"
                       }`}
                       key={player.name}
