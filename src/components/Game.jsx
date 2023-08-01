@@ -22,7 +22,7 @@ const LabelColumnCell = ({ label, description }) => {
 
   return (
     <td
-      className="text-sm md:text-xl p-2 w-40 sm:w-48 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100"
+      className="text-sm md:text-xl p-2 w-12 md:w-48 sticky z-10 left-0 bg-teal-500 dark:bg-blue-700 dark:text-teal-100"
       onClick={handleToggleDescription}
     >
       {isDescriptionVisible ? description : label}
@@ -75,7 +75,7 @@ const PlayerScoreCell = ({
       } ${!isValid && "text-orange-500"}`}
     >
       <input
-        type="number"
+        type="tel"
         className="text-center outline-none w-full h-full p-2 bg-transparent"
         disabled={!isPlayerTurn || isGameOver || isDisabled}
         value={value}
@@ -139,7 +139,7 @@ const Game = ({ players, onUpdatePlayers, onStartOver }) => {
     <section id="game" className="h-full w-full lg:px-24 px-5">
       <Trail>
         <div className="header mb-14 flex flex-col gap-4">
-          {isGameOver ? (
+          {isGameOver && winner ? (
             <div>
               <h2 className="w-full tracking-wider leading-none font-bold text-6xl text-teal-500 dark:text-blue-300">
                 <span className="text-orange-500 dark:text-orange-300">
