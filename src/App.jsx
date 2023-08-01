@@ -1,49 +1,38 @@
-import { useState } from 'react'
+import { useState } from "react";
 
-import './App.css'
+import "./App.css";
 
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import StartForm from './components/StartForm'
-import Game from './components/Game'
-import Home from './components/Home';
+import StartForm from "./components/StartForm";
+import Game from "./components/Game";
+import Home from "./components/Home";
 
 function App() {
-  const [isGameOver, setGameOver] = useState(false);
-  const [winner, setWinner] = useState(null);
-  const [playerNumber, setPlayerNumber] = useState(0);
-  const [playerList, setPlayerList] = useState([]);
-  const [turnCount, setTurnCount] = useState(0);
-  const [turnsLeft, setTurnsLeft] = useState(13);
+  const [players, setPlayers] = useState([]);
 
-  const [dice, setDice] = useState([]);
-
-  const newDice = () => {
-      setDice([
-          Math.floor(Math.random()*6 + 1),
-          Math.floor(Math.random()*6 + 1),
-          Math.floor(Math.random()*6 + 1),
-          Math.floor(Math.random()*6 + 1),
-          Math.floor(Math.random()*6 + 1),
-      ])
-  }
-
+  const handleStartOver = () => setPlayers([]);
 
   const router = createBrowserRouter([
     {
-      path: '/new',
-      element: <StartForm dice={dice} newDice={newDice} playerNumber={playerNumber} setPlayerNumber={setPlayerNumber} playerList={playerList} setPlayerList={setPlayerList} setTurnsLeft={setTurnsLeft} setGameOver={setGameOver} />,
+      path: "/new",
+      element: <StartForm players={players} onUpdatePlayers={setPlayers} />,
     },
     {
-      path: '/play',
-      element: <Game dice={dice} newDice={newDice} playerList={playerList} setPlayerList={setPlayerList} isGameOver={isGameOver} setGameOver={setGameOver} winner={winner} setWinner={setWinner} turnCount={turnCount} setTurnCount={setTurnCount} playerNumber={playerNumber} setPlayerNumber={setPlayerNumber} turnsLeft={turnsLeft} setTurnsLeft={setTurnsLeft} />
+      path: "/play",
+      element: (
+        <Game
+          players={players}
+          onUpdatePlayers={setPlayers}
+          onStartOver={handleStartOver}
+        />
+      ),
     },
     {
-      path: '*',
-      element: <Home dice={dice} newDice={newDice} />
-    }
+      path: "*",
+      element: <Home />,
+    },
   ]);
-
 
   return (
     <>
@@ -51,7 +40,7 @@ function App() {
         <RouterProvider router={router} />
       </main>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

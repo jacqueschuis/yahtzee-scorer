@@ -7,6 +7,7 @@ export default {
       sans: ["Prompt", "Helvetica", "Arial", "sans-serif"],
     },
     colors: {
+      transparent: "transparent",
       blue: {
         100: "hsl(197,100%,95%)",
         200: "hsl(197,60%,83%)",
